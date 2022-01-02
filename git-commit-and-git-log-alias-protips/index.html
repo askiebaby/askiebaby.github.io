@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>開發者一定要知道的 GIT tricks - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="修改了某些檔案，一次只 commit 其中某幾個檔案，該怎麼做？">
+ 
+<meta name="keywords" content="Git,Git log,Git commit,git alias">
+  <meta name="description" content="修改了某些檔案，一次只 commit 其中某幾個檔案，該怎麼做？">
+<meta name="keywords" content="Git,Git log,Git commit,git alias">
+<meta property="og:type" content="article">
+<meta property="og:title" content="開發者一定要知道的 GIT tricks">
+<meta property="og:url" content="https://askie.today/git-commit-and-git-log-alias-protips/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="修改了某些檔案，一次只 commit 其中某幾個檔案，該怎麼做？">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/M3B7eo9.png">
+<meta property="og:updated_time" content="2019-07-16T12:11:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="開發者一定要知道的 GIT tricks">
+<meta name="twitter:description" content="修改了某些檔案，一次只 commit 其中某幾個檔案，該怎麼做？">
+<meta name="twitter:image" content="https://i.imgur.com/M3B7eo9.png">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            開發者一定要知道的 GIT tricks
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-06-01T12:44:49.000Z" itemprop="datePublished">6月 1 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/GIT/">GIT</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            6 分鐘 的閱讀時間 (約 890 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>修改了某些檔案，一次只 commit 其中某幾個檔案</h2>
+<p>假設我們在開發的過程當中，做了某些檔案的修改。</p>
+<pre><code class="bash">git status
+
+# 看到以下的狀態
+On branch develop
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be commited)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+modified: document.json
+modified: package-lock.json
+modified: package.json
+modified: src/app/app.component.html
+modified: src/app/app.component.ts
+modified: src/app/app.module.ts
+modified: src/index.html
+modified: src/styles.css
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+<p>可是我只希望部分檔案加入 <code>staging area</code>，比如寫 component 時很好用，現在只希望加入 <strong>src/app/app.component</strong> 開頭的兩個檔案： <code>src/app/app.component.html</code>、<code>src/app/app.component.ts</code>。</p>
+<pre><code class="bash"># 原本要這樣加入
+git add src/app/app.component.html src/app/app.component.ts
+
+# 現在只要這樣寫
+git add src/app/app.component-*
+</code></pre>
+<p>想加入相同檔案類型的語法就是反過來，比如加入 <code>.html</code> 檔案：</p>
+<pre><code class="bash">git add *.html
+</code></pre>
+<hr>
+<h2>下 git log 時，提高可讀性，顯示時間、下 commit 的人</h2>
+<p>在使用 GIT 的時候，常常需要檢視我們的 commit 紀錄，而查看紀錄的語法是 <code>git log</code>。</p>
+<p>一般來說，我們在 <code>terminal</code>下 <code>git log</code> 會看到以下訊息：</p>
+<pre><code class="bash">commit 9a7f06bd416decd8ec8463248d159cde67c48c82
+Author: Askie &lt;youremail@gmail.com&gt;
+Date:   Fri Oct 12 13:05:45
+</code></pre>
+<p>內建呈現的格式提供的資訊並不符合每天查閱的需求，所以接下來會教你會加入一個 <code>alias</code> ，指向新的設定。</p>
+<pre><code class="bash"># 在專案底下查看 git 設定檔
+vim ~/.gitconfig
+</code></pre>
+<pre><code class="bash"># .gitconfig 檔案
+[alias]
+		lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --branches
+</code></pre>
+<pre><code class="bash">git lg
+</code></pre>
+<p><img src="https://i.imgur.com/M3B7eo9.png" alt=".gitconfig file"></p>
+<p>可以看到有顯示以下資訊（請忽略新手還亂亂的 commit 的訊息，以及把顏色改掉了看不出來這件事&gt;//&lt;）：</p>
+<ul>
+<li>SHA1</li>
+<li>HEAD 指向哪個 commit</li>
+<li>分支名稱</li>
+<li>Commit message</li>
+<li>合併分支的流程以圖形介面呈現</li>
+<li>多久以前 commit</li>
+<li>誰做了這個 commit</li>
+</ul>
+<h4>更多設定 <code>alias</code> 的內容可以參考<a href="https://gitbook.tw/chapters/config/convenient-settings.html" target="_blank" rel="noopener">為你自己學 Git-其它方便的設定</a>。</h4>
+<p>本文章內容是參考 <code>egghead.io</code> 的 Juri Strumpflohner 所開的 <a href="https://egghead.io/courses/productive-git-for-developers" target="_blank" rel="noopener">Productive Git for Developers</a><br>
+課程內容包含下面的情境，想學習的可以去<strong>訂閱</strong>唷！</p>
+<ol>
+<li>修改了某些檔案，一次只 commit 其中某幾個檔案</li>
+<li>下 git log 時，提高可讀性，顯示時間、commit 的人</li>
+<li>不小心把 commit 下在 Master，如何移動某些 commits 到另一個新分支？</li>
+<li>取 master 最新的 commit 內容，搬到現在正在開發中的 feature branch</li>
+<li>將本地端有 rebase 過的分支 push 到遠端（使用 --force-with-lease）</li>
+<li>在提交要給夥伴 review、merge 前，怎樣整理好我們的 git branch</li>
+<li>利用 Git Autosquash 自動清理我們的 feature branch（有時候開發途中會發現其他小問題，會產生一些 fix 這種可讀性低的 commits）</li>
+<li>整合數個 commits 成一個 commit，並且 merge 到 master</li>
+<li>message 打錯了！只修改最後一次 commit 的 message</li>
+<li>少 commit 一個要的檔案！補到最後一次 commit 當中</li>
+<li>取消最後一次 commit 並且將它切成兩個</li>
+<li>從 branch 當中永遠移除某個 commit（使用 git reset）</li>
+<li>將不小心 push 到遠端 Repository 的 commit 取消</li>
+<li>暫存一些正在做的事情，因為我現在需要跳到其他分支</li>
+</ol>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/git/">#git</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/git-log/">#git log</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/git-commit/">#git commit</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/git-alias/">#git alias</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/javascript-good-condition-statement/">五個小技巧讓你寫出更好的 JavaScript 條件語句（翻譯）</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/differences-among-var-let-const/">在 JavaScript 中，Var、Let、Const 的差異？</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

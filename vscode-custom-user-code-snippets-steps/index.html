@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>以 Vue 為例，如何在 VSCODE 自訂程式碼片段 Code Snippets？ - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="真正開發時，創建結構時常常都要建立新檔案去切分 component，打幾乎同樣的程式碼有點煩，所以～找了一下該怎麼來設定自己要的程式碼片段。希望有幫助到你：）">
+ 
+<meta name="keywords" content="Vscode,Custom user code snippets,Code snippets,User snippets,Step by step,Snippet generator">
+  <meta name="description" content="真正開發時，創建結構時常常都要建立新檔案去切分 component，打幾乎同樣的程式碼有點煩，所以～找了一下該怎麼來設定自己要的程式碼片段。希望有幫助到你：）">
+<meta name="keywords" content="Vscode,Custom user code snippets,Code snippets,User snippets,Step by step,Snippet generator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以 Vue 為例，如何在 VSCODE 自訂程式碼片段 Code Snippets？">
+<meta property="og:url" content="https://askie.today/vscode-custom-user-code-snippets-steps/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="真正開發時，創建結構時常常都要建立新檔案去切分 component，打幾乎同樣的程式碼有點煩，所以～找了一下該怎麼來設定自己要的程式碼片段。希望有幫助到你：）">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/eblXcFs.png">
+<meta property="og:updated_time" content="2019-08-03T07:51:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以 Vue 為例，如何在 VSCODE 自訂程式碼片段 Code Snippets？">
+<meta name="twitter:description" content="真正開發時，創建結構時常常都要建立新檔案去切分 component，打幾乎同樣的程式碼有點煩，所以～找了一下該怎麼來設定自己要的程式碼片段。希望有幫助到你：）">
+<meta name="twitter:image" content="https://i.imgur.com/eblXcFs.png">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            以 Vue 為例，如何在 VSCODE 自訂程式碼片段 Code Snippets？
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-08-03T07:34:59.000Z" itemprop="datePublished">8月 3 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Efficiency/">Efficiency</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            3 分鐘 的閱讀時間 (約 524 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/eblXcFs.png" alt="Snippet Generator"></p>
+<p>好，我習慣用的編輯器是 VSCODE，雖然有安裝一些 Snippets 擴充套件，讓我敲程式碼時比較不會因為打錯浪費時間 debug。但，真正開發時，創建結構時常常都要建立新檔案去切分 component，打幾乎同樣的程式碼有點煩，所以～找了一下該怎麼來設定自己要的程式碼片段。希望有幫助到你：）</p>
+<h2>一、設定 Setting.json</h2>
+<p>1-1. <code>command</code> + <code>,</code><br>
+1-2. 右上角 <code>{}</code>，打開自定檔<br>
+1-3. 新增以下語法：</p>
+<pre><code class="json">// 啟用自訂程式碼樣版
+&quot;editor.tabCompletion&quot;: &quot;on&quot;,
+
+// 如果你跟我一樣，有裝其他的 Snippet，可以將編輯器的權重提高
+&quot;editor.snippetSuggestions&quot;: &quot;top&quot;,
+</code></pre>
+<h2>二、在 VSCODE 新增自己的片段</h2>
+<p>2-1. <code>shift</code> + <code>command</code> + <code>p</code></p>
+<p>2-2. 輸入 <code>&quot;User Snippets&quot;</code>，選擇 <code>Preferences:Configure User Snippets</code></p>
+<p>2-3. 選擇語言，可以是 Global，因以 Vue 為例，我選擇 Vue。</p>
+<p>有些參數說明，接下來，可以自己去瞭解參數或是使用 Snippets 設定產生工具！</p>
+<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets" target="_blank" rel="noopener">VSCODE 官方說明</a></p>
+<h2>三、利用 snippet generator 創造自己的設定檔，感謝大大，快去追蹤他 XD</h2>
+<h3><a href="https://snippet-generator.app/" target="_blank" rel="noopener">snippet generator</a></h3>
+<p>產生器支援 VSCODE、SUBLIME、ATOM 唷，選擇自己的編輯器來設定吧。</p>
+<p><strong><code>prefix</code> 就是你到時要生成自訂程式碼要輸入的。</strong></p>
+<pre><code class="json">{
+  // 第一次建立的朋友
+  // 記得產生器產生的設定檔需要放在一個『物件』裡
+  // 之後可以往下繼續新增你其他的 Snippets
+  // 將自訂的程式碼設定檔貼在這裡
+}
+</code></pre>
+<p>像這樣：</p>
+<pre><code class="json">{
+  &quot;Askie 自訂的 Vue 樣板&quot;: {
+    &quot;prefix&quot;: &quot;vuetem&quot;,
+    &quot;body&quot;: [
+      &quot;&lt;template&gt;&quot;,
+      &quot;  &lt;section&gt;Hello&lt;/section&gt;&quot;,
+      &quot;&lt;/template&gt;&quot;,
+      &quot;&quot;,
+      &quot;&lt;script&gt;&quot;,
+      &quot;export default {&quot;,
+      &quot;  name: 'Hello',&quot;,
+      &quot;  data() {&quot;,
+      &quot;    return {};&quot;,
+      &quot;  },&quot;,
+      &quot;  computed: {},&quot;,
+      &quot;  created() {},&quot;,
+      &quot;  mounted() {},&quot;,
+      &quot;  methods: {},&quot;,
+      &quot;  components: {},&quot;,
+      &quot;};&quot;,
+      &quot;&lt;/script&gt;&quot;,
+      &quot;&quot;,
+      &quot;&lt;style lang=\&quot;scss\&quot; scoped&gt;&quot;,
+      &quot;&lt;/style&gt;&quot;,
+      &quot;&quot;
+    ],
+    &quot;description&quot;: &quot;Askie 自訂的 Vue 樣板&quot;
+  }
+}
+</code></pre>
+<p>Easy？<br>
+不過我有踩一下雷，就是第一步驟的設定檔，以及最後要將設定內容全放在一個物件中，怕忘了，也感覺新手第一次建立時會遇到問題，所以簡單做個紀錄。</p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/vscode/">#vscode</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/custom-user-code-snippets/">#custom user code snippets</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/code-snippets/">#code snippets</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/user-snippets/">#user snippets</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/step-by-step/">#step by step</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/snippet-generator/">#snippet generator</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/upload-sitemap-google-search-console-seo-hexo-blog/">輕鬆地提交 Hexo 部落格的 Sitemap.xml 到 Google Search Console</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/accessible-design-and-universal-design-principles-for-all/">符合無障礙規範一定要了解！把「通用設計」的思考融入骨子裡</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

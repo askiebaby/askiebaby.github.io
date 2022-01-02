@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>從零開始設定自己的開發環境、軟體推薦（MacOS） - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="最近到了新的工作環境，公司配了一台新電腦，要從零來設置自己習慣的開發環境，所以除了安裝開發上很順手的工具以外，也額外想推薦大家來安裝能夠增加效率或是提升開發速度的軟體。這篇文章不會各別介紹每個工具詳細設定的流程，我選擇紀錄每個推薦的工具能夠為我解決什麼問題，等於是為了以後買新電腦又要重設開發環境做準備（？）">
+ 
+<meta name="keywords" content="w3HexSchool,MacOS,設定開發環境">
+  <meta name="description" content="最近到了新的工作環境，公司配了一台新電腦，要從零來設置自己習慣的開發環境，所以除了安裝開發上很順手的工具以外，也額外想推薦大家來安裝能夠增加效率或是提升開發速度的軟體。這篇文章不會各別介紹每個工具詳細設定的流程，我選擇紀錄每個推薦的工具能夠為我解決什麼問題，等於是為了以後買新電腦又要重設開發環境做準備（？）">
+<meta name="keywords" content="w3HexSchool,MacOS,設定開發環境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="從零開始設定自己的開發環境、軟體推薦（MacOS）">
+<meta property="og:url" content="https://askie.today/how-to-setup-develop-environment/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="最近到了新的工作環境，公司配了一台新電腦，要從零來設置自己習慣的開發環境，所以除了安裝開發上很順手的工具以外，也額外想推薦大家來安裝能夠增加效率或是提升開發速度的軟體。這篇文章不會各別介紹每個工具詳細設定的流程，我選擇紀錄每個推薦的工具能夠為我解決什麼問題，等於是為了以後買新電腦又要重設開發環境做準備（？）">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-03-04T16:17:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="從零開始設定自己的開發環境、軟體推薦（MacOS）">
+<meta name="twitter:description" content="最近到了新的工作環境，公司配了一台新電腦，要從零來設置自己習慣的開發環境，所以除了安裝開發上很順手的工具以外，也額外想推薦大家來安裝能夠增加效率或是提升開發速度的軟體。這篇文章不會各別介紹每個工具詳細設定的流程，我選擇紀錄每個推薦的工具能夠為我解決什麼問題，等於是為了以後買新電腦又要重設開發環境做準備（？）">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            從零開始設定自己的開發環境、軟體推薦（MacOS）
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-02-13T16:15:08.000Z" itemprop="datePublished">2月 14 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Tools/">Tools</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            8 分鐘 的閱讀時間 (約 1190 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>最近到了新的工作環境，公司配了一台新電腦，要從零來設置自己習慣的開發環境，所以除了安裝開發上很順手的工具以外，也額外想推薦大家來安裝能夠增加效率或是提升開發速度的軟體。這篇文章不會各別介紹每個工具詳細設定的流程，我選擇紀錄每個推薦的工具能夠為我解決什麼問題，等於是為了以後買新電腦又要重設開發環境做準備（？）</p>
+<h2>1. HomeBrew</h2>
+<p><a href="https://brew.sh/index_zh-tw" target="_blank" rel="noopener">HomeBrew 官網</a></p>
+<blockquote>
+<p>安裝各式套件的管道。</p>
+</blockquote>
+<h3>安裝指令</h3>
+<pre><code class="bash">$ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+<h3>安裝後，確認版本</h3>
+<pre><code class="bash">$ brew --version
+</code></pre>
+<hr>
+<h2>2. GIT</h2>
+<p><a href="https://git-scm.com/" target="_blank" rel="noopener">GIT 官網</a></p>
+<blockquote>
+<p>版本控制管理系統，應該沒有開發者不知道，教學可以看高見龍老師的<a href="https://gitbook.tw/" target="_blank" rel="noopener">為你自己學 GIT</a>。</p>
+</blockquote>
+<h3>剛開始使用 GIT 的初始化</h3>
+<blockquote>
+<p>檢視目前電腦中 GIT 全域設定的使用者是誰。可以看這一篇<a href="https://gitbook.tw/chapters/config/user-config.html" target="_blank" rel="noopener">文章</a>。</p>
+</blockquote>
+<pre><code class="bash">$ git config --list
+
+user.name=Eddie Kao
+user.email=eddie@5xruby.tw
+</code></pre>
+<p>都還沒設定過的話，來設定一下：</p>
+<pre><code class="bash">$ git config --global user.name &quot;Askie Lin&quot;
+$ git config --global user.email &quot;askie_lin@xxxxxx.com&quot;
+</code></pre>
+<h3>每個專案使用不同作者</h3>
+<p>在自己的專案中，透過 <code>--local</code> 參數來達成：</p>
+<pre><code class="bash">$ git config --local user.name Kai
+$ git config --local user.email &quot;Kai@xxxxxx.com&quot;
+</code></pre>
+<p>做好修改的檔案會在這底下：<code>~/.gitconfig</code></p>
+<p>加上 log 高亮語法及 alias 增進你的速度，我的 <code>~/.gitconfig</code>：</p>
+<pre><code>[user]
+	name = Askie Lin
+	email = askie_lin@xxxxxx.com
+
+[alias]
+	co = checkout
+	br = branch
+	cm = commit
+	ca = commit --amend
+	cane = commit --amend --no-edit
+	st = status
+	rb = rebase
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --branches
+</code></pre>
+<p>但其實如果說 alias 增進速度這一塊，我沒有使用很多 alias 的設定，只單純設定使用頻率頻繁的。</p>
+<hr>
+<h2>3. NVM</h2>
+<p><a href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener">NVM 官方文件</a></p>
+<blockquote>
+<p>使用安裝 node，可以根據環境切換版本，也可以參考 node 官網對於 NVM 的使用說明：<a href="https://nodejs.org/en/download/package-manager/#nvm" target="_blank" rel="noopener">Installing Node.js via package manager</a> 及這篇 <a href="https://www.kancloud.cn/kancloud/mac-osx-for-newbie/50133" target="_blank" rel="noopener">Mac OSX 新手入門</a>。</p>
+</blockquote>
+<hr>
+<h2>4. 安裝 iTerm 2 + Zsh</h2>
+<p><a href="https://www.iterm2.com/" target="_blank" rel="noopener">iTerm 2 官網</a></p>
+<blockquote>
+<p>讓 Terminal 可以自訂顯示的資訊及 UI，如顯示所在路徑、GIT 分支及狀態其實不只是好看，能夠增加工作效率。</p>
+</blockquote>
+<h3>關於 Zsh 一定要使用的設定</h3>
+<h4>安裝 <a href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener">Auto suggestions</a> (for Oh My Zsh)</h4>
+<p>能夠讓我們在 Terminal 輸入指令時，自動提示輸入過的指令，激推！<br>
+簡述一下流程，流程取自於 PJCHENDer 的文章：<a href="https://pjchender.github.io/2017/11/18/%E7%82%BA-mac-%E7%9A%84-terminal-%E4%B8%8A%E8%89%B2-%E9%80%8F%E9%81%8E-iterm-2-%E5%92%8C-oh-my-zsh-%E9%AB%98%E4%BA%AE%E4%BD%A0%E7%9A%84%E7%B5%82%E7%AB%AF%E6%A9%9F/" target="_blank" rel="noopener">為 MAC 的 Terminal 上色 - 透過 iTerm 2 和 Oh My Zsh 高亮你的終端機</a></p>
+<p>在終端機輸入：</p>
+<pre><code>$ git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+</code></pre>
+<p>打開 ZSH 設定檔：</p>
+<pre><code>$ open ~/.zshrc
+</code></pre>
+<p>找到 plugins = “” 的地方，在 plugins 的欄位中加入”zsh-autosuggestion”後存檔：</p>
+<h4>原本</h4>
+<pre><code>$ plugins=(git)
+</code></pre>
+<h4>改成</h4>
+<pre><code>$ plugins=(git zsh-autosuggestions)
+</code></pre>
+<h2>5. 安裝 Visual Studio Code</h2>
+<p><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code 官網</a></p>
+<blockquote>
+<p>很棒的免費的編輯器，有中文化，擴充套件也很齊全。</p>
+</blockquote>
+<h3>推薦安裝</h3>
+<ol>
+<li>VS Code： <a href="https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync" target="_blank" rel="noopener">SettingSync</a>
+<blockquote>
+<p>有效備份每次的設定，在需要重新設定環境時，無痛接軌！</p>
+</blockquote>
+</li>
+<li>Terminal 使用 <code>code</code> 指令打開專案</li>
+</ol>
+<p>想在 Terminal 想直接使用 VS Code 開啟專案嗎？</p>
+<pre><code class="bash">$ code . # 當前目錄路徑
+$ code /anyDirectory/you/want # 資料夾路徑
+</code></pre>
+<p>如果遇見以下錯誤訊息該怎辦？</p>
+<pre><code>zsh: command not found: code
+</code></pre>
+<p>查看 StackOverflow - <a href="https://stackoverflow.com/questions/29955500/code-not-working-in-command-line-for-visual-studio-code-on-osx-mac" target="_blank" rel="noopener">“code .” Not working in Command Line for Visual Studio Code on OSX/Mac</a> 這篇說明唷！</p>
+<h2>6. 建立 SSH Key</h2>
+<p><a href="https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh" target="_blank" rel="noopener">教學激推</a></p>
+<blockquote>
+<p>讓你從 GitHub 或 GitLab 拉原始碼回來時可以透過 SSH Key 的方式，安全、方便、快速的 clone。使用 HTTPS 的方式則是每次都會詢問帳號、密碼，非常繁瑣。</p>
+</blockquote>
+<hr>
+<h2>7. Postman</h2>
+<p><a href="https://www.postman.com/" target="_blank" rel="noopener">POSTMAN 官網</a></p>
+<blockquote>
+<p>打 API 的好幫手。</p>
+</blockquote>
+<hr>
+<h2>8. Magnet（付費）</h2>
+<p><a href="https://magnet.crowdcafe.com/" target="_blank" rel="noopener">Magnet 官網</a><br>
+<a href="https://apps.apple.com/us/app/magnet/id441258766" target="_blank" rel="noopener">App Store 下載</a></p>
+<blockquote>
+<p>Window Manager，讓 MAC 使用者用快速鍵就能輕鬆分配應用程式該放在螢幕的哪個位置。Perfect！</p>
+</blockquote>
+<p>記錄完了，收工！</p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/w3HexSchool/">#w3HexSchool</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/development/">#development</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/tools/">#tools</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/開發環境/">#開發環境</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/MacOS/">#MacOS</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/react-main-concepts-part-1/">初心者透過官方文件學習 React 十大概念（上）</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/what-is-an-accessibe-website-exactly/">無障礙網站又稱為可訪問的網站，難道還有不可訪問的網站嗎？ What is an accessibe website exactly？</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

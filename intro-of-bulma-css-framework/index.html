@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>Bulma 介紹及用法，透過 cheatsheet 快速閱讀文件 - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="講到 CSS Framework，應該無人不知 Bootstrap。最近在 State of CSS 2019 的問卷結果中看到全球 CSS 使用數據，包含知名度、感興趣程度及使用滿意度，Bootstrap 的滿意度極低，而 Bulma 在使用滿意度算表現得很好，高達 74%，居於第二名...">
+ 
+<meta name="keywords" content="CSS,Bulma,CSS framework,RWD">
+  <meta name="description" content="講到 CSS Framework，應該無人不知 Bootstrap。最近在 State of CSS 2019 的問卷結果中看到全球 CSS 使用數據，包含知名度、感興趣程度及使用滿意度，Bootstrap 的滿意度極低，而 Bulma 在使用滿意度算表現得很好，高達 74%，居於第二名...">
+<meta name="keywords" content="CSS,Bulma,CSS framework,RWD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bulma 介紹及用法，透過 cheatsheet 快速閱讀文件">
+<meta property="og:url" content="https://askie.today/intro-of-bulma-css-framework/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="講到 CSS Framework，應該無人不知 Bootstrap。最近在 State of CSS 2019 的問卷結果中看到全球 CSS 使用數據，包含知名度、感興趣程度及使用滿意度，Bootstrap 的滿意度極低，而 Bulma 在使用滿意度算表現得很好，高達 74%，居於第二名...">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2021-11-28T11:34:50.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bulma 介紹及用法，透過 cheatsheet 快速閱讀文件">
+<meta name="twitter:description" content="講到 CSS Framework，應該無人不知 Bootstrap。最近在 State of CSS 2019 的問卷結果中看到全球 CSS 使用數據，包含知名度、感興趣程度及使用滿意度，Bootstrap 的滿意度極低，而 Bulma 在使用滿意度算表現得很好，高達 74%，居於第二名...">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Bulma 介紹及用法，透過 cheatsheet 快速閱讀文件
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-07-09T14:31:14.000Z" itemprop="datePublished">7月 9 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/CSS/">CSS</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            13 分鐘 的閱讀時間 (約 1903 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>Bulma</h2>
+<p>講到 CSS Framework，應該無人不知 Bootstrap。最近在 <a href="https://2019.stateofcss.com/technologies/css-frameworks/" target="_blank" rel="noopener">State of CSS 2019</a> 的問卷結果中看到全球 CSS 使用數據，包含知名度、感興趣程度及使用滿意度，Bootstrap 的滿意度極低，而 Bulma 在使用滿意度算表現得很好，高達 74%，居於第二名，滿意度的第一名是 Taiwlind。CP 值好高，所以想來試試看 Bulma！</p>
+<blockquote>
+<p>知名度：**50%**｜ (全部受測數 - 從沒聽過的人) / 全部受測數<br>
+感興趣：**41%**｜有興趣 / (有興趣 + 沒興趣)<br>
+滿意度：**74%**｜想再使用 / (想再使用 + 不想再使用)</p>
+</blockquote>
+<p>本篇文章純粹紀錄如何使用，方便自己日後忘記可以快速上手，不會與其他 CSS Framework 進行比較唷。</p>
+<p>Bulma 的 Responsive Web Design 跟 Bootstrap 4 一樣，也是利用 flexbox 來實現的，這篇記錄的 Bulma 版本是 <code>0.7.5</code>。</p>
+<h2>tl;dr</h2>
+<h3>感想、使用心得</h3>
+<p>一開始光看文件不太好找到需要的元件，不過原始碼和成果的對照還算清楚，超輕量！使用下來，安排網頁架構時，元素不影響權重很棒，也能自定義自己的色系，一律採用一個 component 組合搭配 modifiers，整體使用上也還算直覺，所以上手得快。</p>
+<h2>安裝方法</h2>
+<p>依你的情境選擇你想怎麼引入，詳見 <a href="https://bulma.io/documentation/overview/start/" target="_blank" rel="noopener">官方文件</a> 或 <a href="https://github.com/jgthms/bulma-start" target="_blank" rel="noopener">GitHub</a>。</p>
+<h3>CDN</h3>
+<p>到 <a href="https://cdnjs.com/libraries/bulma" target="_blank" rel="noopener">cdnjs</a> 這個 CDN 平台選擇版本，並引入至 HTML 中。</p>
+<pre><code class="html">&lt;link
+  rel=&quot;stylesheets&quot;
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css&quot;
+/&gt;
+</code></pre>
+<h3>本地引入</h3>
+<p>至 <a href="https://github.com/jgthms/bulma/tree/master/css" target="_blank" rel="noopener">GitHub Repo</a> 下載 CSS 檔案至本地的專案資料夾中，並引入至 HTML 中。<code>src</code> 中的<code>./</code> 表相對路徑。</p>
+<pre><code class="html">&lt;link rel=&quot;stylesheets&quot; src=&quot;./your-directory/bulma.min.css&quot; /&gt;
+</code></pre>
+<h3>NPM / Yarn</h3>
+<pre><code class="bash">npm install bulma-start
+</code></pre>
+<p>或是</p>
+<pre><code class="bash">yarn add bulma-start
+</code></pre>
+<p>NPM package 有包含哪些項目及相依套件請參考：<a href="https://github.com/jgthms/bulma-start#whats-included" target="_blank" rel="noopener">What’s included</a>。</p>
+<h3>注意：</h3>
+<ol>
+<li>要使用 bulma 中有含 icon 的輪子，要記得引入 <a href="https://fontawesome.com/" target="_blank" rel="noopener">Font Awesome 5</a>。</li>
+<li>要宣告 HTML5 的檔案類型，<code>&lt;!DOCTYPE html&gt;</code>，以利正常顯示。</li>
+<li>要宣告自適應的 viewport 宣告，以利正常顯示。</li>
+</ol>
+<pre><code class="html">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt;
+</code></pre>
+<h2>概覽</h2>
+<h3>類別：只有 class，純粹架構 HTML 時不會影響樣式。</h3>
+<ul>
+<li><code>genertic.sass</code>：定義頁面基本樣式。</li>
+<li>使用 <code>.content</code> 類別作為文字內容的容器，就可以輕鬆的使用 modifiers，套用 tag 樣式。
+<ul>
+<li><code>&lt;p&gt;</code> paragraphs</li>
+<li><code>&lt;ul&gt;</code> <code>&lt;ol&gt;</code> <code>&lt;dl&gt;</code> lists</li>
+<li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> headings</li>
+<li><code>&lt;blockquote&gt;</code> quotes</li>
+<li><code>&lt;em&gt;</code> and <code>&lt;strong&gt;</code></li>
+<li><code>&lt;table&gt;</code> <code>&lt;tr&gt;</code> <code>&lt;th&gt;</code> <code>&lt;td&gt;</code> tables</li>
+</ul>
+</li>
+</ul>
+<h3>模組化：有 39 個獨立的 sass 檔案，可單獨引入。</h3>
+<p>如果你想使用網格系統，只要引入：</p>
+<pre><code class="javascript">@import &quot;bulma/sass/utilities/_all.sass&quot;
+@import &quot;bulma/sass/grid/columns.sass&quot;
+</code></pre>
+<pre><code class="html">&lt;div class=&quot;columns&quot;&gt;
+  &lt;div class=&quot;column&quot;&gt;1&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;2&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;3&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;4&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;5&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>如果你想使用 buttons，只要引入，就可以使用這些 <code>.button</code> 及 <code>modifers</code>：</p>
+<ul>
+<li><code>.is-active</code></li>
+<li><code>.is-primary</code>, <code>.is-info</code>, <code>.is-success</code>…</li>
+<li><code>.is-small</code>, <code>.is-medium</code>, <code>.is-large</code></li>
+<li><code>.is-outlined</code>, <code>.is-inverted</code>, <code>.is-link</code></li>
+<li><code>.is-loading</code>, <code>[disabled]</code></li>
+</ul>
+<pre><code class="javascript">@import &quot;bulma/sass/utilities/_all.sass&quot;
+@import &quot;bulma/sass/elements/button.sass&quot;
+</code></pre>
+<pre><code class="html">&lt;button class=&quot;button&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;button is-primary&quot;&gt;Primary button&lt;/button&gt;
+&lt;button class=&quot;button is-large&quot;&gt;Large button&lt;/button&gt;
+&lt;button class=&quot;button is-loading&quot;&gt;Loading button&lt;/button&gt;
+</code></pre>
+<h3>自適應：預設是「垂直」佈局。</h3>
+<p>行動裝置為優先、垂直式閱讀設計。可以在 <code>.columns</code>及 <code>.level</code> 加上 <code>.is-mobile</code>強制改成水平佈局。</p>
+<h3>顏色：10 種顏色及 8 個層級的陰影。</h3>
+<p>可以透過變數去自定義你的。設定：<code>.is-$color</code>，比如說 <code>.is-primary</code> 或 <code>.is-dark</code>。</p>
+<h3>functions：提供 3 個 functions 去動態定義「值」、「顏色」。</h3>
+<ul>
+<li><code>powerNumber($number, $exp)</code>：計算相對暴露值，回傳數字。（目前尚不理解！）</li>
+<li><code>colorLuminance($color)</code>：計算亮度該是 dark 還是 light，回傳介於 0 與 1 之間的值（light: &gt; 0.5, dark: &lt;= 0.5，十進位）。</li>
+<li><code>findColorInvert($color)</code>：根據顏色的明亮度去計算該是黑色<code>rgba(#000, 0.7)</code>還是白色<code>#ffffff</code>。確保按鈕上文字搭配背景顏色後的可讀性。</li>
+</ul>
+<h3>mixins：提供 arrow($color)、clearfix、loader、overflow-touch…等可使用，詳見<a href="https://bulma.io/documentation/overview/mixins/" target="_blank" rel="noopener">文件</a>。</h3>
+<hr>
+<h1>我的 Cheatsheet</h1>
+<p>不是完整官方文件的 cheatSheet，由於一開始看 Bulma 不熟悉，所以串得不是很起來，透過整理 <a href="https://www.youtube.com/watch?v=IiPQYQT2-wg" target="_blank" rel="noopener">bulma 教學影片</a>去熟悉 bulma 的架構與設計，這時搭配文件非常好上手了～</p>
+<h2>文字內容 Context</h2>
+<h3>標題 Heading：使用 <code>.title</code>。</h3>
+<p>使用 <code>.title</code> 搭配 <code>modifiers</code>。</p>
+<pre><code class="html">&lt;h1 class=&quot;title is-1&quot;&gt;Hello Askie&lt;/h1&gt;
+&lt;h2 class=&quot;title is-2&quot;&gt;Hello Askie&lt;/h2&gt;
+&lt;h3 class=&quot;title is-3&quot;&gt;Hello Askie&lt;/h3&gt;
+&lt;h4 class=&quot;title is-4&quot;&gt;Hello Askie&lt;/h4&gt;
+&lt;h5 class=&quot;title is-5&quot;&gt;Hello Askie&lt;/h5&gt;
+&lt;h6 class=&quot;title is-6&quot;&gt;Hello Askie&lt;/h6&gt;
+</code></pre>
+<h3>內容 Content：使用 <code>.content</code>。</h3>
+<ul>
+<li>
+<p>使用 <code>.content</code> 搭配 <code>modifiers</code>。</p>
+<ul>
+<li><code>&lt;p&gt;</code> paragraphs</li>
+<li><code>&lt;ul&gt;</code> <code>&lt;ol&gt;</code> <code>&lt;dl&gt;</code> lists</li>
+<li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> headings</li>
+<li><code>&lt;blockquote&gt;</code> quotes</li>
+<li><code>&lt;em&gt;</code> and <code>&lt;strong&gt;</code></li>
+<li><code>&lt;table&gt;</code> <code>&lt;tr&gt;</code> <code>&lt;th&gt;</code> <code>&lt;td&gt;</code> tables</li>
+</ul>
+</li>
+<li>
+<p>modifiers</p>
+</li>
+</ul>
+<h3>sizes：3 級。</h3>
+<pre><code class="html">&lt;p class=&quot;content is-small&quot;&gt;Hello Askie and Hello World!&lt;/p&gt;
+&lt;p class=&quot;content is-medium&quot;&gt;Hello Askie and Hello World!&lt;/p&gt;
+&lt;p class=&quot;content is-large&quot;&gt;Hello Askie and Hello World!&lt;/p&gt;
+</code></pre>
+<h2>按鈕 Buttons</h2>
+<h3>colors：11 種顏色，可搭配 sizes 使用。</h3>
+<pre><code class="html">&lt;!-- buttons and colors --&gt;
+&lt;button class=&quot;button&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;button is-white&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;button is-light&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;button is-dark&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;button is-black&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;button is-link&quot;&gt;Button&lt;/button&gt;
+&lt;!-- links: like a button style --&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-primary&quot;&gt;Primary&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-info&quot;&gt;Info&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-success&quot;&gt;Success&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-warning&quot;&gt;Warning&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-danger&quot;&gt;Danger&lt;/a&gt;
+</code></pre>
+<ul>
+<li><code>.is-outlined</code>外框按鈕</li>
+</ul>
+<pre><code class="html">&lt;!-- outline --&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-danger is-outlined&quot;&gt;Danger&lt;/a&gt;
+</code></pre>
+<ul>
+<li><code>.is-inverted</code>反相按鈕</li>
+</ul>
+<pre><code class="html">&lt;!-- inverted --&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-danger is-inverted&quot;&gt;Danger&lt;/a&gt;
+</code></pre>
+<ul>
+<li>按鈕狀態</li>
+</ul>
+<pre><code class="html">&lt;a href=&quot;&quot; class=&quot;button is-hovered&quot;&gt;Hovered&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-focused&quot;&gt;Focused&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-active&quot;&gt;Active&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;button is-loading&quot;&gt;Loading&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;button&quot; disabled&gt;Disabled&lt;/a&gt;
+</code></pre>
+<h2>區塊 Boxes!</h2>
+<pre><code class="html">&lt;div class=&quot;box&quot;&gt;
+  &lt;h1 class=&quot;title&quot;&gt;Hello world&lt;/h1&gt;
+  &lt;p&gt;lorem ipsum&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<h2>通知 Notifications</h2>
+<pre><code class="html">&lt;div class=&quot;notification is-success&quot;&gt;
+  &lt;button class=&quot;delete&quot;&gt;&lt;/button&gt;
+  lorem ipsum
+&lt;/div&gt;
+</code></pre>
+<h2>標籤 Tags</h2>
+<pre><code class="html">&lt;span class=&quot;tag&quot;&gt;Hello&lt;/span&gt;
+&lt;span class=&quot;tag is-black&quot;&gt;black&lt;/span&gt;
+&lt;span class=&quot;tag is-danger is-medium&quot;
+  &gt;Danger &lt;button class=&quot;delete&quot;&gt;&lt;/button
+&gt;&lt;/span&gt;
+</code></pre>
+<h2>訊息 Messages</h2>
+<pre><code class="html">&lt;article class=&quot;message is-primary&quot;&gt;
+  &lt;header class=&quot;message-header&quot;&gt;&lt;p&gt;About Us&lt;/p&gt;&lt;/header&gt;
+  &lt;div class=&quot;message-body&quot;&gt;Holly yes!!&lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+<h2>導覽列 Navigations</h2>
+<pre><code class="html">&lt;nav class=&quot;nav&quot;&gt;
+  &lt;!-- 導覽列容器 --&gt;
+  &lt;div class=&quot;nav-left&quot;&gt;
+    &lt;!-- 對齊方式：置左 --&gt;
+    &lt;a href=&quot;&quot; clas=&quot;nav-item&quot;
+      &gt;&lt;!-- 元素 --&gt;
+      &lt;h1 class=&quot;title is-4&quot;&gt;Askie Lin&lt;/h1&gt;
+      &lt;!-- 標題 --&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;nav-right nav-menu&quot;&gt;
+    &lt;!-- 對齊方式：置右，是一個選單 --&gt;
+    &lt;a href=&quot;&quot; clas=&quot;nav-item&quot;&gt;A&lt;/a
+    &gt;&lt;!-- 元素 --&gt;
+    &lt;a href=&quot;&quot; clas=&quot;nav-item&quot;&gt;B&lt;/a
+    &gt;&lt;!-- 元素 --&gt;
+    &lt;a href=&quot;&quot; clas=&quot;nav-item&quot;&gt;C&lt;/a
+    &gt;&lt;!-- 元素 --&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+</code></pre>
+<h2>Hero</h2>
+<pre><code class="html">&lt;section class=&quot;hero is-warning&quot;&gt;
+  &lt;!-- hero 容器 --&gt;
+  &lt;div class=&quot;hero-body&quot;&gt;
+    &lt;!-- hero 主體 --&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;!-- 不一定需要，範例的情境適合用一個 container 包起來 --&gt;
+      &lt;h1 class=&quot;title&quot;&gt;Hello World&lt;/h1&gt;
+      &lt;h2 class=&quot;subtitle&quot;&gt;I am Askie Lin.&lt;/h2&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+<h2>卡片 Cards</h2>
+<pre><code class="html">&lt;section class=&quot;card is-warning&quot;&gt;
+  &lt;!-- card 容器 --&gt;
+  &lt;div class=&quot;card-content&quot;&gt;
+    &lt;!-- card 主體 --&gt;
+    &lt;p class=&quot;title&quot;&gt;Hello world, Askie.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;footer class=&quot;card-footer&quot;&gt;
+    &lt;!-- card 頁尾 --&gt;
+    &lt;p class=&quot;card-footer-item&quot;&gt;
+      &lt;!-- 頁尾元素 --&gt;
+      &lt;span&gt;View on&lt;a href=&quot;&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p class=&quot;card-footer-item&quot;&gt;
+      &lt;!-- 頁尾元素 --&gt;
+      &lt;span&gt;Share on&lt;a href=&quot;&quot;&gt;Facebook&lt;/a&gt;&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/section&gt;
+</code></pre>
+<h2>頁數 Pagination</h2>
+<ul>
+<li>容器使用 <code>.pagination</code>。</li>
+<li>功能使用 <code>.pagination-previous</code> 上一頁 / <code>.pagination-next</code> 下一頁。</li>
+<li>頁數主體使用 unordered list。</li>
+<li>頁數元素使用 <code>.pagination-link</code>，modifiers 有無法點擊 <code>disabled</code> 及目前所在頁數 <code>.is-current</code>。</li>
+</ul>
+<pre><code class="html">&lt;nav class=&quot;pagination&quot;&gt;
+  &lt;!-- pagination 容器 --&gt;
+  &lt;a href=&quot;&quot; class=&quot;pagination-previous&quot; disabled&gt;Previous&lt;/a
+  &gt;&lt;!-- 上一頁 --&gt;
+  &lt;a href=&quot;&quot; class=&quot;pagination-next&quot; disabled&gt;Next Page&lt;/a
+  &gt;&lt;!-- 下一頁 --&gt;
+  &lt;ul&gt;
+    &lt;!-- pagination 主體 --&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot; class=&quot;pagination-link is-current&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;!-- 目前在這一頁 --&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot; class=&quot;pagination-link&quot;&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot; class=&quot;pagination-link&quot;&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+<h2>Level：協助水平對齊，適合刻一些小巧的元件放在裡面</h2>
+<ul>
+<li>容器使用 <code>.level</code>。</li>
+<li>方向使用 <code>.level-left</code>/ <code>.level-right</code>。</li>
+<li>元素使用 <code>.level-item</code>。</li>
+</ul>
+<pre><code class="html">&lt;section class=&quot;level&quot;&gt;&lt;!-- level 容器 --&gt;
+  &lt;div class=&quot;level-left&quot;&gt;&lt;!-- 水平置左 --&gt;
+    &lt;p class=&quot;level-item&quot;&gt;&lt;a&gt;&lt;strong&gt;All&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;!-- level 元素 --&gt;
+    &lt;p class=&quot;level-item&quot;&gt;&lt;a&gt;Published&lt;/a&gt;&lt;/p&gt;
+    &lt;p class=&quot;level-item&quot;&gt;&lt;a&gt;Draft&lt;/a&gt;&lt;/p&gt;
+    &lt;p class=&quot;level-item&quot;&gt;&lt;a&gt;Deleted&lt;/a&gt;&lt;/p&gt;
+    &lt;p class=&quot;level-item&quot;&gt;&lt;a class=&quot;button is-primary&quot;&gt;All&lt;/a&gt;&lt;/p&gt;&lt;!-- 按鈕形狀的元素 --&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;level-right&quot;&gt;&lt;!-- 水平置右 --&gt;
+    &lt;p class=&quot;level-item&quot;&gt;&lt;!-- level 元素 --&gt;
+    	&lt;div class=&quot;field&quot;&gt;&lt;!-- 表單區域 --&gt;
+        &lt;div class=&quot;control&quot;&gt;
+          &lt;input type=&quot;text&quot; class=&quot;input&quot; placeholder=&quot;Search...&quot;/&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+<h2>表單 Forms</h2>
+<p>使用<code>.field</code> 作為每個元素的區隔。</p>
+<ul>
+<li>Input</li>
+</ul>
+<pre><code class="html">&lt;form&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;!-- 表單元件的容器 --&gt;
+    &lt;label class=&quot;label&quot;&gt;Name&lt;/label
+    &gt;&lt;!-- 表單標題 --&gt;
+    &lt;input
+      type=&quot;text&quot;
+      class=&quot;input&quot;
+      placeholder=&quot;Eneter Name&quot;
+    /&gt;&lt;!-- 表單 text 元素 --&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;!-- 表單元件的容器 --&gt;
+    &lt;label class=&quot;label&quot;&gt;Name&lt;/label
+    &gt;&lt;!-- 表單標題 --&gt;
+    &lt;input
+      type=&quot;text&quot;
+      class=&quot;input is-success&quot;
+      placeholder=&quot;Eneter Name&quot;
+    /&gt;&lt;!-- 配合 modifier --&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<ul>
+<li>select</li>
+</ul>
+<pre><code class="html">&lt;form&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;!-- 表單元件的容器 --&gt;
+    &lt;label class=&quot;label&quot;&gt;Select&lt;/label
+    &gt;&lt;!-- 表單標題 --&gt;
+    &lt;p class=&quot;control&quot;&gt;
+      &lt;span class=&quot;select&quot;&gt;
+        &lt;select&gt;
+          &lt;option&gt;開始選吧！&lt;/option&gt;
+          &lt;option&gt;簡單&lt;/option&gt;
+          &lt;option&gt;中等&lt;/option&gt;
+          &lt;option&gt;困難&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<ul>
+<li>textarea</li>
+</ul>
+<pre><code class="html">&lt;form&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;!-- 表單元件的容器 --&gt;
+    &lt;label class=&quot;label&quot;&gt;Textarea&lt;/label
+    &gt;&lt;!-- 表單標題 --&gt;
+    &lt;p class=&quot;control&quot;&gt;
+      &lt;!-- 利用 control 區分元素區塊 --&gt;
+      &lt;textarea class=&quot;textarea&quot; placeholder=&quot;Type somthing...&quot;&gt;&lt;/textarea&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<ul>
+<li>使用 icons：</li>
+</ul>
+<pre><code class="html">&lt;form&gt;
+  &lt;!-- example 1 --&gt;
+  &lt;div class=&quot;field has-addons&quot;&gt;
+    &lt;!-- 表單元件的容器 --&gt;
+    &lt;p class=&quot;control&quot;&gt;
+      &lt;!-- 利用 control 區分元素區塊 --&gt;
+      &lt;input
+        type=&quot;text&quot;
+        class=&quot;input&quot;
+        placeholder=&quot;Eneter Keywords...&quot;
+      /&gt;&lt;!-- 表單 text 元素 --&gt;
+    &lt;/p&gt;
+    &lt;p class=&quot;control&quot;&gt;
+      &lt;!-- 利用 control 區分元素區塊 --&gt;
+      &lt;a href=&quot;&quot; class=&quot;button is-info&quot;&gt;搜尋&lt;/a&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;!-- example 2 --&gt;
+  &lt;div class=&quot;field has-addons&quot;&gt;
+    &lt;!-- 表單元件的容器 --&gt;
+    &lt;p class=&quot;control&quot;&gt;
+      &lt;!-- 利用 control 區分元素區塊 --&gt;
+      &lt;span class=&quot;select&quot;&gt;
+        &lt;select&gt;
+          &lt;option&gt;新台幣&lt;/option&gt;
+          &lt;option&gt;美金&lt;/option&gt;
+          &lt;option&gt;日圓&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p class=&quot;control&quot;&gt;
+      &lt;!-- 利用 control 區分元素區塊 --&gt;
+      &lt;input
+        type=&quot;text&quot;
+        class=&quot;input&quot;
+        placeholder=&quot;填寫金額&quot;
+      /&gt;&lt;!-- 表單 text 元素 --&gt;
+    &lt;/p&gt;
+    &lt;p class=&quot;control&quot;&gt;
+      &lt;!-- 利用 control 區分元素區塊 --&gt;
+      &lt;a href=&quot;&quot; class=&quot;button is-info&quot;&gt;送出&lt;/a&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<h2>表格 Tables</h2>
+<ul>
+<li>modifiers，可以交互使用
+<ul>
+<li><code>.table</code> 容器
+<ul>
+<li><code>.is-striped</code>：灰白相間的表格。</li>
+<li><code>.is-bodered</code>：邊框的表格。</li>
+<li><code>.is-narrow</code>：窄一點的表格。</li>
+</ul>
+</li>
+<li>tr
+<ul>
+<li><code>.is-selected</code>：選擇中的列。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="html">&lt;table class=&quot;table &quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;姓氏&lt;/th&gt;
+      &lt;th&gt;名字&lt;/th&gt;
+      &lt;th&gt;星座&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;林&lt;/td&gt;
+      &lt;td&gt;ＯＯ&lt;/td&gt;
+      &lt;td&gt;牡羊座&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;王&lt;/td&gt;
+      &lt;td&gt;ＸＸ&lt;/td&gt;
+      &lt;td&gt;射手座&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<h2>網格系統 Grid System</h2>
+<ul>
+<li>純粹的網格，不論裡面有「<strong>幾格</strong>」都會自動排好：</li>
+</ul>
+<pre><code class="html">&lt;div class=&quot;columns&quot;&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;First Column&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;Second Column&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;Third Column&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>十二網格系統，搭配 modifiers <code>.is-$number</code>：</li>
+</ul>
+<pre><code class="html">&lt;div class=&quot;columns&quot;&gt;
+  &lt;div class=&quot;column is-2&quot;&gt;&lt;p class=&quot;notification&quot;&gt;2 Column&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column is-8&quot;&gt;&lt;p class=&quot;notification&quot;&gt;8 Column&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column is-2&quot;&gt;&lt;p class=&quot;notification&quot;&gt;2 Column&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>某一格佔據「<strong>四分之三</strong>」，剩下的自動排好：</li>
+</ul>
+<pre><code class="html">&lt;div class=&quot;columns&quot;&gt;
+  &lt;div class=&quot;column is-three-quarters&quot;&gt;
+    &lt;p class=&quot;notification&quot;&gt;四分之三&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;Auto&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;Auto&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>某一格佔據「<strong>三分之二</strong>」，剩下的自動排好：</li>
+</ul>
+<pre><code class="html">&lt;div class=&quot;columns&quot;&gt;
+  &lt;div class=&quot;column is-two-thirds&quot;&gt;&lt;p class=&quot;notification&quot;&gt;三分之二&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;Auto&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;Auto&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>某一格佔據「<strong>一半</strong>」，剩下的自動排好：</li>
+</ul>
+<pre><code class="html">&lt;div class=&quot;columns&quot;&gt;
+  &lt;div class=&quot;column is-half&quot;&gt;&lt;p class=&quot;notification&quot;&gt;50%&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;Auto&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;column&quot;&gt;&lt;p class=&quot;notification&quot;&gt;Auto&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/css/">#css</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/bulma/">#bulma</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/css-framework/">#css framework</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/rwd/">#rwd</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/vue-difference-between-css-modules-and-css-scoped/">CSS Modules 在 Vue 的用法？和 CSS scoped 分別的優勢？</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/meal-box-preperation-for-big-activity/">千人活動的備餐原則 - 根據 kerl lin 大大文章所整理的待辦清單</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

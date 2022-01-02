@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>五個小技巧讓你寫出更好的 JavaScript 條件語句（翻譯） - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="五個小技巧讓你寫出更好的 JavaScript 條件語句。範例中，乍看之下，寫法沒什麼錯誤。可是當我們有更多紅色水果的選項時，如 cherry（櫻桃）和 cranberries（蔓越莓），難道我們要增加更多的 || 邏輯運算子來判斷？">
+ 
+<meta name="keywords" content="JavaScript,JS conditions,JS statement">
+  <meta name="description" content="五個小技巧讓你寫出更好的 JavaScript 條件語句。範例中，乍看之下，寫法沒什麼錯誤。可是當我們有更多紅色水果的選項時，如 cherry（櫻桃）和 cranberries（蔓越莓），難道我們要增加更多的 || 邏輯運算子來判斷？">
+<meta name="keywords" content="JavaScript,JS conditions,JS statement">
+<meta property="og:type" content="article">
+<meta property="og:title" content="五個小技巧讓你寫出更好的 JavaScript 條件語句（翻譯）">
+<meta property="og:url" content="https://askie.today/javascript-good-condition-statement/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="五個小技巧讓你寫出更好的 JavaScript 條件語句。範例中，乍看之下，寫法沒什麼錯誤。可是當我們有更多紅色水果的選項時，如 cherry（櫻桃）和 cranberries（蔓越莓），難道我們要增加更多的 || 邏輯運算子來判斷？">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-07-16T12:12:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="五個小技巧讓你寫出更好的 JavaScript 條件語句（翻譯）">
+<meta name="twitter:description" content="五個小技巧讓你寫出更好的 JavaScript 條件語句。範例中，乍看之下，寫法沒什麼錯誤。可是當我們有更多紅色水果的選項時，如 cherry（櫻桃）和 cranberries（蔓越莓），難道我們要增加更多的 || 邏輯運算子來判斷？">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            五個小技巧讓你寫出更好的 JavaScript 條件語句（翻譯）
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-06-07T15:58:53.000Z" itemprop="datePublished">6月 7 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            18 分鐘 的閱讀時間 (約 2729 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>1. 使用 Array.includes 來處理多重條件</h2>
+<pre><code class="javascript">// 原始寫法
+function test(fruit) {
+  // 條件語句
+  if (fruit === &quot;apple&quot; || fruit === &quot;strawberry&quot;) {
+    console.log(&quot;red fruit&quot;);
+  }
+}
+</code></pre>
+<p>乍看之下，寫法沒什麼錯誤。可是當我們有更多紅色水果的選項時，如 <code>cherry</code>（櫻桃）和 <code>cranberries</code>（蔓越莓），難道我們要增加更多的 <code>||</code> 邏輯運算子來判斷？</p>
+<p>我們用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">Array.includes</a> 來改寫一次上面的判斷式：</p>
+<pre><code class="javascript">// 改寫後
+function test(fruit) {
+  // 將選項提取出來，放入陣列當中
+  const redFruits = [&quot;apple&quot;, &quot;strawberry&quot;, &quot;cherry&quot;, &quot;cranberries&quot;];
+  if (redFruits.includes(&quot;apple&quot;)) {
+    console.log(&quot;red fruit&quot;);
+  }
+}
+</code></pre>
+<p>將選項、可能的答案提取出來，放入陣列 <code>red fruits</code> 當中。這樣寫的話，程式碼看起來更加簡潔。</p>
+<hr>
+<h2>2. 減少巢狀，儘早回傳（ return）</h2>
+<p>這裏使用上面的程式碼內容來接續下面的範例，新增兩個條件。</p>
+<ul>
+<li>如果參數 <code>fruit</code> 沒有值，回傳錯誤（ <code>error</code>）。</li>
+<li>如果數量超過 10 的話，印出一個訊息。</li>
+</ul>
+<pre><code class="javascript">// 原始寫法，寫法一
+function test(fruit, quantity) {
+  const redFruits = [&quot;apple&quot;, &quot;strawberry&quot;, &quot;cherry&quot;, &quot;cranberries&quot;];
+
+  // 判定一：fruit 必須有值
+  if (fruit) {
+    // 判定二：fruit 必須是紅色的
+    if (redFruits.includes(fruit)) {
+      console.log(&quot;red fruit&quot;);
+
+      if (quantity &gt; 10) {
+        // 判定三：fruit 數量必須大於 10
+        console.log(&quot;big quantity&quot;);
+      }
+    }
+  } else {
+    throw new Error(&quot;No fruit!&quot;);
+  }
+}
+
+// 測試結果
+test(null); // 錯誤：沒有水果的值！
+test(&quot;apple&quot;); // 印出 red fruit
+test(&quot;apple&quot;, 20); // 印出 red fruit、big quantity
+</code></pre>
+<p>以上程式碼，已經加入了：</p>
+<ul>
+<li>1 個 <code>if/else</code> 的條件判斷，篩選掉無效的內容。</li>
+<li>3 個巢狀條件判斷（判定一、判定二、判定三）。</li>
+</ul>
+<p>對我個人而言，有一個基本通則，那就是「<strong>減少巢狀，儘早回傳</strong>」：</p>
+<pre><code class="javascript">// 改寫後，寫法二
+function test(fruit, quantity) {
+  const redFruits = [&quot;apple&quot;, &quot;strawberry&quot;, &quot;cherry&quot;, &quot;cranberries&quot;];
+
+  // 判定一：無效的值就直接跳出程式，拋出 error
+  if (!fruit) throw new Error(&quot;No fruit!&quot;);
+
+  // 判定二：fruit 必須是紅色的
+  if (redFruits.includes(fruit)) {
+    console.log(&quot;red fruit&quot;);
+
+    // 判定三：fruit 數量必須大於 10
+    if (quantity &gt; 10) {
+      console.log(&quot;big quantity&quot;);
+    }
+  }
+}
+</code></pre>
+<p>改寫程式碼後，現在只有一層的巢狀判斷式。尤其當你有很長的判斷條件時，這樣的 <code>Coding Style</code> 很棒（想像一下，你捲軸需要捲到很後面才知道 else 區塊做了什麼處理。難以閱讀，不帥！）</p>
+<p>透過<strong>轉換判斷式寫法、儘早回傳</strong>，可以更進一步的精簡巢狀 <code>if</code>，來看下面 <code>判斷式二</code> 是如何實現的：</p>
+<pre><code class="javascript">// 改寫後，寫法三
+function test(fruit, quantity) {
+  const redFruits = [&quot;apple&quot;, &quot;strawberry&quot;, &quot;cherry&quot;, &quot;cranberries&quot;];
+
+  // 判定一：無效的值就直接跳出程式，拋出 error
+  if (!fruit) throw new Error(&quot;No fruit!&quot;);
+
+  // 判定二：fruit 不是紅色的，就直接跳出程式
+  if (!redFruits.includes(fruit)) return;
+
+  console.log(&quot;red&quot;);
+
+  // 判定三：fruit 數量必須大於 10
+  if (quantity &gt; 10) {
+    console.log(&quot;big quantity&quot;);
+  }
+}
+</code></pre>
+<p>將判斷式二改成上面的寫法，我們的程式碼就不再這麼「巢」了！假設我們有很長的程式邏輯，並且想要在不滿足條件時中斷程式的進行，這樣的寫法很有效率、易讀。</p>
+<p>然而，其實也沒什麼硬性規定該如何寫，<strong>一切依使用情境而定</strong>，問問自己：「這個寫法套用在目前的狀況有增加可讀性嗎？」</p>
+<p>對我來說，我應該會選擇<u>寫法二</u>（只有一層的巢狀結構），原因在於：</p>
+<ul>
+<li>程式碼簡潔、直覺，有一層的 <code>if</code> 判定使得邏輯更清晰</li>
+<li>反轉程式碼在讀的時候會產生思考流程、增加認知負擔</li>
+</ul>
+<p>因此，「<strong>減少巢狀，儘早回傳</strong>」是原則，但也不要過度使用。</p>
+<p>以下有針對這個主題討論的文章及 StackOverflow 討論，有興趣的話可以看一下：</p>
+<ul>
+<li><a href="http://blog.timoxley.com/post/47041269194/avoid-else-return-early" target="_blank" rel="noopener">Avoid Else, Return Early</a> by Tim Oxley</li>
+<li><a href="https://softwareengineering.stackexchange.com/questions/18454/should-i-return-from-a-function-early-or-use-an-if-statement" target="_blank" rel="noopener">StackOverflow discussion</a> on if/else coding style</li>
+</ul>
+<hr>
+<h2>3. 函式使用預設值、解構</h2>
+<p>我猜你應該很熟悉下面這段程式碼，因為我們總是在確認 <code>null</code> / <code>undefined</code> 的值，是的話就給一個預設值。</p>
+<pre><code class="javascript">// 我們可能熟悉的寫法
+function test(fruit, quantity) {
+  if (!fruit) return;
+
+  // 若數量是 falsy value，將預設值設定為 1
+  const q = quantity || 1;
+  console.log(`We have ${q} ${fruit}!`);
+}
+
+// 測試結果
+test(&quot;banana&quot;);
+test(&quot;apple&quot;, 2);
+</code></pre>
+<p>事實上，在 function 針對參數（parameter） <code>q</code> 先設定預設值，就可以不用在程式碼區塊定義 變數 <code>q</code>。</p>
+<pre><code class="javascript">// 給預設值的寫法
+function test(fruit, quantity = 1) {
+  if (!fruit) return;
+  console.log(`We have ${q} ${fruit}!`);
+}
+
+// 測試結果
+test(&quot;banana&quot;);
+test(&quot;apple&quot;, 2);
+</code></pre>
+<p>更簡單、直覺了不是嗎？記得函式都可以設定每個<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters" target="_blank" rel="noopener">參數的預設值</a>，所以我們也可以幫參數 <code>fruit</code> 設定預設值，如 <code>function test(fruit = 'unknown', quantity = 1)</code>。</p>
+<h3>那假設 <code>fruit</code> 是物件怎麼辦？</h3>
+<pre><code class="javascript">// fruit 是物件的可能寫法
+function test(fruit) {
+  if (fruit &amp;&amp; fruit.name) {
+    // 若有值就印出水果名稱
+    console.log(fruit.name);
+  } else {
+    console.log(&quot;unknown&quot;);
+  }
+}
+
+// 測試結果
+test(undefined); // unknown
+test({}); // unknown
+test({ name: &quot;apple&quot;, color: &quot;red&quot; }); // apple
+</code></pre>
+<p>上面的範例中，我們希望水果名稱有值時就把它印出來，沒值就印出 <code>unknown</code>。其實，我們可以透過設定函式預設值與解構來減少 <code>fruit &amp;&amp; fruit.name</code> 這種條件判定。</p>
+<pre><code class="javascript">// 透過解構賦予參數預設值
+function test({ name } = {}) {
+  console.log(name || &quot;unknown&quot;);
+}
+
+// 測試結果
+test(undefined); // unknown
+test({}); // unknown
+test({ name: &quot;apple&quot;, color: &quot;red&quot; }); // apple
+</code></pre>
+<p>因為函式只需要用到物件 <code>fruit</code> 的屬性 <code>name</code>，所以我們可透過 <code>{name}</code> 將其解構出來使用，函式當中就可以拿 <code>name</code> 當作變數來參照，取代 <code>fruit.name</code> 寫法。</p>
+<p>我們解構賦值時，至少要設定空物件 <code>{}</code> 為預設值。否則會出現這個錯誤：<code>Uncaught TypeError: Cannot destructure property</code>name<code>of 'undefined' or 'null'.</code>。</p>
+<p>如果你不介意使用第三方函式庫的話，那麼我這裡有兩個方法可減少 <code>null</code> 的檢查：</p>
+<ul>
+<li>使用 <a href="https://lodash.com/docs/4.17.11#get" target="_blank" rel="noopener">Lodash - get function</a></li>
+<li>使用 Facebook 開源的 <a href="https://github.com/facebookincubator/idx" target="_blank" rel="noopener">idx</a> 函式庫 （需要 Bebeljs 轉譯）</li>
+</ul>
+<h3>Lodash get function：</h3>
+<pre><code class="javascript">_.get(object, path, [defaultValue]);
+</code></pre>
+<h3>Lodash 使用方法：</h3>
+<pre><code class="javascript">function test(fruit) {
+  // 若有值就印出水果名稱，否則採用預設值 'unknown'
+  console.log(_.get(fruit, &quot;name&quot;, &quot;unknown&quot;));
+}
+
+// 測試結果
+test(undefined); // unknown
+test({}); // unknown
+test({ name: &quot;apple&quot;, color: &quot;red&quot; }); // apple
+</code></pre>
+<p>你可以在 <a href="https://codepen.io/askie/pen/JqVrbK?editors=0011" target="_blank" rel="noopener">Codepen 玩玩這段程式碼</a>。如果你是 Functional Programming 愛好者，你可以把 Library 選項改成 <a href="https://github.com/lodash/lodash/wiki/FP-Guide" target="_blank" rel="noopener">Lodash fp</a>（方法會改成 <code>._getOr</code>），引數順序會從 <code>a, b, c</code> 改成 <code>c, b, a</code>。這裡有我的 <a href="https://codepen.io/askie/pen/ZNZXKz" target="_blank" rel="noopener">FP v4.0 - demo</a>。</p>
+<h3>Lodash FP 使用方法：</h3>
+<pre><code class="javascript">function test(fruit) {
+  // 若有值就印出水果名稱，否則採用預設值 'unknown'
+  console.log(_.getOr(&quot;unknown&quot;, &quot;name&quot;, fruit));
+}
+
+// 測試結果
+test(undefined); // unknown
+test({}); // unknown
+test({ name: &quot;apple&quot;, color: &quot;red&quot; }); // apple
+</code></pre>
+<hr>
+<h2>4. 相較於 Switch，Map / Object 是個好選擇</h2>
+<p>下面範例想要根據水果顏色，印出水果：</p>
+<pre><code class="javascript">function test(color) {
+  // 使用 switch case，根據水果顏色印出水果
+  switch (color) {
+    case &quot;red&quot;:
+      return [&quot;apple&quot;, &quot;strawberry&quot;];
+    case &quot;yellow&quot;:
+      return [&quot;banana&quot;, &quot;pineapple&quot;];
+    case &quot;purple&quot;:
+      return [&quot;grape&quot;, &quot;plum&quot;];
+    default:
+      return [];
+  }
+}
+
+// 測試結果
+test(null); // []
+test(&quot;yellow&quot;); // ['banana', 'pineapple']
+</code></pre>
+<p>程式碼邏輯雖沒錯，卻非常冗贅。相同的結果，可以利用物件實體語法（object literal），以清楚的語句來達成。</p>
+<pre><code class="javascript">const fruitColor = {
+  red: [&quot;apple&quot;, &quot;strawberry&quot;],
+  yellow: [&quot;banana&quot;, &quot;pineapple&quot;],
+  purple: [&quot;grape&quot;, &quot;plum&quot;]
+};
+
+function test(color) {
+  return fruitColor[color] || [];
+}
+
+// 測試結果
+test(null); // []
+test(&quot;yellow&quot;); // ['banana', 'pineapple']
+</code></pre>
+<p>另一個選擇是 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank" rel="noopener">Map</a> 達成相同結果：</p>
+<pre><code class="javascript">const fruitColor = new Map()
+  .set(&quot;red&quot;, [&quot;apple&quot;, &quot;strawberry&quot;])
+  .set(&quot;yellow&quot;, [&quot;banana&quot;, &quot;pineapple&quot;])
+  .set(&quot;purple&quot;, [&quot;grape&quot;, &quot;plum&quot;]);
+
+function test(color) {
+  return fruitColor.get(color) || [];
+}
+
+// 測試結果
+test(null); // []
+test(&quot;yellow&quot;); // ['banana', 'pineapple']
+</code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank" rel="noopener">Map</a> 是 ES2015 起來有的物件型別，讓你可以去儲存成對的 key 及 value。</p>
+<p>那麼，難道我們該捨棄使用 Switch 嗎？別讓自己受限，就我個人而言，我會盡可能地使用物件實體語法（object literal），但我不會把規則定死，老話一句，一切只要適用於情境即可。</p>
+<p>Todd Motto 寫過<a href="https://ultimatecourses.com/blog/deprecating-the-switch-statement-for-object-literals" target="_blank" rel="noopener">一篇文章</a>在討論 switch 和 物件實體語法（object literal），有興趣可以看一下。</p>
+<h2>TL; DR; 重構語法</h2>
+<p>重構資料結構後，可以透過 <code>Array.filter</code> 達成相同結果：</p>
+<pre><code class="javascript">const fruits = [
+  { name: &quot;apple&quot;, color: &quot;red&quot; },
+  { name: &quot;strawberry&quot;, color: &quot;red&quot; },
+  { name: &quot;banana&quot;, color: &quot;yellow&quot; },
+  { name: &quot;pineapple&quot;, color: &quot;yellow&quot; },
+  { name: &quot;grape&quot;, color: &quot;purple&quot; },
+  { name: &quot;plum&quot;, color: &quot;purple&quot; }
+];
+
+function test(color) {
+  return fruits.filter(f =&gt; f.color === color);
+}
+</code></pre>
+<p>總是有超過一種方式可以達成相同結果，以上已經提到 4 種程式範例，寫程式真的很有趣吧，呵呵。</p>
+<hr>
+<h2>5. 用 Array.every 和 Array.some 應用於全部與局部條件</h2>
+<p>最後一個技巧是利用 JavaScript 提供 Array 的新方法（但也不是那麼新啦）來減少程式碼的行數。來看看以下的程式碼，我們來檢查全部的水果是不是紅色的？</p>
+<h3>檢查全部水果是否都是紅色的？</h3>
+<pre><code class="javascript">// 原本可能這樣寫
+const fruits = [
+  { name: &quot;apple&quot;, color: &quot;red&quot; },
+  { name: &quot;banana&quot;, color: &quot;yellow&quot; },
+  { name: &quot;grape&quot;, color: &quot;purple&quot; }
+];
+
+function test() {
+  let isAllRed = true;
+
+  // 條件：全部的水果必須是紅色的
+  for (let f of fruits) {
+    if (!isAllRed) break;
+    isAllRed = f.color === &quot;red&quot;;
+  }
+
+  console.log(isAllRed); // false
+}
+</code></pre>
+<p>這樣的程式碼太長了，可以使用 <code>Array.every</code> 來減少程式碼：</p>
+<pre><code class="javascript">// 檢查全部水果是否符合條件
+const fruits = [
+  { name: &quot;apple&quot;, color: &quot;red&quot; },
+  { name: &quot;banana&quot;, color: &quot;yellow&quot; },
+  { name: &quot;grape&quot;, color: &quot;purple&quot; }
+];
+
+function test() {
+  // 條件：全部的水果必須是紅色的
+  const isAllRed = fruits.every(f =&gt; f.color === &quot;red&quot;);
+
+  console.log(isAllRed); // false
+}
+</code></pre>
+<p>更清楚了吧？另一個相似的做法，如果我們想要檢查任一種水果是不是紅色的，可以用 <code>Array.some</code> 一行解決！</p>
+<h3>檢查任一種水果是紅色的？</h3>
+<pre><code class="javascript">// 檢查任一種水果是否符合條件
+const fruits = [
+  { name: &quot;apple&quot;, color: &quot;red&quot; },
+  { name: &quot;banana&quot;, color: &quot;yellow&quot; },
+  { name: &quot;grape&quot;, color: &quot;purple&quot; }
+];
+
+function test() {
+  // 條件：只要其中有一種水果是紅色的
+  const isAnyRed = fruits.some(f =&gt; f.color === &quot;red&quot;);
+
+  console.log(isAnyRed); // true
+}
+</code></pre>
+<h2>結論</h2>
+<p>我們一起寫出更多易讀的程式吧，希望你看完這篇文章能有所獲。</p>
+<p>那就這樣囉，Happy Coding!</p>
+<p>覺得文章還不賴的話，訂閱我的 <a href="https://twitter.com/jecelynyeen" target="_blank" rel="noopener">Twitter</a></p>
+<hr>
+<h3>Reference</h3>
+<p>原文：<a href="https://scotch.io/tutorials/5-tips-to-write-better-conditionals-in-javascript" target="_blank" rel="noopener">5 Tips to Write Better Conditionals in JavaScript</a></p>
+<p>參考：[五个小技巧让你写出更好的 JavaScript 条件语句](</p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/條件判斷/">#條件判斷</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/if-else/">#if else</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript-conditions/">#javascript conditions</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/js-conditions/">#js conditions</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript-statement/">#javascript statement</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/js-statement/">#js statement</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/what-is-webpack/">關於 Webpack，它是什麼？能夠做什麼？為什麼？怎麼做？— freeCodeCamp 的筆記</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/git-commit-and-git-log-alias-protips/">開發者一定要知道的 GIT tricks</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

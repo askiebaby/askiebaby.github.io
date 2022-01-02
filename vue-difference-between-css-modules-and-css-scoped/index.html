@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>CSS Modules 在 Vue 的用法？和 CSS scoped 分別的優勢？ - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="撰寫 CSS 的過程中，都會搭配 SASS 預處理器，之前一直有聽過 CSS IN JS，不知該如何寫起？剛好今年六角學院的前端精神時光屋切了第一週的版（蕃茄鐘），想說用 Vue 來練習 CSS Modules，其實是看到 Vue Loader 官方文件的介紹，動手做做看，再 google 大大們的文章吸收一下日月精華，整理在此。">
+ 
+<meta name="keywords" content="CSS,CSS in JS,CSS Modules,CSS Scoped,CSS Modules Scoped 差異,Vue,前端精神時光屋">
+  <meta name="description" content="撰寫 CSS 的過程中，都會搭配 SASS 預處理器，之前一直有聽過 CSS IN JS，不知該如何寫起？剛好今年六角學院的前端精神時光屋切了第一週的版（蕃茄鐘），想說用 Vue 來練習 CSS Modules，其實是看到 Vue Loader 官方文件的介紹，動手做做看，再 google 大大們的文章吸收一下日月精華，整理在此。">
+<meta name="keywords" content="CSS,CSS in JS,CSS Modules,CSS Scoped,CSS Modules Scoped 差異,Vue,前端精神時光屋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Modules 在 Vue 的用法？和 CSS scoped 分別的優勢？">
+<meta property="og:url" content="https://askie.today/vue-difference-between-css-modules-and-css-scoped/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="撰寫 CSS 的過程中，都會搭配 SASS 預處理器，之前一直有聽過 CSS IN JS，不知該如何寫起？剛好今年六角學院的前端精神時光屋切了第一週的版（蕃茄鐘），想說用 Vue 來練習 CSS Modules，其實是看到 Vue Loader 官方文件的介紹，動手做做看，再 google 大大們的文章吸收一下日月精華，整理在此。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/ZqAOmnF.png">
+<meta property="og:image" content="https://i.imgur.com/IOTA8qC.png">
+<meta property="og:updated_time" content="2019-07-21T09:35:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS Modules 在 Vue 的用法？和 CSS scoped 分別的優勢？">
+<meta name="twitter:description" content="撰寫 CSS 的過程中，都會搭配 SASS 預處理器，之前一直有聽過 CSS IN JS，不知該如何寫起？剛好今年六角學院的前端精神時光屋切了第一週的版（蕃茄鐘），想說用 Vue 來練習 CSS Modules，其實是看到 Vue Loader 官方文件的介紹，動手做做看，再 google 大大們的文章吸收一下日月精華，整理在此。">
+<meta name="twitter:image" content="https://i.imgur.com/ZqAOmnF.png">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            CSS Modules 在 Vue 的用法？和 CSS scoped 分別的優勢？
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-07-21T09:03:08.000Z" itemprop="datePublished">7月 21 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/CSS/">CSS</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            8 分鐘 的閱讀時間 (約 1247 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/ZqAOmnF.png" alt="前端精神時光屋：蕃茄鐘"></p>
+<blockquote>
+<p><a href="https://askiebaby.github.io/spirit_2019/pomodoro/" target="_blank" rel="noopener">Demo(本頁開啟)</a> | <a href="https://challenge.thef2e.com/user/1875?schedule=2512#works-2512" target="_blank" rel="noopener">我的設計稿</a></p>
+</blockquote>
+<p>撰寫 CSS 的過程中，都會搭配 SASS 預處理器，之前一直有聽過 CSS IN JS，不知該如何寫起？剛好今年六角學院的前端精神時光屋切了第一週的版（蕃茄鐘），想說用 Vue 來練習 CSS Modules，其實是看到 Vue Loader 官方文件的介紹，動手做做看，再 google 大大們的文章吸收一下日月精華，整理在此。</p>
+<hr>
+<h2>CSS IN JS（JavaScript）</h2>
+<p>大家都知道，其實 CSS 一直以來都不算是個程式語言，只能用來拿來描述網頁的長相，為了讓 CSS 也可以透過簡單的程式方法來解決一些維護、跨瀏覽器前綴及作用域的問題，出現了 LESS、SASS、Stylus、PostCSS 再到最近的 CSS IN JS。CSS IN JS 是 CSS 近年來最大的發展之一，倚靠 JavaScript 強大的力量，讓開發者終於可以透過 JavaScript 來管理 CSS。</p>
+<p>以下是今年 CSS IN JS 的排名：</p>
+<p><img src="https://i.imgur.com/IOTA8qC.png" alt="Ranking of CSS IN JS"></p>
+<p><a href="https://2019.stateofcss.com/technologies/css-in-js/" target="_blank" rel="noopener">參考來源：State of CSS 2019</a></p>
+<hr>
+<h2>CSS Modules 優勢？解決什麼事？</h2>
+<p>CSS Modules 顧名思義就是希望能真正將 CSS 模組化，其非常單純，透過 webpack 幫我們自動化，動態產生 class 名稱，解決以下問題，又可以和其他預處理器一同使用，如 SASS！</p>
+<ul>
+<li>解決 BEM 要解決的問題：
+<ul>
+<li>降低 CSS 權重（優先級）也就是說，降低了區塊與區塊之間的相依性</li>
+</ul>
+</li>
+<li>新增了後綴，解決了「Global 作用域」的問題</li>
+<li>但是繼續保持模組化、可重複使用的優點！
+<ul>
+<li>如 Vue 中，<code>CSS scoped</code> 已經可以隔開作用域，此時就會有複用</li>
+</ul>
+</li>
+</ul>
+<p>我使用 BEM 已經很習慣了，可是人性就是懶惰，如果不是自己懶，就是隊友懶，以手動的做法來說，怎麼樣都還是有隱性問題會藏在專案中，不如交給自動化。</p>
+<hr>
+<h2>如何使用 CSS Modules？（Vue and React）</h2>
+<h2>Vue</h2>
+<p>我目前 Vue Cli 使用的版本是 <code>3.9.2</code>，已經有整合 CSS Modules 到開發環境中，不需再另外設定。他會在 CSS modules 啟用後，在 computed 產生一個屬性。</p>
+<ul>
+<li>查看版本：<code>vue --version</code></li>
+</ul>
+<p>與 CSS scoped 最大不同，是 CSS scoped 雖然也會在 class 名稱加上一個後綴屬性，將元件內 CSS 指定其作用域，可是他並不能完全避免衝突。</p>
+<h3>vue 單檔內的使用方法：</h3>
+<ol>
+<li>將 <code>&lt;style&gt;</code> 加上 <code>module</code> 屬性：</li>
+</ol>
+<blockquote>
+<p>是單數喔！注意不是 modules，因為我就加錯過，新手會犯的錯，找半天。</p>
+</blockquote>
+<pre><code class="html">&lt;style module&gt;
+  .title {
+    font-size: 2rem;
+  }
+&lt;/style&gt;
+</code></pre>
+<ol start="2">
+<li>在樣板 <code>&lt;template&gt;</code>裡引用，需要 v-bind 上 <code>class</code>：</li>
+</ol>
+<pre><code class="html">&lt;!-- 單純的 class 名稱 --&gt;
+&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;h1 :class=&quot;$style.title&quot;&gt;Hello world, askie.&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<pre><code class="html">&lt;!-- 有連字號的 class 名稱 --&gt;
+&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;h1 :class=&quot;$style['my-title']&quot;&gt;Hello world, askie.&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h3>搭配 Vue Class Binding：官方範例</h3>
+<pre><code class="html">&lt;p :class=&quot; { [$style.red]: isRed }&quot;&gt;
+  是紅色的嗎？你決定！
+&lt;/p&gt;
+&lt;p :class=&quot; [$style.red, $style.bold]&quot;&gt;
+  我是紅色的字，並且是粗體。
+&lt;/p&gt;
+</code></pre>
+<h3>keyframes</h3>
+<p>動畫名稱必須先寫：</p>
+<pre><code class="scss">animation: pop 0.5s; // =&gt; animation: p_nfriono0d3eG_08_1 1s;
+</code></pre>
+<p>如果，你把動畫名稱寫在「後面」就會解析失敗：</p>
+<pre><code class="scss">animation: 0.5s pop; // =&gt; animation: 1s :local(pop);
+</code></pre>
+<h3>獨立檔案作法：將獨立的 CSS 檔案作為 CSS Modules 載入</h3>
+<pre><code class="javascript">import styles from './styles.module.scss';
+</code></pre>
+<h3>其他設定</h3>
+<p>可以參考<a href="https://vue-loader.vuejs.org/guide/css-modules.html#usage" target="_blank" rel="noopener">Vue Loader 官方文件</a>、<a href="https://kuro.tw/posts/2018/09/07/Vue-js-%E8%88%87-CSS-Modules/" target="_blank" rel="noopener">Vue-js-與-CSS-Modules - Kuro 大大</a>，幫助了我快速理解 CSS Modules 起源、目的、解決了什麼事，以及如何使用。謝謝～</p>
+<hr>
+<h3>React: 本身沒有寫 React，謹將範例列在此，以供查閱（<a href="https://css-modules.github.io/webpack-demo/" target="_blank" rel="noopener">範例來源</a>）</h3>
+<ol>
+<li>區域選擇器：一個一個單獨選你的 class</li>
+</ol>
+<pre><code class="javascript">import styles from './ScopedSelectors.css';
+
+import React, { Component } from 'react';
+
+export default class ScopedSelectors extends Component {
+  render() {
+    return (
+      &lt;div className={styles.root}&gt;
+        &lt;p className={styles.text}&gt;Scoped Selectors&lt;/p&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+<pre><code class="scss">// ScopedSelectors.css
+.root {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #777;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+
+.text {
+  color: #777;
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+</code></pre>
+<ol start="2">
+<li>全域選擇器</li>
+</ol>
+<pre><code class="javascript">import styles from './GlobalSelectors.css';
+
+import React, { Component } from 'react';
+
+export default class GlobalSelectors extends Component {
+  render() {
+    return (
+      &lt;div className={styles.root}&gt;
+        &lt;p className='text'&gt;Global Selectors&lt;/p&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+<pre><code class="scss">.root {
+  border-width: 2px;
+  border-style: solid;
+  border-color: brown;
+  padding: 0 20px;
+  margin: 0 6px;
+  max-width: 400px;
+}
+
+.root :global .text {
+  color: brown;
+  font-size: 24px;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 600;
+}
+</code></pre>
+<ol start="3">
+<li>組成 Compose，概念近於 SASS extend</li>
+</ol>
+<blockquote>
+<p>使用 <code>composes</code> 這個屬性，去引入你的共用的 CSS 模組。</p>
+</blockquote>
+<pre><code class="javascript">// 動畫範例
+import styles from './ScopedAnimations.css';
+
+import React, { Component } from 'react';
+
+export default class ScopedAnimations extends Component {
+  render() {
+    return (
+      &lt;div className={styles.root}&gt;
+        &lt;div className={styles.ball} /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+<pre><code class="scss">// ScopedAnimations.css
+.root {
+  padding: 20px 10px;
+}
+
+.ball {
+  composes: bounce from 'shared/styles/animations.css';
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: rebeccapurple;
+}
+</code></pre>
+<pre><code class="scss">// shared/styles/animations.css
+@keyframes bounce {
+  33% {
+    transform: translateY(-20px);
+  }
+  66% {
+    transform: translateY(0px);
+  }
+}
+
+.bounce {
+  animation: bounce 1s infinite ease-in-out;
+}
+</code></pre>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/css/">#css</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/css-in-js/">#css-in-js</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/css-modules/">#css modules</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/css-scoped/">#css scoped</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/vue/">#vue</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/前端精神時光屋/">#前端精神時光屋</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/accessible-design-and-universal-design-principles-for-all/">符合無障礙規範一定要了解！把「通用設計」的思考融入骨子裡</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/intro-of-bulma-css-framework/">Bulma 介紹及用法，透過 cheatsheet 快速閱讀文件</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

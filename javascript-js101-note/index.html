@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>用 JavaScript 一步步打造程式基礎(Huli JS101課程筆記) - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="Askie 的 JavaScript 程式基礎筆記！">
+ 
+<meta name="keywords" content="JavaScript,JavaScript array,JavaScript object,Json,JavaScript function,JavaScript loop,JavaScript switch">
+  <meta name="description" content="Askie 的 JavaScript 程式基礎筆記！">
+<meta name="keywords" content="JavaScript,JavaScript array,JavaScript object,Json,JavaScript function,JavaScript loop,JavaScript switch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 JavaScript 一步步打造程式基礎(Huli JS101課程筆記)">
+<meta property="og:url" content="https://askie.today/javascript-js101-note/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="Askie 的 JavaScript 程式基礎筆記！">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-07-27T10:50:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用 JavaScript 一步步打造程式基礎(Huli JS101課程筆記)">
+<meta name="twitter:description" content="Askie 的 JavaScript 程式基礎筆記！">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            用 JavaScript 一步步打造程式基礎(Huli JS101課程筆記)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-03-09T15:54:10.000Z" itemprop="datePublished">3月 9 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            17 分鐘 的閱讀時間 (約 2486 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>Node.js 環境建置</h2>
+<ul>
+<li>
+<p><strong>node.js</strong></p>
+<ul>
+<li>不是程式語言，而是一個執行環境，能讓 <code>JavaScript</code> 運行於瀏覽器外。</li>
+<li>安裝：官網。<code>LTS</code> 是較穩定的版本，<code>Current</code> 是有其他新的功能。</li>
+</ul>
+</li>
+</ul>
+<h3>透過 <code>iTerm</code> 建立 <code>js</code> 檔案，並用 <code>node</code> 執行寫好的程式。</h3>
+<h4>1. 建立 <code>JavaScript</code>：<code>vim index.js</code></h4>
+<pre><code class="javascript=">// index.js 
+console.log(123)
+</code></pre>
+<h4>2. 用 <code>node</code> 執行寫好的程式碼</h4>
+<pre><code class="bash=">$ node index.js
+=&gt; 123
+</code></pre>
+<h3>直接用 <code>node</code> 執行 <code>JavaScript</code></h3>
+<h4>1. 執行</h4>
+<pre><code class="bash=">$ node
+=&gt; 等同於進入瀏覽器的 console tab
+</code></pre>
+<h4>2. 離開</h4>
+<p>快速鍵 <code>control + c</code> (輸入兩次) 或是輸入指令：</p>
+<pre><code class="bash=">$ .exit
+</code></pre>
+<hr>
+<h2>邏輯運算</h2>
+<h3>邏輯運算子 <code>||</code>（或）、<code>&amp;&amp;</code>（和）、<code>!</code>（not）</h3>
+<h4><code>||</code> 短路性質：</h4>
+<pre><code class="javascript=">3 || 10
+// =&gt; 3
+// 程式遇到 3 時，因為是 truthy value，所以直接回傳 3，後面就直接不執行了。
+
+true || 10
+// =&gt; true
+// 程式遇到 true 時，true 符合條件造成短路，後面就直接不執行了。
+
+false || 10
+// =&gt; 10
+// 程式遇到 false 不符合條件，往後繼續執行，遇到 10 達成條件！回傳 10。
+</code></pre>
+<h5><code>&amp;&amp;</code> 短路性質：</h5>
+<pre><code class="javascript=">3 &amp;&amp; 10
+// =&gt; 10
+// 第一個值符合條件，檢查第二個值是否符合條件，回傳第二個值 10。
+
+false &amp;&amp; 10
+// =&gt; false
+// 因為第一個值已經是 false，後面短路不執行，回傳 false。
+
+0 &amp;&amp; 10
+// =&gt; 0
+// 因為第一個值是 falsy value，後面短路不執行，回傳第一個值 0。
+</code></pre>
+<hr>
+<h2>位元運算</h2>
+<h3>位移運算子 <code>&lt;&lt;</code>、<code>&gt;&gt;</code></h3>
+<h4>了解電腦都是使用二進位做運算</h4>
+<ul>
+<li><code>100</code>  =&gt; 2 的三次方 =&gt; <code>8</code></li>
+<li><code>1000</code> =&gt; 2 的四次方 =&gt; <code>16</code>
+<ul>
+<li>往<strong>左移</strong> 1 位，是<strong>乘以</strong> 2 倍</li>
+<li>往<strong>左移</strong> 2 位，是<strong>乘以</strong> 2的2次方（4）</li>
+<li>往<strong>右移</strong> 1 位，是<strong>除以</strong> 2 倍</li>
+<li>往<strong>右移</strong> 2 位，是<strong>除以</strong> 2的2次方（4）</li>
+</ul>
+</li>
+</ul>
+<pre><code class="javascript=">10 &lt;&lt; 1
+// 20 =&gt; 往左移一位，乘以2的1次方，= 10 * 2
+
+10 &lt;&lt; 3 
+// 80 =&gt; 往左移三位，乘以2的3次方，= 10 * 8
+
+1024 &gt;&gt; 1 
+// 512 =&gt; 往右移一位，除以2的1次方，= 1024 / 2
+
+9 &gt;&gt; 1
+// 4 =&gt; 往右移一位，除以2的1次方，= 9 / 2，無條件捨去。
+</code></pre>
+<div class="success">
+<p><code>10 &gt;&gt; 1</code> 會比 <code>10*2</code> 執行效能還要好。</p>
+</div>
+<h3>位元運算子 <code>&amp;</code>、<code>|</code>、<code>xor</code>、<code>not</code></h3>
+<h4>都會換算成二進位來運算</h4>
+<p><code>&amp;</code> and 位元運算子：</p>
+<pre><code class="javascript=">10 &amp; 15
+// 10 =&gt; 1010 and 1111 = 1010(2) = 10(10)
+</code></pre>
+<p><code>|</code> or 位元運算子：</p>
+<pre><code class="javascript=">10 &amp; 15
+// 15 =&gt; 1010 or 1111 = 1111(2) = 15(10)
+</code></pre>
+<p><code>xor</code> 位元運算子：當一個 falsy value 和 truthy value 共存時回傳 true，其他都是回傳 false。</p>
+<pre><code class="javascript=">10 ^ 15
+// 5 =&gt; 1010 xor 1111 = 101(2) = 5(10)
+</code></pre>
+<p><code>not</code>：1變0，0變1</p>
+<pre><code class="javascript=">~15
+// -16 =&gt; 1111 = 0000 （因電腦位元關係，原本的1111前有眾多的0，經過not運算會全轉為眾多的1）
+</code></pre>
+<h3>tips: 判斷數值是奇數或偶數</h3>
+<pre><code class="javascript=">10 &amp; 1
+// 0 =&gt; 判斷最後一個字是零的話，代表是偶數。
+
+11 &amp; 1
+// 1 =&gt; 判斷最後一個字是一的話，代表是奇數。
+</code></pre>
+<h2>變數</h2>
+<h3>類型</h3>
+<ul>
+<li>Primitive type and Object type
+<ul>
+<li>Primitive:
+<ul>
+<li>string, boolean, number, null, undefined, symbol(ES6)</li>
+</ul>
+</li>
+<li>Object:
+<ul>
+<li>object (array, function, object)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>undefined: 已宣告，尚未值</li>
+<li>not defined: 連宣告都沒啊！</li>
+</ul>
+<h3>變數的運算注意的事情</h3>
+<ul>
+<li>變數是什麼類型！</li>
+<li>浮點數的誤差</li>
+</ul>
+<h3>複習一下等號的意義</h3>
+<ul>
+<li>一個等號 <code>=</code>，賦值。</li>
+<li>兩個等號 <code>==</code>，判斷值。</li>
+<li>三個等號 <code>===</code>，判斷類型與值。</li>
+</ul>
+<pre><code class="javascript=">let a = 10 == 10
+console.log(a)
+// true，通常先執行右邊的程式 10 == 10，再把判斷結果賦值給 a。
+</code></pre>
+<h4>物件與陣列的判斷</h4>
+<pre><code class="javascript=">console.log([] === []) // false
+console.log([1] === [1]) // false
+console.log({} === {}) // false
+console.log({a: 1} === {a: 2}) //false
+// 物件的判斷是根據記憶體位置。
+// 可以想像我有一台蘋果電腦，你也有一台蘋果電腦，但你的電腦不是我的電腦的概念。
+</code></pre>
+<h2>我們只能往不同地方走去：判斷式</h2>
+<h3>if… else…</h3>
+<h3>if… else if… else…</h3>
+<h3>switch</h3>
+<pre><code class="javascript=">let number = 11
+
+if (!(number % 5)) {
+  // 了解：如果餘數是 0，代表可以被 5 整除
+  // 但 0 == false，利用 not 特性將結果變成 true 以進入判定 block
+  // （可讀性差）
+  console.log('5的倍數')
+} else {
+  console.log('不是5的倍數')
+}
+</code></pre>
+<h3>ternary 三元運算子</h3>
+<pre><code class="javascript=">(a &gt; b) ? 'big' : 'small'
+</code></pre>
+<h2>迴圈/函式</h2>
+<h3>實現輸入的數值會回傳一個區間陣列</h3>
+<pre><code class="javascript=">
+function generateArray (min, max) {
+  var result = []
+  for(var i = min; i &lt;= max; i++) {
+      result.push(i)
+  }
+  return result
+}
+
+console.log(generateArray(5, 10)) // [5, 6, 7, 8, 9, 10]
+</code></pre>
+<ul>
+<li>tip: 實作的時候，如果細節尚不清楚，可以試著先把function列出來，整理出邏輯（流程）</li>
+</ul>
+<h4>把 function 當成引數傳入</h4>
+<pre><code class="javascript=">function transform(arr, transformFunction) {
+  var result = []
+  for (var i = 0; i &lt; arr.length; i++) {
+    result.push(transformFunction(arr[i])) // 執行傳入的 function
+  }
+  return result
+}
+
+function double (num) {
+  return num * 2
+}
+
+transform([2, 4, 6], double) // 把 function 當成引數傳入
+</code></pre>
+<h3>參數（Parameter）與引數（Argument）</h3>
+<ul>
+<li>參數：定義在 <code>function</code> 中 <code>()</code> 的變數。</li>
+<li>引數：呼叫某函式時的 <code>()</code> 的變數。</li>
+</ul>
+<pre><code class="javascript=">funtcion myFunc(a, b) { // a, b =&gt; 參數
+  console.log(arguments.length) // 引數的數量
+  console.log(arguments[0]) // 第一個引數
+  return arguments // {a: 1, b: 2} =&gt; 回傳引數類陣列物件
+}
+myFunc(1, 2) // 1, 2 =&gt; 引數
+</code></pre>
+<h3>arguments 跟你想的不一樣</h3>
+<ul>
+<li><code>arguments</code> 物件是一個對應傳入函式之引數的類陣列（<code>Array-like</code>）物件。（參考：<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank" rel="noopener">MDN</a>）</li>
+</ul>
+<h3>function 使用注意事項</h3>
+<ul>
+<li>pass by value</li>
+<li>pass by sharing</li>
+</ul>
+<p><a href="https://blog.techbridge.cc/2018/06/23/javascript-call-by-value-or-reference/" target="_blank" rel="noopener">https://blog.techbridge.cc/2018/06/23/javascript-call-by-value-or-reference/</a></p>
+<h3>return 不 return，有差嗎？</h3>
+<ul>
+<li>差別只在於需不需要結果的。需要結果就回傳。</li>
+</ul>
+<h3>Number 類型的內建函式</h3>
+<h5>常用的函式</h5>
+<ul>
+<li>字串轉數字 - 整數</li>
+</ul>
+<pre><code class="javascript=">// 沒填進位制的話預設是 10 進位，可接受 2~36
+
+function roughScale(x, base) {
+  var parsed = Number.parseInt(x, base);
+  if (Number.isNaN(parsed)) {
+    return 0;
+  }
+  return parsed * 100;
+}
+
+console.log(roughScale(' 0xF', 16));
+// expected output: 1500
+
+console.log(roughScale('321', 2));
+// expected output: 0
+
+
+parseInt('50個') // 50
+parseInt('50個', 10) // 50
+parseInt('50.2個', 10) // 50
+</code></pre>
+<ul>
+<li>字串轉數字 - 浮點數</li>
+</ul>
+<pre><code class="javascript=">parseFloat('20.5') // 20.5
+</code></pre>
+<ul>
+<li>數字轉字串</li>
+</ul>
+<pre><code class="javascript=">let num = 1
+num.toString()
+</code></pre>
+<ul>
+<li>四捨五入</li>
+</ul>
+<pre><code class="javascript=">function calculator (x) {
+    return Math.round(x)
+}
+
+calculator(20.5456789) // 21小數點第一位四捨五入後回傳整數
+</code></pre>
+<ul>
+<li>無條件進位</li>
+</ul>
+<pre><code class="javascript=">function calculator (x) {
+    return Math.ceil(x)
+}
+
+calculator(20.3456789) // 20，小數點第一位無條件進位後回傳整數
+</code></pre>
+<ul>
+<li>無條件捨去</li>
+</ul>
+<pre><code class="javascript=">function calculator (x) {
+    return Math.floor(x)
+}
+
+calculator(20.3456789) // 20，小數點第一位無條件捨去後回傳整數
+</code></pre>
+<ul>
+<li>小數點後取幾位數（並四捨五入）</li>
+</ul>
+<pre><code class="javascript=">function calculator (x) {
+    return x.toFixed(2) // 如果都不傳，則直接回傳整數（四捨五入）
+    // 接受 0~20
+}
+
+calculator(20.5456789) // 20.55
+calculator(20.5416789) // 20.54
+</code></pre>
+<ul>
+<li>開根號</li>
+</ul>
+<pre><code class="javascript=">function calculator (x) {
+    return Math.sqrt(x)
+}
+
+calculator(9) // 3
+</code></pre>
+<ul>
+<li>平方</li>
+</ul>
+<pre><code class="javascript=">function calculator (x, y) {
+    return Math.pow(x, y)
+}
+
+calculator(2, 10) // 1024
+</code></pre>
+<ul>
+<li>最大值</li>
+</ul>
+<pre><code class="javascript=">let biggestNum = Number.MAX_VALUE
+console.log(biggestNum) // 1.7976931348623157e+308
+</code></pre>
+<ul>
+<li>最小值</li>
+</ul>
+<pre><code class="javascript=">let smallestNum = Number.MIN_VALUE
+console.log(smallestNum) // 5e-324
+</code></pre>
+<ul>
+<li>隨機亂數</li>
+</ul>
+<pre><code class="javascript=">// 產生 0~0.99999 隨機小數
+Math.random()
+
+// 產生 1~10 隨機數字
+Math.floor(Math.random()*10 +1)
+</code></pre>
+<ul>
+<li>檢查是否是數字</li>
+</ul>
+<pre><code class="javascript=">Number.isNaN(NaN);        // true
+Number.isNaN(Number.NaN); // true
+Number.isNaN(0 / 0);      // true
+
+// e.g. these would have been true with global isNaN()
+Number.isNaN('NaN');      // false
+Number.isNaN(undefined);  // false
+Number.isNaN({});         // false
+Number.isNaN('blabla');   // false
+
+// These all return false
+Number.isNaN(true);
+Number.isNaN(null);
+Number.isNaN(37);
+Number.isNaN('37');
+Number.isNaN('37.37');
+Number.isNaN('');
+Number.isNaN(' ');
+</code></pre>
+<h3>String 類型的內建函式</h3>
+<ul>
+<li><code>str.length</code>：回傳字串的長度。</li>
+<li><code>toString()</code>：將物件轉字串。</li>
+<li><code>str.replace()</code>：。</li>
+<li><code>' hello '.trim()</code>：回傳去除 <code>' hello '</code> <strong>前後</strong>的空格，輸出<code>'hello'</code>這個字串。</li>
+<li><code>str.indexOf('b')</code>：在 <code>str</code> 找不找得到 <code>b</code> ，沒有則回傳 <code>-1</code>，有則回傳第一個 <code>b</code> 的起始位置，沒有則回傳 <code>-1</code>。</li>
+<li><code>str.lastIndexOf('b')</code>：在 <code>str</code> 找不找得到 <code>b</code> ，沒有則回傳 <code>-1</code>，有則回傳最後一個 <code>b</code> 的起始位置。</li>
+<li><code>str.charCodeAt(5)</code>：回傳 <code>str</code> 找第六個字的 <code>keycode</code>。</li>
+<li><code>str.charAt(5)</code>：回傳 <code>str</code> 找第六個字是哪一個字。</li>
+<li><code>str.split(' ')</code>：將 <code>str</code> 這個字串以 <code> </code> 空格切開後回傳一個陣列。</li>
+<li><code>str.slice(index1, b)</code>：切字串，但是以範圍來切後回傳，索引也可以從字串最後算起。</li>
+</ul>
+<pre><code class="javascript=">var str = 'The quick brown fox jumps over the lazy dog.';
+
+console.log(str.slice(1));
+// expected output: &quot;the lazy dog.&quot;
+
+console.log(str.slice(4, 19));
+// expected output: &quot;quick brown fox&quot;
+
+console.log(str.slice(-4));
+// expected output: &quot;dog.&quot;
+
+console.log(str.slice(-9, -5));
+// expected output: &quot;lazy&quot;
+</code></pre>
+<h3>Array 類型的內建函式</h3>
+<h2>練習 <a href="https://codepen.io/collection/nrwprj/" target="_blank" rel="noopener">codepen collection</a></h2>
+<h3>我們只能往不同地方走去：判斷式</h3>
+<ul>
+<li><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">練習一：判斷是否及格（</label><a href="https://codepen.io/askie/pen/XGmKZV?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">練習二：BMI 計算 （</label><a href="https://codepen.io/askie/pen/eXpdxo?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+</ul>
+<h3>綜合題目練習 Lv1</h3>
+<ul>
+<li><input type="checkbox" id="checkbox2" checked="true"><label for="checkbox2">練習一：印出一到九（</label><a href="https://codepen.io/askie/pen/NJrzPd" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox3" checked="true"><label for="checkbox3">練習二：寫一個能夠印出 1~n 的函式（</label><a href="https://codepen.io/askie/pen/ZPORrq?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox4" checked="true"><label for="checkbox4">練習三：寫一個能夠印出 n 個 * 的函式（</label><a href="https://codepen.io/askie/pen/OqXErj?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox5" checked="true"><label for="checkbox5">練習四：寫一個能回傳 n 個 * 的函式（</label><a href="https://codepen.io/askie/pen/OqXErj?editors=0012" target="_blank" rel="noopener">同上連結</a>）</li>
+<li><input type="checkbox" id="checkbox6" checked="true"><label for="checkbox6">練習五：判斷大小寫（</label><a href="https://codepen.io/askie/pen/JzKBdG?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox7" checked="true"><label for="checkbox7">練習六：回傳第一個大寫字母以及它的 index （</label><a href="https://codepen.io/askie/pen/bZWrxK" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox8" checked="true"><label for="checkbox8">練習七：回傳陣列裡面所有小於 n 的數的數量（</label><a href="https://codepen.io/askie/pen/QoBOxG?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox9" checked="true"><label for="checkbox9">練習八：回傳陣列裡面所有小於 n 的數的總和（</label><a href="https://codepen.io/askie/pen/GeByKp?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox10" checked="true"><label for="checkbox10">練習九：回傳陣列裡面所有小於 n 的數（</label><a href="https://codepen.io/askie/pen/jJpYaz?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox11" checked="true"><label for="checkbox11">練習十：回傳陣列總和（</label><a href="https://codepen.io/askie/pen/ywqpxR?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+</ul>
+<h3>綜合題目練習 Lv2</h3>
+<ul>
+<li><input type="checkbox" id="checkbox12"><label for="checkbox12">練習一：好多星星（</label><a href="https://codepen.io/askie/pen/pYmpeO?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox13"><label for="checkbox13">練習二：好多星星 回傳版（</label><a href="https://codepen.io/askie/pen/RdmMyw?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox14"><label for="checkbox14">練習三：好多星星 加強版（</label><a href="https://codepen.io/askie/pen/zbQaKB?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox15"><label for="checkbox15">練習四：乘法表（</label><a href="https://codepen.io/askie/pen/axmVmy?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox16"><label for="checkbox16">練習五：九九乘法表（</label><a href="https://codepen.io/askie/pen/axmVmy?editors=0012" target="_blank" rel="noopener">同上連結</a>）</li>
+<li><input type="checkbox" id="checkbox17"><label for="checkbox17">練習六：費式數列（</label><a href="https://codepen.io/askie/pen/zXKPzz?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox18"><label for="checkbox18">練習七：字串反轉（</label><a href="https://codepen.io/askie/pen/dLJEzO?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox19"><label for="checkbox19">練習八：大小寫互換</label></li>
+<li><input type="checkbox" id="checkbox20"><label for="checkbox20">練習九：找出最小值</label></li>
+<li><input type="checkbox" id="checkbox21"><label for="checkbox21">練習十：找出第 n 小的值</label></li>
+</ul>
+<h3>綜合題目練習 Lv3</h3>
+<ul>
+<li><input type="checkbox" id="checkbox22"><label for="checkbox22">練習一：排序</label></li>
+<li><input type="checkbox" id="checkbox23"><label for="checkbox23">練習二：壓平陣列</label></li>
+<li><input type="checkbox" id="checkbox24"><label for="checkbox24">練習三：印出聖誕樹（</label><a href="https://codepen.io/askie/pen/xeNeYL?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox25"><label for="checkbox25">練習四：判斷圈圈叉叉勝負（</label><a href="https://codepen.io/askie/pen/pBmBLj?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+<li><input type="checkbox" id="checkbox26"><label for="checkbox26">練習五：判斷質數（</label><a href="https://codepen.io/askie/pen/qwGwoV?editors=0012" target="_blank" rel="noopener">連結</a>）</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/huli/">#huli</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/nodejs/">#nodejs</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/react-setting-cdn-and-creatreactapp/">React 環境設置 (CDN/CRA)</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/macos-command-backup-update-hexo-blog/">自訂一個指令同時更新及備份 hexo 部落格（macOS）</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

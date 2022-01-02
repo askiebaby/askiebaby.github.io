@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>系統設計入門：延遲與吞吐量 - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="說這兩個詞彙（Latency 和 Throughput）常常會被搞混，有時候可以交換使用，不過自己本來不是讀資訊相關背景，加上本身寫前端，看到這兩個字真的是生字，一點實務上的聯想都想不到，如果你也不懂的話，沒關係，下文會寫筆記來解釋...。">
+ 
+<meta name="keywords" content="System design primer,performance,latency,Throughput,系統設計,延遲">
+  <meta name="description" content="說這兩個詞彙（Latency 和 Throughput）常常會被搞混，有時候可以交換使用，不過自己本來不是讀資訊相關背景，加上本身寫前端，看到這兩個字真的是生字，一點實務上的聯想都想不到，如果你也不懂的話，沒關係，下文會寫筆記來解釋...。">
+<meta name="keywords" content="System design primer,performance,latency,Throughput,系統設計,延遲">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系統設計入門：延遲與吞吐量">
+<meta property="og:url" content="https://askie.today/system-design-primer-latency-vs-throughput/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="說這兩個詞彙（Latency 和 Throughput）常常會被搞混，有時候可以交換使用，不過自己本來不是讀資訊相關背景，加上本身寫前端，看到這兩個字真的是生字，一點實務上的聯想都想不到，如果你也不懂的話，沒關係，下文會寫筆記來解釋...。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/zVwHz65.jpg">
+<meta property="og:image" content="https://i.imgur.com/edUrOMT.png">
+<meta property="og:image" content="https://i.imgur.com/eKlSPlo.png">
+<meta property="og:image" content="https://i.imgur.com/kykhe9g.png">
+<meta property="og:updated_time" content="2020-06-30T15:23:31.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系統設計入門：延遲與吞吐量">
+<meta name="twitter:description" content="說這兩個詞彙（Latency 和 Throughput）常常會被搞混，有時候可以交換使用，不過自己本來不是讀資訊相關背景，加上本身寫前端，看到這兩個字真的是生字，一點實務上的聯想都想不到，如果你也不懂的話，沒關係，下文會寫筆記來解釋...。">
+<meta name="twitter:image" content="https://i.imgur.com/zVwHz65.jpg">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            系統設計入門：延遲與吞吐量
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-06-30T15:06:41.000Z" itemprop="datePublished">6月 30 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/System-Design/">System Design</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            8 分鐘 的閱讀時間 (約 1145 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/zVwHz65.jpg" alt="Latency 和 Throughput"></p>
+<blockquote>
+<p>本系列文並非自己心得記錄，而是讀 <a href="https://github.com/donnemartin/system-design-primer/" target="_blank" rel="noopener">System Design Primer</a> 的筆記，有蠻大部分節錄自該文章以及其補充連結。</p>
+</blockquote>
+<p>話說這兩個詞彙（Latency 和 Throughput）常常會被搞混，有時候可以交換使用，不過自己本來不是讀資訊相關背景，加上本身寫前端，看到這兩個字真的是生字，一點實務上的聯想都想不到，如果你也不懂的話，沒關係，下文會寫筆記來解釋…。</p>
+<h2>定義</h2>
+<h3>Latency 延遲</h3>
+<ul>
+<li>執行一個操作要花費的「時間長度」。</li>
+</ul>
+<h3>Throughput 吞吐量</h3>
+<ul>
+<li>以一個時間區間作為單位，單位時間內可以執行「幾次」操作，或運算的「次數」。</li>
+</ul>
+<p>讀的文章提及，系統設計要以：</p>
+<blockquote>
+<p>可接受的延遲數量下的最大化吞吐量為設計目標。</p>
+</blockquote>
+<h2>簡單例子</h2>
+<p>拍謝，有點文鄒鄒看不懂，以簡單例子來舉例：</p>
+<blockquote>
+<p>有個專門製造汽車的工廠，它製造 1 輛汽車所需要的時間是 8 個小時，而它的生產線在 1 天當中可以製造 120 輛汽車。</p>
+</blockquote>
+<ul>
+<li>Latency 延遲：8 小時。</li>
+<li>Throughput 吞吐量：1 天 120 輛汽車，或者是 1 個小時 5 輛汽車。</li>
+</ul>
+<p>這樣有比較理解了吧！</p>
+<p>Latency 指的是單項事件所需花費的「<strong>時間、時間、時間</strong>」，！</p>
+<p>而 Throughput 則是在一定的時間內能夠完成的「<strong>次數、次數、次數</strong>」。</p>
+<p>系統設計師可以用來根據效能規範建立所需硬體的參數。</p>
+<h2>How about web</h2>
+<h3>Latency in web</h3>
+<p>Latency 是效能的一環，它讓我們得以量化，有所依規的來訂定優化的標準。那以 Web 來說的話，Latency 指的就是使用者自發出請求後，等待伺服器回應並回傳給使用者的總花費時間，也等同代表網站「被訪問的速度」。對於第一個請求，對於前面的 14Kb 位元，延遲時間會比較長，因為它包括 DNS 查詢、 TCP 三次握手和安全 TLS 協定。</p>
+<p><img src="https://i.imgur.com/edUrOMT.png" alt="第一個請求包括 DNS 查詢等操作"></p>
+<p><img src="https://i.imgur.com/eKlSPlo.png" alt="載入資源可依照 Latency 排序"></p>
+<p>在 Chrome 的開發者工具 Network 中，可以將資源按照以下內容排序。</p>
+<blockquote>
+<p>本區段整理自 Aima <a href="https://segmentfault.com/a/1190000019306567" target="_blank" rel="noopener">這篇文章</a>。</p>
+</blockquote>
+<ul>
+<li>Start Time：請求開始的時間</li>
+<li>Response Time：資源開始下載的時間</li>
+<li>End Time：請求結束的時間</li>
+<li>Total Duration：請求整個完整過程的時間</li>
+<li>Latency  請求等待響應的時間</li>
+</ul>
+<p>我們這時來看一下，開發者工具 Network 中有什麼常用的功能。</p>
+<h3>Network on Chrome DevTools</h3>
+<p><img src="https://i.imgur.com/kykhe9g.png" alt="Network on Chrome DevTools"></p>
+<ul>
+<li>點擊單項請求的內容可以看到
+<ul>
+<li>Headers</li>
+<li>Preview</li>
+<li>Response</li>
+<li>Initiator</li>
+<li>Timing - 連線時間、請求時間、回應時間、檔案下載時間</li>
+<li>Cookies - 請求有帶哪些 cookies</li>
+</ul>
+</li>
+</ul>
+<h3>關於延遲的 Web 相關技術</h3>
+<ul>
+<li>圖片的 Lazy Loading
+<ul>
+<li>這個部分我有實作過，原理是將圖片的路徑放在 data-set 中，再設定設計好的「載入中 placeholder」，透過 Intersection Observer API 來監聽元素是否進入畫面，當圖片元素進入畫面時，透過 JS 將 src 替換掉。需考量瀏覽器支援度。</li>
+</ul>
+</li>
+<li>延遲載入 3rd party， <code>&lt;script&gt;</code> 的屬性 <code>defer</code> 和 <code>async</code>。
+<ul>
+<li>以下兩者載入過程相同：渲染 DOM 與載入 JS 以非同步方式進行。</li>
+<li>defer：執行時間要等到 DOM 解析完成後，才會執行。</li>
+<li>async：執行時間是在於 JS 本身載入完成後馬上執行，會中斷 HTML 解析。</li>
+</ul>
+</li>
+<li>Preload 和 Prefetch
+<ul>
+<li>Preload：預先載入，但不執行，只在需要時才執行，以 <code>as</code> 屬性分辨檔案類型。
+<ul>
+<li><code>&lt;link rel=&quot;preload&quot; src=&quot;style.css&quot; as=&quot;style&quot;&gt;</code></li>
+</ul>
+</li>
+<li>Prefetch：告訴瀏覽器未來可能用到這個資源，有空再去載就好。
+<ul>
+<li><code>&lt;link rel=&quot;prefetch&quot; src=&quot;style.css&quot; type=&quot;style&quot;&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Webpack
+<ul>
+<li>Code spliting</li>
+</ul>
+</li>
+<li>Lodash
+<ul>
+<li>Throttle、Debounce</li>
+</ul>
+</li>
+</ul>
+<p>關於 Latency 的介紹，可以看 <a href="https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency" target="_blank" rel="noopener">MDN</a> 介紹。</p>
+<hr>
+<h2>Resource</h2>
+<ul>
+<li><a href="https://github.com/donnemartin/system-design-primer/" target="_blank" rel="noopener">System Design Primer</a></li>
+<li><a href="https://community.cadence.com/cadence_blogs_8/b/sd/posts/understanding-latency-vs-throughput" target="_blank" rel="noopener">Understanding Latency versus Throughput</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency" target="_blank" rel="noopener">Understanding latency</a> - MDN</li>
+<li><a href="https://cythilya.github.io/2018/07/31/preload-vs-prefetch/" target="_blank" rel="noopener">Preload vs Prefetch</a> - Summer</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/system-design/">#system design</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/nami-introduction/">My love</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/system-design-primer-performance-vs-scalability/">系統設計入門：效能與可擴展性的差異</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

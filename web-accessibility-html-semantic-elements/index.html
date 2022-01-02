@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>無障礙網站：HTML 元素與客製化控制組件的語義 - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="使用者看到網頁內容，立即知道該怎麼操作，這不僅是因為我們看得見它，也是 UI/UX 的示能性。瀏覽器或螢幕閱讀器獲取網頁結構，立即知道元素代表的意義，這是 HTML 的示能性。而這篇文章要談的就是 HTML 的之於的示能性！">
+ 
+<meta name="keywords" content="The Accessibility Tree,AOM,DOM,無障礙網站,可及性網站,親和力網站,包容性網站">
+  <meta name="description" content="使用者看到網頁內容，立即知道該怎麼操作，這不僅是因為我們看得見它，也是 UI/UX 的示能性。瀏覽器或螢幕閱讀器獲取網頁結構，立即知道元素代表的意義，這是 HTML 的示能性。而這篇文章要談的就是 HTML 的之於的示能性！">
+<meta name="keywords" content="The Accessibility Tree,AOM,DOM,無障礙網站,可及性網站,親和力網站,包容性網站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="無障礙網站：HTML 元素與客製化控制組件的語義">
+<meta property="og:url" content="https://askie.today/web-accessibility-html-semantic-elements/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="使用者看到網頁內容，立即知道該怎麼操作，這不僅是因為我們看得見它，也是 UI/UX 的示能性。瀏覽器或螢幕閱讀器獲取網頁結構，立即知道元素代表的意義，這是 HTML 的示能性。而這篇文章要談的就是 HTML 的之於的示能性！">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/XFxFPZh.jpg">
+<meta property="og:image" content="https://img.youtube.com/vi/rvYXa2nGE04/0.jpg">
+<meta property="og:image" content="https://i.imgur.com/tNOcm4x.png">
+<meta property="og:updated_time" content="2020-08-30T15:21:05.957Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="無障礙網站：HTML 元素與客製化控制組件的語義">
+<meta name="twitter:description" content="使用者看到網頁內容，立即知道該怎麼操作，這不僅是因為我們看得見它，也是 UI/UX 的示能性。瀏覽器或螢幕閱讀器獲取網頁結構，立即知道元素代表的意義，這是 HTML 的示能性。而這篇文章要談的就是 HTML 的之於的示能性！">
+<meta name="twitter:image" content="https://i.imgur.com/XFxFPZh.jpg">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            無障礙網站：HTML 元素與客製化控制組件的語義
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-08-30T15:11:12.000Z" itemprop="datePublished">8月 30 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/A11Y/">A11Y</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            11 分鐘 的閱讀時間 (約 1702 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>TL;DR</h2>
+<p>本篇文章學習目的：</p>
+<ul>
+<li>理解 HTML 之於瀏覽器與的示能性</li>
+<li>理解 HTML 元素與客製化控制組件的語義賦予方式之差異</li>
+</ul>
+<hr>
+<h2>Affordance 示能性</h2>
+<p>大家知道 affordance 是什麼嗎？講到 affordance ，大多數的慣例都會使用一個茶壺來做舉例！</p>
+<p><img src="https://i.imgur.com/XFxFPZh.jpg" alt="茶壺擁有高示能性"></p>
+<p>（圖片出處：<a href="https://unsplash.com/photos/4aJ9GCwB3Gw" target="_blank" rel="noopener">unsplash</a>）</p>
+<p>我們看到茶壺（目標物），不用怎麼細細思考，就能知道茶壺可以拿起來倒茶（功能性），這就是 affordance 示能性。</p>
+<p>使用者看到網頁內容，立即知道該怎麼操作，這不僅是因為我們看得見它，也是 UI/UX 的示能性。瀏覽器或螢幕閱讀器獲取網頁結構，立即知道元素代表的意義，這是 HTML 的示能性。而這篇文章要談的就是 HTML 的之於的示能性！</p>
+<hr>
+<h2>讓網站符合 HTML 規範</h2>
+<p>符合 HTML 規範的網站，本身就具有良好的可訪問性（Accessibility），有助於提升 SEO，也將提升螢幕閱讀器對於網頁元素的理解程度，撰寫這樣的網站是作為工程師的使命，維護每個人公平獲取資訊的權利。</p>
+<h2>語義 Semantics</h2>
+<h3>瀏覽過程</h3>
+<p>瀏覽網站的過程，是一個連貫的操作行為，包含上下瀏覽（導覽） ⇒ 查找（操作） ⇒ 確認 ⇒ 獲得資訊。</p>
+<p>整個過程中，確保使用者隨時能知曉：</p>
+<ul>
+<li>Where：「自己身在網站何處？」</li>
+<li>What：「目前操作的是什麼功能啊？這是我要的資訊嗎？」</li>
+<li>How：「預期操作之後會發生什麼事？」</li>
+</ul>
+<hr>
+<p>以下分為「HTML 元素」與「客製化控制項」，來解釋語義。</p>
+<h3>HTML 元素的語義</h3>
+<blockquote>
+<p>HTML 元素本身已經具有其「基礎定義」，但是能否讓瀏覽器、螢幕閱讀器、爬蟲知曉元素的意義，要看這個基礎定義是否能清楚代表其內容，比如說 HTML 5 提供的語義標籤就非常清楚。</p>
+</blockquote>
+<p>比如 <code>&lt;div&gt;</code> 元素的基礎定義代表的是群組，在 VoiceOver 讀出時是「Group」，使用者無法透過「Group」瞭解區塊的內容。可是 <code>&lt;button&gt;</code> 就不同了，當 VoiceOver 讀出時是「Button」，使用者可以預測它的操作行為：這個區塊可以「點擊」，至於點擊會發生什麼事情，就要倚靠 <code>&lt;button&gt;</code> 中提供清晰的指示內容了。</p>
+<p>範例一、當螢幕閱讀器使用者遇到 <code>&lt;button&gt;</code> 的日常：</p>
+<ul>
+<li>Where？
+<ul>
+<li>噢，我現在停在登入表單的送出按鈕上！</li>
+</ul>
+</li>
+<li>What？
+<ul>
+<li>螢幕閱讀器告訴我，「它」是一顆按鈕，所以我可以「點」進去看看。</li>
+</ul>
+</li>
+<li>How？
+<ul>
+<li>按鈕上的「註冊」文字，讓我知道點擊代表的動作，預測按下按鈕可以完成註冊。</li>
+</ul>
+</li>
+</ul>
+<p>範例二、HTML 5 的語義標籤</p>
+<p>HTML 5 中，採用了 <code>&lt;figure&gt;</code> 與 <code>&lt;figcaption&gt;</code> 元素來做到更完整的語意標記。</p>
+<p>更有效的分離「圖片的說明」與圖說「想要傳達的概念」，讓內容更具結構。</p>
+<pre><code>&lt;figure&gt;
+  &lt;img src=&quot;picture.jpg&quot; class=&quot;picture&quot; alt=&quot;這是人在使用手機的圖片&quot; /&gt;
+  &lt;figcaption&gt;手機改變了這世界&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>補充：<a href="https://www.w3.org/TR/html4/index/elements.html" target="_blank" rel="noopener">HTML 4 的元素列表</a>、<a href="https://www.html5accessibility.com/" target="_blank" rel="noopener">HTML 5 標籤在各瀏覽器的支援程度</a>、<a href="https://www.html5accessibility.com/html5elements/" target="_blank" rel="noopener">使用 HTML 5 語義標籤的頁面</a>（你可以使用各種裝置來瀏覽測試看看）。</p>
+<p>備註：不要糾結 <code>&lt;section&gt;</code> 與 <code>&lt;article&gt;</code> 是誰包誰，全看結構是否符合其<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank" rel="noopener">元素的描述</a>。</p>
+<h3>客製化控制項的語義化</h3>
+<ul>
+<li>什麼是客製化控制項？
+<ul>
+<li>就是組合多個具有語義、無語義的 HTML 標籤，透過 JavaScript 操控，讓使用者可以操作的組件，比如：照片燈箱 Modal。</li>
+</ul>
+</li>
+</ul>
+<p>我們現在的網站都已經演變成較複雜的應用程式，即使再簡單的網站，都因應手機時代來臨，智慧型裝置的顯示畫面較小，所以縮減某些區塊呈現範圍的需求，比如說，導航列到手機的介面會呈顯成一個「漢堡」的形狀，點擊那顆「漢堡」選單將收合導覽列的內容。</p>
+<ul>
+<li>如何讓螢幕閱讀器知道「漢堡選單」的開關？</li>
+</ul>
+<p>這時候 WAI-ARIA 就派上用場了！目前需要使用 <code>aria</code> 屬性來操作 Accessibility Tree（新增、覆蓋、刪除），我們也能夠過開發者工具來檢視 Accessibility Tree。</p>
+<h2>什麼是 The Accessibility Tree？我只聽過 DOM Tree</h2>
+<p><a href="https://www.youtube.com/watch?v=rvYXa2nGE04" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/rvYXa2nGE04/0.jpg" alt="Yes"></a></p>
+<blockquote>
+<p>上面的影片是關於 The Accessibility Tree 的簡單介紹。</p>
+</blockquote>
+<h3>DOM 與 AOM、The Accessibility Tree 之間的關係</h3>
+<p><img src="https://i.imgur.com/tNOcm4x.png" alt="瀏覽網站過程倚靠開發者對於可訪問性技術的理解"><br>
+（圖片出處：<a href="http://wicg.github.io/aom/" target="_blank" rel="noopener">AOM - WICG</a>）</p>
+<ul>
+<li>The Accessibility Tree：
+<ul>
+<li>基於 DOM Tree 創建出的「無障礙樹」，實際上是擷取出螢幕閱讀器需要的資訊（節點），限於螢幕閱讀器如 NVDA、VoiceOver 解析，這些輔助科技將會與 Audio UI、Spoken UI 結合，念出畫面中的資訊給使用者聽。現階段工程師能實踐無障礙的做法。</li>
+</ul>
+</li>
+<li><a href="https://css-tricks.com/dom/" target="_blank" rel="noopener">DOM</a>：
+<ul>
+<li>JavaScript 可操縱的介面，由瀏覽器 Google Chrome、Firefox、Safari 解析，渲染成 GUI 可視的人機操作介面。</li>
+</ul>
+</li>
+<li><a href="https://github.com/WICG/aom" target="_blank" rel="noopener">AOM</a>：
+<ul>
+<li>目前還在標準草稿的新 API 計畫！全名 Accessibility Object Model，由 Google 的 Alice Boxhall、Dominic Mazzoni，Apple 的 James Craig 及 Mozilla 的 Alexander Surkov 協作開發，創建聲明式的 JavaScript API。將分為四個階段導入。現階段各瀏覽器的實作狀態請查看<a href="https://github.com/WICG/aom/blob/gh-pages/caniuse.md" target="_blank" rel="noopener">這份文件</a>。</li>
+<li>Apple 也發布<a href="https://support.apple.com/en-us/HT209655" target="_blank" rel="noopener">官方聲明</a>（2019-05-17），說明在 iOS 與 macOS 中如何開啟實驗性的 AOM。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://github.com/WICG/aom" target="_blank" rel="noopener">AOM</a> - WICG @githbub</li>
+<li><a href="https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/the-accessibility-tree" target="_blank" rel="noopener">The Accessibility Tree</a> - Google Developers</li>
+<li><a href="https://tink.uk/playing-with-the-accessibility-object-model-aom/" target="_blank" rel="noopener">Playing with the Accessibility Object Model (AOM)</a></li>
+<li><a href="https://hiddedevries.nl/en/blog/2019-07-22-meaning-without-markup-accessibility-object-model" target="_blank" rel="noopener">Meaning without markup: Accessibility Object Model</a></li>
+<li><a href="http://shortdiv.com/posts/aom-at-me-bro/" target="_blank" rel="noopener">AOM at me bro</a> - <code>&lt;shortdiv /&gt;</code></li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/無障礙網站/">#無障礙網站</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/the-Accessibility-Tree/">#the Accessibility Tree</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/AOM/">#AOM</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/DOM/">#DOM</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/可及性網站/">#可及性網站</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/親和力網站/">#親和力網站</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/包容性網站/">#包容性網站</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/customize-hexo-blog-url-on-github-pages/">客製化你的部落格網址：Hexo blog x GitHub Pages</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/web-accessibility-certificate-tw/">無障礙標章：WCAG 與 NCC 國家通訊傳播委員會的無障礙規範（申請流程與標章使用規定）</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

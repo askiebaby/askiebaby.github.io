@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>關於 Webpack，它是什麼？能夠做什麼？為什麼？怎麼做？— freeCodeCamp 的筆記 - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="前端日新月異，我們寫的內容已不只是寫 HTML、CSS、JavaScript 單純的檔案。前端出現了許多預處理工具及框架，預處理工具如 PUG、SASS、Babel；框架如 Vue、React。不過瀏覽器並看不懂我們寫的預處理內容，每每都需要透過編譯才能使用，也因此出現了自動化工具，Webpack、Gulp、Grunt、Parcel、Browserify....等。">
+ 
+<meta name="keywords" content="Webpack,JavaScript,Bundle,Modules,模組化,打包工具,Webpack loader,Webpack plugin,Webpack css-loader,Webpack style-loader">
+  <meta name="description" content="前端日新月異，我們寫的內容已不只是寫 HTML、CSS、JavaScript 單純的檔案。前端出現了許多預處理工具及框架，預處理工具如 PUG、SASS、Babel；框架如 Vue、React。不過瀏覽器並看不懂我們寫的預處理內容，每每都需要透過編譯才能使用，也因此出現了自動化工具，Webpack、Gulp、Grunt、Parcel、Browserify....等。">
+<meta name="keywords" content="Webpack,JavaScript,Bundle,Modules,模組化,打包工具,Webpack loader,Webpack plugin,Webpack css-loader,Webpack style-loader">
+<meta property="og:type" content="article">
+<meta property="og:title" content="關於 Webpack，它是什麼？能夠做什麼？為什麼？怎麼做？— freeCodeCamp 的筆記">
+<meta property="og:url" content="https://askie.today/what-is-webpack/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="前端日新月異，我們寫的內容已不只是寫 HTML、CSS、JavaScript 單純的檔案。前端出現了許多預處理工具及框架，預處理工具如 PUG、SASS、Babel；框架如 Vue、React。不過瀏覽器並看不懂我們寫的預處理內容，每每都需要透過編譯才能使用，也因此出現了自動化工具，Webpack、Gulp、Grunt、Parcel、Browserify....等。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-07-16T12:07:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="關於 Webpack，它是什麼？能夠做什麼？為什麼？怎麼做？— freeCodeCamp 的筆記">
+<meta name="twitter:description" content="前端日新月異，我們寫的內容已不只是寫 HTML、CSS、JavaScript 單純的檔案。前端出現了許多預處理工具及框架，預處理工具如 PUG、SASS、Babel；框架如 Vue、React。不過瀏覽器並看不懂我們寫的預處理內容，每每都需要透過編譯才能使用，也因此出現了自動化工具，Webpack、Gulp、Grunt、Parcel、Browserify....等。">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            關於 Webpack，它是什麼？能夠做什麼？為什麼？怎麼做？— freeCodeCamp 的筆記
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-06-24T17:09:13.000Z" itemprop="datePublished">6月 25 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Webpack/">Webpack</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            13 分鐘 的閱讀時間 (約 1898 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>關於 Webpack</h2>
+<h3>Webpack 是什麼？</h3>
+<blockquote>
+<p>它是一個「<strong>打包工具</strong>」。將眾多模組與資源打包成一包檔案，並編譯我們需要預先處理的內容，變成瀏覽器看得懂的東西，讓我們可以上傳到伺服器。</p>
+</blockquote>
+<p>前端日新月異，我們寫的內容已不只是寫 HTML、CSS、JavaScript 單純的檔案。前端出現了許多預處理工具及框架，預處理工具如 PUG、SASS、Babel；框架如 Vue、React。不過瀏覽器並看不懂我們寫的預處理內容，每每都需要透過編譯才能使用，也因此出現了自動化工具，Webpack、Gulp、Grunt、Parcel、Browserify…等。</p>
+<h3>Webpack 能夠做什麼？為什麼？</h3>
+<blockquote>
+<p>適合用在大型的應用程式。因為大型的應用程式需要管理眾多不同類型的檔案，使用起來相對有感。</p>
+</blockquote>
+<ul>
+<li>打包（Bundle）多個 <code>.js</code> 檔案成單一檔案。
+<ul>
+<li>你可以寫模組化的 JavaScript，你不再需要在 HTML 中引入每個 JavaScript 檔案（<code>&lt;script src=&quot;...&quot;&gt;&lt;/script&gt;</code>），如果有眾多的 <code>.js</code> 檔案，可以透過 Webpack 來設定。</li>
+</ul>
+</li>
+<li>使用 NPM Packages</li>
+<li>撰寫 JavaScript ES6 或以上
+<ul>
+<li>需要 babel 協助轉譯</li>
+</ul>
+</li>
+<li>最小化、優化程式碼</li>
+<li>編譯 LESS 或 SCSS 成 CSS</li>
+<li>使用 HMR（Hot Module Replacement）</li>
+<li>包含任何類型的檔案到 JavaScript
+<ul>
+<li>CommomJS、AMD、ES6 Modules、CSS、Images、JSON、Coffeescript、LESS</li>
+</ul>
+</li>
+<li>更多．．．．</li>
+</ul>
+<h2>安裝</h2>
+<h3>先確定有沒有安裝 node：</h3>
+<pre><code class="bash">node -v
+</code></pre>
+<h3>初始化 npm，將會在專案中產生 <code>package.json</code>。<code>-y</code> 會將需要回答的問題一次性略過， <code>package.json</code> 中，日後可以修改。</h3>
+<pre><code class="bash">npm init -y
+</code></pre>
+<ul>
+<li>.gitigonore 加上 node_modules，避免肥大的模組們被 GIT 追蹤。</li>
+</ul>
+<pre><code>node_modules
+</code></pre>
+<ul>
+<li><code>package.json</code> 新增 private 屬性，因為是自己練習用，不希望 NPM 被意外發布，詳情請參考 <a href="https://docs.npmjs.com/files/package.json#private" target="_blank" rel="noopener">NPM 官方文件</a>。</li>
+</ul>
+<pre><code class="json">&quot;private&quot;: true
+</code></pre>
+<h3>安裝 Webpack，<code>--save-dev</code> 表示相依於開發模式而已，而發布為產品時不需要也沒關係：</h3>
+<pre><code class="bash">npm install --save-dev webpack webpack-cli
+</code></pre>
+<ul>
+<li>完成後，檢視你的 package.json 的 <code>devDependencies</code> 屬性應該會長這樣：</li>
+</ul>
+<pre><code class="json">// package.json
+{
+  &quot;name&quot;: &quot;webpack-demo-app&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;private&quot;: true,
+  &quot;description&quot;: &quot;透過練習了解 Webpack 解決的事情，並在沒使用 Webpack 的專案試著導入 Webpack。&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {},
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;git+https://github.com/Colt/webpack-demo-app.git&quot;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;bugs&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Colt/webpack-demo-app/issues&quot;
+  },
+  &quot;homepage&quot;: &quot;https://github.com/Colt/webpack-demo-app#readme&quot;,
+  &quot;devDependencies&quot;: {
+    // --save-dev 指令裝的套件將會幫我們放到 package.json 的 devDependencies 中
+    &quot;webpack&quot;: &quot;^4.35.0&quot;, // Webpack 裝好了！
+    &quot;webpack-cli&quot;: &quot;^3.3.4&quot; // Webpack 裝好了！
+  }
+}
+</code></pre>
+<ul>
+<li><code>&quot;scripts&quot;</code> 新增自訂指令</li>
+</ul>
+<pre><code class="json">&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;webpack&quot;
+}
+</code></pre>
+<ul>
+<li>執行 Webpack</li>
+</ul>
+<pre><code class="bash">npm start
+</code></pre>
+<p>直接在 Terminal 執行 <code>npm start</code> 會拋出一個錯誤 <code>ERROR in Entry module not found: Error: Can't resolve './src' in 'your-directory/webpack-demo-app'</code>。發現在 <code>./src</code> 這個資料夾找不到 <code>index.js</code>，所以在 <code>./src</code> 這個資料夾下建立 <code>index.js</code> 後再試一次 <code>npm start</code> 看看編譯的狀況。</p>
+<ul>
+<li>顯示一個警告，設定檔中的模式參數 <code>mode</code> 未設定，預設值是 <code>production</code>，所以幫你在專案中，產生靜態資料夾 <code>dist</code>：</li>
+</ul>
+<pre><code class="bash">WARNING in configuration
+The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
+You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
+</code></pre>
+<p>（因為這時還沒有建立設定檔，主要是先試試 Webpack 的預設會如何編譯。）</p>
+<h2>Imports, Exports, &amp; Webpack Modules</h2>
+<h3>可以根據程式的相依函式來設定 ES6 的 import、export：</h3>
+<pre><code class="javascript">// 將變數 inputsAreValid export
+export const inputsAreValid = (...input) =&gt; {
+  return input.every(num =&gt; typeof num === &quot;number&quot; &amp;&amp; !isNaN(num));
+};
+</code></pre>
+<pre><code class="javascript">// 其他使用的檔案則可以 import
+import { inputsAreValid } from &quot;./utils/inputs-are-valid&quot;;
+</code></pre>
+<p><strong><code>index.js</code> 是 Webpack 的進入點，放在專案根目錄（root）。</strong></p>
+<p>原本的程式碼在寫完後，如果以功能區分會拆成眾多檔案，那麼在 HTML 引入時會因為順序不同而影響執行，所以要導入 Webpack 讓我們可以把心力放在寫程式上面。</p>
+<p>將程式碼模組化之後，只要在程式碼中，確定你需要的變數或 function 有 export，並且在需要的地方 import，自此就可以不需擔心 <code>.js</code> 檔案在 HTML 中引入的順序囉！</p>
+<ul>
+<li>解決了以下問題：</li>
+<li><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">若使用外部 Library，不容易辨識哪些程式碼相依於外部 Library</label></li>
+<li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">相依的程式如果順序錯誤就會造成程式執行異常</label></li>
+<li><input type="checkbox" id="checkbox2" checked="true"><label for="checkbox2">相依的程式若是引入卻未使用，瀏覽器還是得無意義地強制加載</label></li>
+</ul>
+<h2>設定</h2>
+<ul>
+<li>在專案根目錄建立 <code>webpack.comfig.js</code>。</li>
+</ul>
+<pre><code class="javascript">// webpack.comfig.js
+const path = require(&quot;path&quot;); // 引入 path 來解決巢狀引入路徑問題
+
+module.exports = {
+  mode: &quot;development&quot;, // 設定開發模式就不會 minify
+  devtool: &quot;none&quot;, // 編譯後的程式碼不會有 eval 這樣的用法
+  entry: &quot;./src/index.js&quot;,
+  output: {
+    filename: &quot;hello.js&quot;, // 編譯後的檔名
+    path: path.resolve(__dirname, &quot;your-directory-name&quot;) // 編譯後要放在哪個資料夾
+  }
+};
+</code></pre>
+<ul>
+<li>把指令更改為：以後 <code>npm start</code> 要根據我的 Webpack 設定檔辦事囉！</li>
+</ul>
+<pre><code class="json">// package.json
+{
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;webpack --config webpack.comfig.js&quot;
+  }
+}
+</code></pre>
+<h2>Loaders: CSS SASS</h2>
+<h3>什麼是 Loader？</h3>
+<p>在使用 Webpack 時，我們可以引入 <code>.js</code>以外的其他類型檔案，而 Loader 是 Webpack 中強大的工具，用來幫我們預處理你引入的各種類型檔案。詳情請參考<a href="https://webpack.js.org/loaders/#root" target="_blank" rel="noopener">官方文件 - Loaders</a>。</p>
+<h3>建立一個 <code>.css</code> 檔案</h3>
+<pre><code class="css">/* main.css */
+body {
+  background: #009688;
+}
+</code></pre>
+<h3>安裝 <code>style-loader</code> 與 <code>css-loader</code></h3>
+<pre><code class="bash">npm install --save-dev style-loader css-loader
+</code></pre>
+<h3>新增 css-loader 規則</h3>
+<pre><code class="javascript">// add it to webpack.config.js
+module: {
+  rules: [
+    {
+      test: /\.css$/, // 正則式，$ 用以表示以 .css 結尾的檔案，反斜線是跳脫字元
+      use: [&quot;style-loader&quot;, &quot;css-loader&quot;]
+    }
+  ];
+}
+</code></pre>
+<p>css-loader：先取得你的 CSS 樣式，把它變成 JavaScript。</p>
+<p>style-loader：將轉譯的 JavaScript 變成真正的 CSS 樣式，透過 <code>&lt;style&gt;</code> tag 插入你的 DOM tree。</p>
+<p>而 webpack 編譯時，從陣列的最後一個開始往前執行，了解流程之後，之後 Loader 的使用順序是有差異的喔！</p>
+<p>先寫 style-loader，再來才是 css-loader。</p>
+<h3>可以直接引入 CSS 囉！</h3>
+<pre><code class="javascript">// index.js
+import { mainCSS } from &quot;./main.css&quot;;
+</code></pre>
+<hr>
+<p>以下筆記待續。</p>
+<h2>Cache Busting and Plugins</h2>
+<h2>切割開發版本與產品版本</h2>
+<h2>Html-loader, File-loader 以及乾淨的 webpack</h2>
+<h2>多個 Entrypoints 及 Vendor.js</h2>
+<h2>提取 CSS，將 HTML/CSS/JS 最小化</h2>
+<hr>
+<h2>主要 Reference</h2>
+<h3>影片教學</h3>
+<p><a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ" target="_blank" rel="noopener">FreeCodeCamp 教學 @youtube</a></p>
+<h3>時間軸大綱</h3>
+<p>⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=0s" target="_blank" rel="noopener">0:00:00</a>) What Even Is Webpack??<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=492s" target="_blank" rel="noopener">0:08:12</a>) Installing and Running Webpack and Webpack-CLI<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=1338s" target="_blank" rel="noopener">0:22:18</a>) Imports, Exports, &amp; Webpack Modules<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=1798s" target="_blank" rel="noopener">0:29:58</a>) Configuring Webpack<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=2337s" target="_blank" rel="noopener">0:38:57</a>) Loaders, CSS, &amp; SASS<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=3235s" target="_blank" rel="noopener">0:53:55</a>) Cache Busting and Plugins<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=4033s" target="_blank" rel="noopener">1:07:13</a>) Splitting Dev &amp; Production<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=4633s" target="_blank" rel="noopener">1:17:13</a>) Html-loader, File-loader, &amp; Clean-webpack<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=5297s" target="_blank" rel="noopener">1:28:17</a>) Multiple Entrypoints &amp; Vendor.js<br>
+⌨️ (<a href="https://www.youtube.com/watch?v=MpGLUVbqoYQ&amp;t=5685s" target="_blank" rel="noopener">1:34:45</a>) Extract CSS &amp; Minify HTML/CSS/JS</p>
+<h2>其他 Reference</h2>
+<p><a href="https://webpack.js.org/" target="_blank" rel="noopener">Ｗ ebpack 官網</a></p>
+<p><a href="https://neighborhood999.github.io/webpack-tutorial-gitbook/" target="_blank" rel="noopener">Webpack Tutorial 繁體中文 Gitbook</a></p>
+<p><a href="https://medium.com/@Mike_Cheng1208/2d8f9658241d" target="_blank" rel="noopener">Webpack 教學 (一) ：什麼是 Webpack? 能吃嗎？</a></p>
+<p><a href="https://gist.github.com/branneman/8048520" target="_blank" rel="noopener">Better local require() paths for Node.js</a></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/webpack/">#webpack</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/bundle/">#bundle</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/modules/">#modules</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/模組化/">#模組化</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/打包工具/">#打包工具</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/webpack-loader/">#webpack loader</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/webpack-plugin/">#webpack plugin</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/webpack-css-loader/">#webpack css-loader</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/webpack-style-loader/">#webpack style-loader</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/meal-box-preperation-for-big-activity/">千人活動的備餐原則 - 根據 kerl lin 大大文章所整理的待辦清單</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/javascript-good-condition-statement/">五個小技巧讓你寫出更好的 JavaScript 條件語句（翻譯）</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

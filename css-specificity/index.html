@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>談一下 CSS Specificity - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="要了解 CSS 就一定要知道 Specificity 是什麼！Specificity 是決定優先套用哪個樣式的關鍵因素之一。">
+ 
+<meta name="keywords" content="CSS,CSS Specificity,CSS 權重,CSS 特定度,CSS 優先權">
+  <meta name="description" content="要了解 CSS 就一定要知道 Specificity 是什麼！Specificity 是決定優先套用哪個樣式的關鍵因素之一。">
+<meta name="keywords" content="CSS,CSS Specificity,CSS 權重,CSS 特定度,CSS 優先權">
+<meta property="og:type" content="article">
+<meta property="og:title" content="談一下 CSS Specificity">
+<meta property="og:url" content="https://askie.today/css-specificity/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="要了解 CSS 就一定要知道 Specificity 是什麼！Specificity 是決定優先套用哪個樣式的關鍵因素之一。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/q0yhJxA.png">
+<meta property="og:image" content="https://i.imgur.com/7Bp5y7r.png">
+<meta property="og:updated_time" content="2019-07-16T12:14:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="談一下 CSS Specificity">
+<meta name="twitter:description" content="要了解 CSS 就一定要知道 Specificity 是什麼！Specificity 是決定優先套用哪個樣式的關鍵因素之一。">
+<meta name="twitter:image" content="https://i.imgur.com/q0yhJxA.png">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            談一下 CSS Specificity
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-05-06T08:25:30.000Z" itemprop="datePublished">5月 6 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/CSS/">CSS</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            9 分鐘 的閱讀時間 (約 1356 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/q0yhJxA.png" alt=""></p>
+<h2>CSS</h2>
+<p>剛開始學習容易上手<br>
+往後卻難以維護</p>
+<p>CSS 較鬆散， 非常仰賴攥寫的順序<br>
+但這些都比不上不懂 Specificity 的恐怖！XDDD</p>
+<h2>Specificity 看不懂？</h2>
+<h3>Specificity 譯為優先級、特定度、權重</h3>
+<p>註：Ｏ’reily 翻譯為特定度；MDN 翻譯為優先級；有些翻譯為權重。本文一律以「權重」表示 Specificity。</p>
+<hr>
+<h2>Specificity 幹嘛的？</h2>
+<h3>決定你的元素優先吃哪一個樣式的其中一個因素！</h3>
+<p>Chris 這篇<a href="https://ithelp.ithome.com.tw/articles/10191613" target="_blank" rel="noopener">文章</a>解釋得很清楚：<strong>Cascade 動作是由 Specificity 和 Ruleset order 作用，決定要套用的 CSS。</strong></p>
+<h3>換句話說</h3>
+<p>先比權重，再比順序！</p>
+<ul>
+<li>當兩個 CSS 宣告同時作用在一個元素時：
+<ul>
+<li>權重高
+<ul>
+<li>優先生效！</li>
+</ul>
+</li>
+<li>相同權重時
+<ul>
+<li><strong>後</strong>寫的 CSS 會覆蓋<strong>先</strong>寫的 CSS</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>透過範例了解一下剛剛在說什麼</h2>
+<p>我們有一個區塊元素 <code>div</code> 包覆著一個 <code>button</code> 。</p>
+<p>這個 <code>button</code> 的 <code>class</code> 有 button（基本按鈕的樣式）、button__disabled（無法點擊的狀態樣式）。</p>
+<p>HTML</p>
+<pre><code class="html">&lt;div&gt;
+    &lt;button class=&quot;button__disabled button&quot;&gt;Click me&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>CSS</p>
+<pre><code class="css">.button {
+    padding: 10px 20px;
+    font-size: 32px;
+    border-radius: 3px;
+    border: none;
+
+    /* notice below 被 button__disabled 的樣式覆蓋了 */
+    background: #eee;
+    color: #333;
+    cursor: pointer;
+}
+
+.button__disabled {
+    background: #ccc;
+    color: #999;
+    cursor: not-allowed;
+}
+</code></pre>
+<p><a href="https://codepen.io/askie/pen/KYjBNo?editors=1100" target="_blank" rel="noopener">example - try it</a></p>
+<h3>透過範例可以了解兩件事：</h3>
+<ol>
+<li>決定要套用樣式的基礎並不在於我們在 HTML Element 上引用 Class 的順序，而是，<strong>該 class 在我們攥寫 CSS 樣式表當中的順序</strong>。</li>
+<li>若在同樣都只有一個 class 選擇器的狀況下（.button、.button__disabled）
+<ul>
+<li>後面寫的樣式宣告（<code>.button__disabled</code>）</li>
+<li>在 CSS 樣式表中，較前面的內容有指定同一個 HTML Element 的選取器（<code>.button</code>）</li>
+<li>並且攥寫了重複的內容時（<code>background</code>、<code>color</code>、<code>cursor</code>）</li>
+<li>後面寫的樣式宣告（<code>.button__disabled</code>）會優先被套用，覆蓋掉原本的樣式（<code>.button</code>）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>權重計算的基本規則</h2>
+<p><img src="https://i.imgur.com/7Bp5y7r.png" alt=""></p>
+<p>如上圖，檢查對應的出現的次數、<strong>由左向右</strong>比較，看 <a href="https://www.w3.org/TR/2018/REC-selectors-3-20181106/#specificity" target="_blank" rel="noopener">W3C 的定義</a>，其實是從 <code>id</code>=&gt; <code>class</code> =&gt; <code>element</code>，檢查完再去看是否有設定 <code>important</code> <code>行內樣式</code>。但我把它們集合起來畫成一張對應的表，比較方便理解、查閱跟記憶。</p>
+<hr>
+<h2>我的 CSS Specificity 的 CheatSheet：</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">specificity</th>
+<th>條件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1-0-0-0-0</td>
+<td><code>!important</code></td>
+</tr>
+<tr>
+<td style="text-align:center">0-1-0-0-0</td>
+<td>HTML Element 中的行內樣式， <code>style=&quot;&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">0-0-1-0-0</td>
+<td><code>#id</code></td>
+</tr>
+<tr>
+<td style="text-align:center">0-0-0-1-0</td>
+<td><code>.class</code>, <code>:pseudo class</code>, <code>attribute</code></td>
+</tr>
+<tr>
+<td style="text-align:center">0-0-0-0-1</td>
+<td><code>element (h1)</code>, <code>::pseudo element</code></td>
+</tr>
+<tr>
+<td style="text-align:center">0-0-0-0-0</td>
+<td><code>*</code>, <code>+</code>, <code>&gt;</code>, <code>~</code>, <code>空格</code>, <code>:not()</code></td>
+</tr>
+<tr>
+<td style="text-align:center">例外 <code>:not</code></td>
+<td><a href="https://www.w3.org/TR/2018/REC-selectors-3-20181106/#negation" target="_blank" rel="noopener">:not 雖是偽類，可是其無任何權重，但 :not(.class) 依據參數還是會增加權重</a></td>
+</tr>
+</tbody>
+</table>
+<p>有趣的小工具：<a href="https://specificity.keegan.st/" target="_blank" rel="noopener">CSS權重計算機</a></p>
+<hr>
+<h1>實例</h1>
+<p>一個新手容易踩的雷：使用 <code>id</code> 選取器，等專案越做越大時，開始有製作新的 table 需求時…</p>
+<pre><code class="css">#content table { }
+
+/**
+ * 不，我寫的東西無法生效 :(
+ */
+.my-new-table { }
+</code></pre>
+<ul>
+<li>命名沒表現任何語意，看不來是何種 table</li>
+<li>使用 <code>id</code> 選取器則侷限了這個 table，只能套用在這個名為 content 的 <code>id</code> 中</li>
+</ul>
+<h3>通常會有兩種做法</h3>
+<ol>
+<li><strong>重構</strong>，移除 <code>id</code></li>
+<li>為了生效，算了不管它了！我要以較高的權重覆蓋它！
+<ul>
+<li>因為若專案較大時，有時無法確定移除 <code>id</code> 對整個專案的影響</li>
+</ul>
+</li>
+</ol>
+<h3>使出我的覆蓋技能</h3>
+<pre><code class="css">#content table { }
+#content .my-new-table { /* 耶，可以看到我的樣式了！ */ }
+</code></pre>
+<p>結束這回合…了嗎？</p>
+<p>開始進入惡性循環，權重只要一開始疊的高，以後只能越設越高！</p>
+<h1>!important 該死？</h1>
+<hr>
+<blockquote>
+<p>“Rules are the children of principles.” - <a href="https://twitter.com/fold_left" target="_blank" rel="noopener">Jamie Mason</a></p>
+</blockquote>
+<hr>
+<h3>When to use <code>!important</code> properly?</h3>
+<p>有些開發者都覺得 <code>!important</code> 是萬惡的，若 <code>!important</code> 真的如此該死，當初又何必設計它的存在呢？</p>
+<p>其實只要：</p>
+<pre><code>了解使用目的！
+確保你的樣式在 global 都要能 work
+而不是為了覆蓋（fix）你改不掉的樣式
+</code></pre>
+<h2>Keep It Low at All Times</h2>
+<h3>永遠保持最低的權重，這就是原則！</h3>
+<h4>How to keep it low?</h4>
+<ul>
+<li>
+<p>絕對不要使用 <code>ID</code></p>
+<ul>
+<li><code>ID</code> 辦得到的事，<code>Class</code> 全部都可以</li>
+<li><code>ID</code> 不能重複使用就算了，還會增加權重
+<ul>
+<li><strong>若真無他法一定要使用的話：</strong></li>
+<li>hack: <code>[id=&quot;your-id&quot;]</code> (attribute 0-0-1-0) （等同於 class 的權重及選取，但可讀性就較低了，不建議不建議不建議！）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>選取器不要巢過了頭</p>
+<ul>
+<li>建議不要超過三層</li>
+</ul>
+</li>
+<li>
+<p>不要限定你的選擇器</p>
+<ul>
+<li><code>.nav {}</code> 可以做到的事，不要用 <code>ul.nav {}</code></li>
+</ul>
+</li>
+<li>
+<p>盡可能地使用 <code>class</code></p>
+<ul>
+<li>並且保持低權重，讓大家都有相同的權重，公平！</li>
+</ul>
+</li>
+</ul>
+<h4>YA！CSS 又 <s>變瘦</s> 變輕了！（是權重不是檔案大小，囧）</h4>
+<hr>
+<h3>理解完，考自己一下，你應該會笑：）</h3>
+<p><a href="http://cssspecificity.com/" target="_blank" rel="noopener">有趣的圖</a></p>
+<h1>Reference</h1>
+<hr>
+<ul>
+<li>Spec
+<ul>
+<li><a href="https://www.w3.org/TR/2018/REC-selectors-3-20181106/#specificity" target="_blank" rel="noopener">Calculating a selector’s specificity - W3C</a></li>
+</ul>
+</li>
+<li>Book
+<ul>
+<li><a href="https://www.tenlong.com.tw/products/9789864763658" target="_blank" rel="noopener">CSS 重構 - Steve Lindstrom 著、陳健文 譯</a>（好想工作室有這本書）</li>
+</ul>
+</li>
+<li>Internet
+<ul>
+<li><a href="https://ithelp.ithome.com.tw/articles/10196454" target="_blank" rel="noopener">Day20：小事之 CSS 權重 (css specificity) - iT邦幫忙</a></li>
+<li><a href="http://cssspecificity.com/" target="_blank" rel="noopener">cssspecificity.com</a></li>
+<li><a href="https://cssguidelin.es/#specificity" target="_blank" rel="noopener">CSS guildlines</a></li>
+<li>[Hacks for dealing with specificity - CSS Wizardry](</li>
+</ul>
+</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/css/">#css</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/css-specificity/">#css specificity</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/權重/">#權重</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/特定度/">#特定度</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/優先權/">#優先權</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/differences-among-var-let-const/">在 JavaScript 中，Var、Let、Const 的差異？</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/javascript-deep-copy-swallow-copy/">透過複製陣列理解 JS 的淺拷貝與深拷貝 - JavaScript</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

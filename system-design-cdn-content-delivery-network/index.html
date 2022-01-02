@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>系統設計入門：內容傳遞網路 CDN - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="網站在流量不高時，使用者對伺服器的回應速度較沒有感覺，但流量漸漸增加時，latency 就會拉長，我們通常會採購新的 sever 來負擔網站流量。">
+ 
+<meta name="keywords" content="System design primer,系統設計,CDN,Content delivery network,內容傳遞網路">
+  <meta name="description" content="網站在流量不高時，使用者對伺服器的回應速度較沒有感覺，但流量漸漸增加時，latency 就會拉長，我們通常會採購新的 sever 來負擔網站流量。">
+<meta name="keywords" content="System design primer,系統設計,CDN,Content delivery network,內容傳遞網路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系統設計入門：內容傳遞網路 CDN">
+<meta property="og:url" content="https://askie.today/system-design-cdn-content-delivery-network/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="網站在流量不高時，使用者對伺服器的回應速度較沒有感覺，但流量漸漸增加時，latency 就會拉長，我們通常會採購新的 sever 來負擔網站流量。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/wdkZYZb.png">
+<meta property="og:updated_time" content="2020-08-07T14:49:51.275Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系統設計入門：內容傳遞網路 CDN">
+<meta name="twitter:description" content="網站在流量不高時，使用者對伺服器的回應速度較沒有感覺，但流量漸漸增加時，latency 就會拉長，我們通常會採購新的 sever 來負擔網站流量。">
+<meta name="twitter:image" content="https://i.imgur.com/wdkZYZb.png">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            系統設計入門：內容傳遞網路 CDN
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-08-07T14:30:41.000Z" itemprop="datePublished">8月 7 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/System-Design/">System Design</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            8 分鐘 的閱讀時間 (約 1187 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/wdkZYZb.png" alt="Content delivery network"></p>
+<blockquote>
+<p>本系列文並非自己心得記錄，而是讀 <a href="https://github.com/donnemartin/system-design-primer/" target="_blank" rel="noopener">System Design Primer</a> 的筆記，有蠻大部分節錄自該文章以及其補充連結。</p>
+</blockquote>
+<h2>CDN 的出現</h2>
+<p>網站在流量不高時，使用者對伺服器的回應速度較沒有感覺，但流量漸漸增加時，latency 就會拉長，我們通常會採購新的 sever 來負擔網站流量。</p>
+<h3>NGINX</h3>
+<p>建立網站之初，客群會比較侷限或小眾，所以流量增加時，採購新的 server 還算堪用，架個由 Igor Sysoev 開發的 Nginx 輕量級網頁伺服器可以在傳輸時用 Gzip 壓縮，降低 Latency。不過如果使用者越來越喜歡我們的服務，當使用者遍佈全球時，我們總不能在世界各地都買些伺服器來回應使用者（當伺服器離使用者越近，獲得 response 速度增加），而且有些瀏覽器不支援 Gzip。</p>
+<h3>因應全球佈局策略</h3>
+<p>在各個 Region 放置我們的伺服器顯然無法真正解決 latency 的問題，因為台灣流量進來了，也可能透過美國的伺服器傳送給使用者。而光速是固定的，所以地理的距離確實影響使用者經驗很大。</p>
+<h2>CDN 的簡述</h2>
+<blockquote>
+<p>在多個地點，擁有多個伺服器群，提供相同的內容給使用者。</p>
+</blockquote>
+<p>翻譯蒟蒻：先幫你把快取的靜態內容抓到 CDN 服務的伺服器群，當瀏覽器發出請求時，藉由獨特的運算法找出離使用者最近的伺服器 IP，請瀏覽器向那個 IP 拿取內容遞送給使用者。</p>
+<h2>CDN 的優點</h2>
+<ul>
+<li>降低管理成本
+<ul>
+<li>不用全世界到處設伺服器</li>
+</ul>
+</li>
+<li>提升使用者經驗
+<ul>
+<li>就近取得內容
+<ul>
+<li>伺服器因分佈、頻寬帶來的 Latency</li>
+<li>加快 TCP 三次交握的時間</li>
+</ul>
+</li>
+<li>可以用壓縮的方式來傳輸內容
+<ul>
+<li>因為壓縮，所以流量變小，加快傳輸時間</li>
+<li>克服瀏覽器對於 Gzip 壓縮的支援度
+<ul>
+<li>目前各瀏覽器與伺服器基本上都支援，傳輸時的資源壓縮，主流使用 <code>gzip</code> 與 <code>br</code> 壓縮。可以打開任一網頁，查看開發者工具的 <code>Network</code>頁籤 &gt; 任一個請求 &gt; <code>Response headers</code>，裡面有個屬性 <code>content-encoding</code> 會紀錄伺服器使用的壓縮工具。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>提供高可用性
+<ul>
+<li>減少 DDoS 阻斷服務攻擊（用流量塞爆 bandwidth，造成服務直接無法被使用）</li>
+<li>不同地點做以相互備援</li>
+</ul>
+</li>
+</ul>
+<h2>CDN 的種類</h2>
+<h3>HTTP</h3>
+<ul>
+<li>Push CDN（主動分發）
+<ul>
+<li>我們自己將靜態內容上傳的 CDN 伺服器，適合較小流量或是不常更新的內容。</li>
+</ul>
+</li>
+<li>Pull CDN（被動分發）
+<ul>
+<li>我們可以設定靜態內容想被 CDN 快取的 TTL 存活時間，當請求進來時，CDN 服務發現距離最近的伺服器中已無「快取有效的內容」時，就會 Pull 最新的檔案內容。</li>
+<li>Apple 發表大會時，在 CEO 發表最新產品後，Apple 的網站當下就要馬上能被全世界的果迷查詢到新產品得網頁內容，這樣的同步是怎麼做到的呢？
+<ul>
+<li>最新網頁內容早已準備好！</li>
+<li>在大會現場，CEO 一講完，工程師在台下透過操作 TTL 存活時間，讓網站內容失效，果迷去訪問蘋果網站時，CDN 找不到快取內容，會發動 Pull 去拉最新資料回來給使用者。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Live Streaming</h3>
+<ul>
+<li>直播串流</li>
+</ul>
+<h3>VoD Streaming</h3>
+<ul>
+<li>影片也能 CDN，Youtube 就是利用 CDN 服務讓使用者可以在最近的伺服器取得內容，去重複播放或回放。常見的 OTT 服務包括：Netflix、LineTV、LiTV 等。</li>
+<li>之前有機上盒播放侵權的盜版影片的新聞，其犯罪就是利用 VoD Streaming CDN。</li>
+</ul>
+<h2>CDN 的缺點</h2>
+<p>缺點不外乎成本稍高，或是使用者分佈在 CDN 沒有服務的國家。我個人覺得最需要考量的因素是，以資安考量，我們是否願意將公司的網站文件控制權交由另一家公司負責？</p>
+<p>如果預算有空間，且服務流量也頗不錯，CDN 就是寶。</p>
+<hr>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://web.dev/image-cdns/" target="_blank" rel="noopener">Image CDN</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/best-practices/cdn" target="_blank" rel="noopener">CDN</a> - Microsoft</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/system-design/">#system design</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/web-accessibility-certificate-tw/">無障礙標章：WCAG 與 NCC 國家通訊傳播委員會的無障礙規範（申請流程與標章使用規定）</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/docker-dockerfile-dockercompose-intro/">Docker 初探：基本指令與簡單介紹 Dockerfile 和 docker-compose</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

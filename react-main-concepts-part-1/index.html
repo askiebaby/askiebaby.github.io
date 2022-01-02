@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>初心者透過官方文件學習 React 十大概念（上） - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="記錄著關於初學 REACT 時，官方文件提及的主要概念，基本上都是文件上的內容，希望用自己是初心者的方式整理關於 JSX、生命週期、事件處理器、官方文件的觀念，可以更記得住。">
+ 
+<meta name="keywords" content="React,React 教學,React 學習,React JSX,React 生命週期,React 事件處理器,React 官方文件">
+  <meta name="description" content="記錄著關於初學 REACT 時，官方文件提及的主要概念，基本上都是文件上的內容，希望用自己是初心者的方式整理關於 JSX、生命週期、事件處理器、官方文件的觀念，可以更記得住。">
+<meta name="keywords" content="React,React 教學,React 學習,React JSX,React 生命週期,React 事件處理器,React 官方文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初心者透過官方文件學習 React 十大概念（上）">
+<meta property="og:url" content="https://askie.today/react-main-concepts-part-1/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="記錄著關於初學 REACT 時，官方文件提及的主要概念，基本上都是文件上的內容，希望用自己是初心者的方式整理關於 JSX、生命週期、事件處理器、官方文件的觀念，可以更記得住。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2021-04-12T08:50:42.917Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初心者透過官方文件學習 React 十大概念（上）">
+<meta name="twitter:description" content="記錄著關於初學 REACT 時，官方文件提及的主要概念，基本上都是文件上的內容，希望用自己是初心者的方式整理關於 JSX、生命週期、事件處理器、官方文件的觀念，可以更記得住。">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            初心者透過官方文件學習 React 十大概念（上）
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-04-13T16:57:05.000Z" itemprop="datePublished">4月 14 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/React/">React</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            18 分鐘 的閱讀時間 (約 2632 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>記錄著關於初學 REACT 時，官方文件提及的主要概念，基本上都是文件上的內容，希望用自己是初心者的方式整理關於 JSX、生命週期、事件處理器、官方文件的觀念，可以更記得住。</p>
+<h2>1. Hello World</h2>
+<ul>
+<li>應用程式基本組成：元素與組件。</li>
+</ul>
+<pre><code class="javascript">ReactDOM.render(&lt;h1&gt;Hello, world!&lt;/h1&gt;, document.getElementById('root'));
+</code></pre>
+<p>往下瞭解其他概念之前，可以先閱讀「<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/A_re-introduction_to_JavaScript" target="_blank" rel="noopener">重新介紹 JavaScipt</a>」，如果好幾年沒碰 JavaScript 的話，看一下「<a href="https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c" target="_blank" rel="noopener">三個心法</a>」。</p>
+<ul>
+<li>重新介紹 JavaScript：複習 JS 的主要核心概念，推薦閱讀！</li>
+</ul>
+<h4>三個心法</h4>
+<ol>
+<li>以 <code>let</code>與 <code>const</code>定義變數，暫時當作與 <code>var</code>一樣意思的關鍵字。</li>
+<li>使用 <code>class</code>關鍵字來定義 <code>JavaScript</code> <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Classes" target="_blank" rel="noopener">class</a>，有兩件事要知道：
+<ul>
+<li><code>class</code>中的方法定義不像 <code>object</code>一樣需要使用逗號做為區隔。</li>
+<li><code>JavaScript</code>的 <code>this</code>和其他語言的 <code>this</code>不同，<code>this</code>的值將取決於它<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Classes#%E9%A1%9E%E5%88%A5%E4%B8%BB%E9%AB%94%E8%88%87%E6%96%B9%E6%B3%95%E5%AE%9A%E7%BE%A9" target="_blank" rel="noopener">如何被呼叫</a>。</li>
+</ul>
+</li>
+<li>使用 <code>⇒</code>定義 <code>arrow functions</code>，又稱為「箭號函式」，箭號函式<a href="http://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions#this_%E4%B8%8D%E5%88%86%E5%AE%B6" target="_blank" rel="noopener">沒有自己 <code>this</code>的值</a>，可以保存外層方法中定義的 <code>this</code>的值。</li>
+</ol>
+<hr>
+<h2>2. JSX</h2>
+<blockquote>
+<p>JSX 是 JavaScript 語法的擴充，看起來很像樣板語言，不一樣的是，JSX 裡頭可使用 JavaScript 全部的功能。</p>
+</blockquote>
+<pre><code class="javascript">const element = &lt;h1&gt;你好，世界！&lt;/h1&gt;;
+</code></pre>
+<h3>UI、狀態與邏輯</h3>
+<ul>
+<li>在前端中，狀態邏輯與使用者介面本就是密不可分的，與其將之拆開到各個檔案中存放，不如關注在：以組件方式拆分，其中封裝好 UI 與邏輯，而組間之間彼此獨立，互不相依。</li>
+</ul>
+<h3>為什麼使用 JSX</h3>
+<ul>
+<li>React 中，沒有要求非得使用 JSX，但它整合 UI 與邏輯，是很好的視覺輔助。</li>
+</ul>
+<h3>介紹</h3>
+<ul>
+<li>JSX 中可以使用表達式。</li>
+<li>可以放入子節點（Children）。</li>
+<li>跟 XML 一樣，如果一個標籤是空白的，你可以用 <code>/&gt;</code>立刻關閉這個標籤。</li>
+<li>防止 <a href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank" rel="noopener">XSS （跨網站指令碼）注入攻擊</a>： <code>React DOM</code>預設先將所有嵌入在 JSX 中的變數，<a href="https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-in-html" target="_blank" rel="noopener">escape</a> 並轉為字串後，才會 render。</li>
+<li>透過 <code>Babel</code> 編譯成物件，呼叫 <code>React.createElement()</code>，以「tagName(String), attributes(Object), content(String)」作為參數，回傳 React Element。</li>
+</ul>
+<ol>
+<li>建立 JSX</li>
+</ol>
+<pre><code class="javascript">const element = &lt;h1 className='greeting'&gt;Hello, World!&lt;/h1&gt;;
+</code></pre>
+<ol start="2">
+<li><code>Babel</code> 編譯，呼叫 <code>React.createElement(tagName, attrs, content)</code></li>
+</ol>
+<pre><code class="javascript">const element = React.createElement(
+  'h1',
+  { className: 'greeting' },
+  'Hello, World!'
+);
+</code></pre>
+<ol start="3">
+<li>回傳 <code>React Element</code>，React 讀這些物件紀錄的描述，來 Render DOM。</li>
+</ol>
+<pre><code class="javascript">// 注意：這是簡化過的結構
+const element = {
+  type: 'h1',
+  props: {
+    className: 'greeting',
+    children: 'Hello, world!',
+  },
+};
+</code></pre>
+<h3>在 JSX 類型中使用點記法</h3>
+<ul>
+<li>方便模組化</li>
+</ul>
+<pre><code class="javascript">import React from 'react';
+
+const MyComponents = {
+  DatePicker: function DatePicker(props) {
+    return &lt;div&gt;Imagine a {props.color} datepicker here.&lt;/div&gt;;
+  },
+};
+
+function BlueDatePicker() {
+  return &lt;MyComponents.DatePicker color='blue' /&gt;;
+}
+</code></pre>
+<hr>
+<h2>3. Rendering Element</h2>
+<blockquote>
+<p>建立 React 應用程式最小的單位是 element。</p>
+</blockquote>
+<ul>
+<li>React Element 是一個單純的 Object，它不是 DOM Element。</li>
+<li>React Element 很容易被建立。</li>
+<li>React DOM：負責更新 DOM，以符合 React Element。</li>
+</ul>
+<h3>Element ≠ Component</h3>
+<p>更精確的說，Element 是由 Components 組成。</p>
+<h3>Render Element 到 DOM 內</h3>
+<ul>
+<li>root DOM node：所有在內的 element 都會透過 React DOM 做管理。一個應用程式通常會有一個 root DOM node，也能根據需求獨立建立多個 root DOM node。</li>
+</ul>
+<pre><code class="javascript">&lt;!-- index.html --&gt; &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+
+const element = &lt;h1&gt;Hello, World&lt;/h1&gt;;
+ReactDOM.render(element, document.getElementById('root'));
+</code></pre>
+<h3>更新被 Render 的 Element</h3>
+<ul>
+<li>React Element 是 immutable 的，類比一下：電影中的一個幀，代表特定時間點的 UI。</li>
+<li>在實踐中，大部分 React 應用程式只呼叫 ReactDOM.render() 一次。</li>
+</ul>
+<h3>React 只更新必要的 Element</h3>
+<ul>
+<li>React DOM 會將「react element 與其 children」與先前狀態做比較，只更新必要的 DOM。</li>
+<li>思考 UI 在任何時候應該如何呈現，而不是隨著時間的推移去消除錯誤。</li>
+</ul>
+<hr>
+<h2>4. Component 與 Props</h2>
+<blockquote>
+<p>組件是將 UI 拆分成獨立，可重複使用的程式碼，並專注各別程式碼的思考。</p>
+</blockquote>
+<ul>
+<li>定義：像是 JavaScript 的 function，接收任意參數，又稱為 props，將回傳描述畫面的 React Element。</li>
+</ul>
+<h3>Function Component 與 Class Component</h3>
+<ul>
+<li>
+<p>定義組件最簡單的方式：寫個 function，符合上述組件的定義：</p>
+</li>
+<li>
+<p>function component</p>
+</li>
+</ul>
+<pre><code class="javascript">function Welcome(props) {
+  return &lt;h1&gt;Hello, {[props.name](http://props.name/)}&lt;/h1&gt;;
+}
+</code></pre>
+<ul>
+<li>class component</li>
+</ul>
+<pre><code class="javascript">class Welcome extends React.Component {
+  render() {
+    return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+  }
+}
+</code></pre>
+<ul>
+<li>組件需要在作用域中被使用。自定義組件名稱，首字英文大寫。</li>
+</ul>
+<pre><code class="javascript">import React from 'react';
+import CustomButton from './CustomButton';
+
+function WarningButton() {
+  // return React.createElement(CustomButton, {color: 'red'}, null);
+  return &lt;CustomButton color='red' /&gt;;
+}
+</code></pre>
+<ul>
+<li>不要害怕抽離組件，因為已經會抽離組件，所以筆記中不贅述。</li>
+</ul>
+<h3>Props 是唯讀的</h3>
+<ul>
+<li>
+<p>不管使用 function 或是 class 來宣告組件，絕對不能修改自己的 props，保持單向資料流。</p>
+</li>
+<li>
+<p>所有的 React component 都必須像 Pure function 一般保護他的 props。</p>
+</li>
+</ul>
+<pre><code class="javascript">// not a pure function
+function withdraw(account, amount) {
+  account.total -= amount;
+}
+</code></pre>
+<h2>5. State 和生命週期</h2>
+<blockquote>
+<p>State 類似於 prop，但它是私有且由 component 完全控制的。</p>
+</blockquote>
+<ul>
+<li>component 被定義為 class 有一些額外的特性，其中一個就是 Local State。</li>
+</ul>
+<h3>將 function 轉為 class 寫法</h3>
+<ol>
+<li>建立一個繼承 <code>React.Component</code>的 <code>class</code></li>
+<li>加入 <code>render()</code>空方法</li>
+<li>return JSX</li>
+<li><code>render()</code>內的 <code>props</code>要寫成 <code>this.props</code></li>
+</ol>
+<ul>
+<li>每次更新時，render() 都會被呼叫。</li>
+<li>可以使用 local state 和生命週期方法這些額外特性。</li>
+<li>需要 constructor()，並在裡頭初始化數據，使用 super(props)，之後組件中就能取得 props。</li>
+</ul>
+<h3>加入生命週期方法到 Class</h3>
+<blockquote>
+<p>當 component 被 destroy 時，釋放所佔用的資源是非常重要的。</p>
+</blockquote>
+<ul>
+<li>componentDidMount()：會在 component 被 render 到 DOM 之後才會執行，也就是掛載完成的意思，可以做些 DOM 長完才能做的事。</li>
+<li>componentWillUnMount()：會在 component 即將卸載前觸發這個生命週期方法，在這裡可以執行要釋放佔用資源的方法，避免 Memory leak。</li>
+</ul>
+<h3>正確的使用 State 要注意的三件事</h3>
+<ol>
+<li>除非在 constructor 內，不可以直接改 State，要使用 setState() 方法：</li>
+</ol>
+<pre><code class="javascript">// 錯誤！組件不會重新渲染
+this.state.username = 'askiebaby';
+
+// 正確！
+this.setState({ username: 'askiebaby' });
+</code></pre>
+<ol start="2">
+<li>State 更新可能是非同步的</li>
+</ol>
+<ul>
+<li>React 會批次處理 <code>setState()</code>的呼叫，合併為單一的更新，提高效能，所以不可以依賴 <code>this.props</code>與 <code>this.state</code>來「直接計算」新的 state。</li>
+</ul>
+<pre><code class="javascript">// 錯誤！
+this.setState({
+  counter: this.state.counter + this.props.increment,
+});
+</code></pre>
+<ul>
+<li>透過傳入一個 <code>function</code> 可以避免 <code>state</code> 的不準確：</li>
+</ul>
+<pre><code class="javascript">// 正確！Arrow func
+this.setState((state, props) =&gt; ({
+  counter: this.state.counter + this.props.increment,
+}));
+
+// 正確！Normal func
+this.setState(function(state, props) =&gt; (
+  return {
+    counter: this.state.counter + this.props.increment,
+  });
+);
+</code></pre>
+<h3>Shallow Merge</h3>
+<blockquote>
+<p>呼叫 setState() 時，React 會 merge 你提供的 object 到目前的 state。</p>
+</blockquote>
+<ul>
+<li>如果 state 包含數個獨立變數：</li>
+</ul>
+<pre><code class="javascript">constructor(props) {
+  super(props);
+  this.state = {
+    posts: [],
+    comments: []
+  };
+}
+
+componentDidMount() {
+  // 這樣使用
+  // 只會覆蓋 comments；而 posts 保持完整，沒被更動
+  this.setState({ comments })
+}
+</code></pre>
+<ul>
+<li>也可獨立的呼叫 <code>setState()</code>：</li>
+</ul>
+<pre><code class="javascript">componentDidMount() {
+  fetchPosts().then(response =&gt; {
+    this.setState({
+      posts: response.posts
+    });
+  });
+
+  fetchComments().then(response =&gt; {
+    this.setState({
+      comments: response.comments
+    });
+  });
+}
+</code></pre>
+<h2>由上而下的「單向資料流」</h2>
+<ul>
+<li>組件彼此獨立地管理其內部 state，每個組件的 state 只能影響 component tree 以下的組件。</li>
+<li>假設，父組件 <code>UserInfo</code>與兩個子組件 <code>Avatar</code>、<code>SocialLink</code>：
+<ul>
+<li>子組件 <code>Avatar</code>可以接收從父組件 <code>UserInfo</code>來的 props，但它不知道是誰傳給它的，子組件只負責接收。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="javascript">&lt;UserInfo&gt;
+  &lt;Avatar fullname={this.state.fullname} /&gt;
+  &lt;SocialLink platform={this.state.platform} /&gt;
+&lt;/UserInfo&gt;
+</code></pre>
+<ul>
+<li>用以下範例，來理解所有 <code>component</code> 都是獨立的：</li>
+</ul>
+<pre><code class="javascript">function App() {
+  return (
+    &lt;div id='app'&gt;
+      &lt;UserInfo /&gt;
+      &lt;UserInfo /&gt;
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
+</code></pre>
+<hr>
+<h2>6. 事件處理器</h2>
+<blockquote>
+<p>事件處理器之於 React Element 與 DOM Element 十分相似，有兩點語法上差異：事件名稱寫法、事件的值的型別。</p>
+</blockquote>
+<p><a href="https://www.notion.so/51ef1bd54aab456796c4376df25d9579" target="_blank" rel="noopener">React/DOM 的事件處理，自己再加上 Vue 的比較</a></p>
+<table>
+<thead>
+<tr>
+<th>React Element</th>
+<th></th>
+<th>事件的值的型別</th>
+<th>寫法範例</th>
+<th>避免瀏覽器預設行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DOM Element</td>
+<td>小寫</td>
+<td><code>string</code></td>
+<td><code>onclick={createPost}</code></td>
+<td>可以在 DOM 的 <code>onclick</code> 屬性中使用 <code>return false</code></td>
+</tr>
+<tr>
+<td>React Element</td>
+<td>小駝峰</td>
+<td><code>function</code></td>
+<td><code>onClick=&quot;createPost()&quot;</code></td>
+<td>在 <code>function</code> 中明確呼叫 <code>preventDefault</code></td>
+</tr>
+<tr>
+<td>Vue Element</td>
+<td>使用 vue 內建事件處理器</td>
+<td><code>function</code></td>
+<td><code>v-on:click=&quot;createPost&quot;</code></td>
+<td>可以在事件處理器加上 <code>.prevent</code> 後綴，或 <code>function</code> 中呼叫 <code>preventDefault</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>備註：</li>
+<li>只要在 root DOM element 被 render 時加上一個 listener，應用程式已不需要在綁定 listener。</li>
+</ul>
+<h3>把 event handler 當成該 class 的方法（慣例）</h3>
+<blockquote>
+<p>因為 class 的方法在預設上是沒有被綁定（bound）的，沒綁定的話 this 的值將會是 undefined。</p>
+</blockquote>
+<ol>
+<li>Normal function</li>
+</ol>
+<ul>
+<li>constructor 內綁定。否則每次要當成 props 傳下去時都需要 bind this。</li>
+</ul>
+<pre><code class="javascript">class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isToggleOn: true };
+
+    // 為了讓 `this` 能在 callback 中被使用，這裡的綁定是必要的：
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState((state) =&gt; ({
+      isToggleOn: !state.isToggleOn,
+    }));
+  }
+
+  render() {
+    return (
+      &lt;button onClick={this.handleClick}&gt;
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      &lt;/button&gt;
+    );
+  }
+}
+
+ReactDOM.render(&lt;Toggle /&gt;, document.getElementById('root'));
+</code></pre>
+<ol start="2">
+<li>Class Fields：在 CRA（Create-React-App）中是預設可行的。</li>
+</ol>
+<pre><code class="javascript">class LoggingButton extends React.Component {
+  // 這個語法確保 `this` 是在 handleClick 中被綁定：
+  // 警告：這是一個還在*測試中*的語法：
+  handleClick = () =&gt; {
+    console.log('this is:', this);
+  };
+
+  render() {
+    return &lt;button onClick={this.handleClick}&gt;Click me&lt;/button&gt;;
+  }
+}
+</code></pre>
+<ol start="3">
+<li>callback 中使用 arrow function，缺點：有效能問題，當組件 <code>LoggingButton</code> 每次渲染時都會建立一個不同的 callback，若這 callback 被 props 到下一個組件，會有多餘的 re-render。</li>
+</ol>
+<pre><code class="javascript">class LoggingButton extends React.Component {
+  handleClick() {
+    console.log('this is:', this);
+  }
+
+  render() {
+    // 這個語法確保 `this` 是在 handleClick 中被綁定：
+    return &lt;button onClick={(e) =&gt; this.handleClick(e)}&gt;Click me&lt;/button&gt;;
+  }
+}
+</code></pre>
+<ul>
+<li>原則上以 <code>1. constructor 內綁定</code> 或 <code>2. class field 語法</code>，避免效能問題。</li>
+</ul>
+<h3>將參數傳給 Event Handler</h3>
+<ul>
+<li>在傳額外參數 <code>id</code> 給事件處理器時， <code>e</code> 在 <code>Arrow function</code>與 <code>Function.prototype.bind</code>的寫法比較：</li>
+</ul>
+<pre><code class="javascript">&lt;button onClick={(e) =&gt; this.deleteRow(id, e)}&gt;Delete Row&lt;/button&gt;
+&lt;button onClick={this.deleteRow.bind(this, id)}&gt;Delete Row&lt;/button&gt;
+</code></pre>
+<ol>
+<li><code>Arrow function</code>： <code>e</code>「需要」被明確指定的傳下去，在上述範例中作為第二個參數。</li>
+<li><code>Function.prototype.bind</code>：<code>e</code>「不需要」明確指定，即可傳下去。</li>
+</ol>
+<hr>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://reactjs.org/docs/hello-world.html" target="_blank" rel="noopener">Hello World - React Docs</a></li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/react/">#react</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/lets-set-ssh-config/">簡單 ssh 進 instance，用 ssh_config 來幫你設定 alias</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/how-to-setup-develop-environment/">從零開始設定自己的開發環境、軟體推薦（MacOS）</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

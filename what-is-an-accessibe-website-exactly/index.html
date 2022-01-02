@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>無障礙網站又稱為可訪問的網站，難道還有不可訪問的網站嗎？ What is an accessibe website exactly？ - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+<meta name="keywords" content="Capitalize for first letter">
+  <meta name="description" content="只要花 60 秒瞭解「無障礙網站」概念   Your Website + Accessibility = BFF —— Jenn Lukas  前言 「網站」是一種資訊傳播的方式，我們製作網站最普遍的目的是為了將「資訊」傳播出去。比如說現今大多數公司會建置自己的官方網站，去傳達公司理念、服務項目、聯絡方式…等等，這些都在資訊的涵蓋範圍。">
+<meta name="keywords" content="Capitalize for first letter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="無障礙網站又稱為可訪問的網站，難道還有不可訪問的網站嗎？ What is an accessibe website exactly？">
+<meta property="og:url" content="https://askie.today/what-is-an-accessibe-website-exactly/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="只要花 60 秒瞭解「無障礙網站」概念   Your Website + Accessibility = BFF —— Jenn Lukas  前言 「網站」是一種資訊傳播的方式，我們製作網站最普遍的目的是為了將「資訊」傳播出去。比如說現今大多數公司會建置自己的官方網站，去傳達公司理念、服務項目、聯絡方式…等等，這些都在資訊的涵蓋範圍。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://img.youtube.com/vi/hufMi9LZX2I/0.jpg">
+<meta property="og:image" content="https://i.imgur.com/lzugMwP.jpg">
+<meta property="og:updated_time" content="2019-11-02T17:02:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="無障礙網站又稱為可訪問的網站，難道還有不可訪問的網站嗎？ What is an accessibe website exactly？">
+<meta name="twitter:description" content="只要花 60 秒瞭解「無障礙網站」概念   Your Website + Accessibility = BFF —— Jenn Lukas  前言 「網站」是一種資訊傳播的方式，我們製作網站最普遍的目的是為了將「資訊」傳播出去。比如說現今大多數公司會建置自己的官方網站，去傳達公司理念、服務項目、聯絡方式…等等，這些都在資訊的涵蓋範圍。">
+<meta name="twitter:image" content="https://img.youtube.com/vi/hufMi9LZX2I/0.jpg">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            無障礙網站又稱為可訪問的網站，難道還有不可訪問的網站嗎？ What is an accessibe website exactly？
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-11-02T17:00:09.000Z" itemprop="datePublished">11月 3 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/A11Y/">A11Y</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            15 分鐘 的閱讀時間 (約 2266 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>只要花 60 秒瞭解「無障礙網站」概念</h2>
+<p><a href="https://www.youtube.com/watch?v=hufMi9LZX2I" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/hufMi9LZX2I/0.jpg" alt="Yes"></a></p>
+<blockquote>
+<p>Your Website + Accessibility = BFF —— Jenn Lukas</p>
+</blockquote>
+<h2>前言</h2>
+<p>「網站」是一種資訊傳播的方式，我們製作網站最普遍的目的是為了將「資訊」傳播出去。比如說現今大多數公司會建置自己的官方網站，去傳達公司理念、服務項目、聯絡方式…等等，這些都在資訊的涵蓋範圍。</p>
+<p>那你有聽過無障礙網站嗎？</p>
+<p>無障礙網站又稱為可訪問的網站，難道還有不可訪問的網站嗎？</p>
+<hr>
+<h2>無障礙網站</h2>
+<p><img src="https://i.imgur.com/lzugMwP.jpg" alt="A11Y 是 Accessibility 的縮寫"></p>
+<h3>無障礙網站又稱為 Web Accessibility</h3>
+<p>常以關鍵字 <code>a11y</code> 來代表無障礙技術，它是 <a href="https://en.wikipedia.org/wiki/Accessibility" target="_blank" rel="noopener">Accessibility</a> 的縮寫，代表網頁可訪問性，許多其他繁中翻譯會譯為可親性、可及性。這系列文章將以「可訪問性」代表 Accessibility、「無障礙」作為 Web Accessibility 的代稱。</p>
+<h3>縮寫方式</h3>
+<blockquote>
+<p>= A(ccessibilit)y</p>
+</blockquote>
+<p>= 以 A 為開頭，以 Y 結尾， A 與 Y 之間總共有 11 個字元！</p>
+<h3>發音</h3>
+<p>可以唸作 A-one-one-Y 或是 A-eleven-Y，在業界也有人會唸作 ally 或是 alley 的發音。</p>
+<p>其餘還有很多同樣形式的縮寫：如 <a href="https://en.wiktionary.org/wiki/g11n#English" target="_blank" rel="noopener">g11n</a>（globalization）、<a href="https://en.wiktionary.org/wiki/i18n#English" target="_blank" rel="noopener">i18n</a>（Internationalization）<a href="https://en.wiktionary.org/wiki/L10n#English" target="_blank" rel="noopener">L10n</a>（Localization）、<a href="https://en.wiktionary.org/wiki/p13n#English" target="_blank" rel="noopener">p13n</a>（personalization）、<a href="https://en.wiktionary.org/wiki/k8s#English" target="_blank" rel="noopener">k8s</a>（Kubernetes）等。</p>
+<h3>用愛開發，實踐「無障礙」</h3>
+<p><strong>無論使用者是否有任何機能的低下、無論使用者使用何種方式與何種裝置瀏覽，無障礙的實踐將確保網站的內容以較多元、彈性的方式呈現，能夠提供給「所有人」瀏覽，有助於資訊能更廣泛地傳遞到更多人手中，拓展對不同能力的人的適應性。</strong></p>
+<h3>重要性，你怎麼看？</h3>
+<p>不可訪問的網站其實真的很多。</p>
+<p>訪問性通常不是我們在設計、建置網站時的第一件事情，在某些問題出現以前，我們通常不會考量到隱形的需求。舉例一個情境：當我們處於產品開發週期的測試階段，某位使用者無法閱讀螢幕的文字，去瞭解才發現世界上男性中有 8% 的色盲。（<a href="https://www.who.int/news-room/fact-sheets/detail/blindness-and-visual-impairment" target="_blank" rel="noopener">從 WHO 了解視力障礙數據</a>）</p>
+<p>有些國家法律規定政府、教育機構、企業網站要符合無障礙的規範，以保障人權，訪問性的問題會在產品生命週期中蔓延，也會引發訴訟的問題。而且無障礙問題通常會出現在產品進入後期或是完成後，這時要從零導入「無障礙」實踐恐怕需要負擔更高額的成本。</p>
+<p>再繼續往下之前，讓我們先來想想「障礙」的定義到底是什麼。</p>
+<hr>
+<h2>來思考「障礙」的定義</h2>
+<p>一個人有多種不同機能障礙的可能，「障礙（Disabled）」是一種相對的且會變動的狀態，也是一個事實的描述，是<a href="https://www.facebook.com/color.cheng/posts/10215351794401924" target="_blank" rel="noopener">你的能力在所處「環境」下是否有辦法互動發揮作用而定</a>。</p>
+<p>在中文翻譯上，「無障礙」這個詞彙挺容易讓人直接聯想成：「喔！我們要做無障礙網站，那就是為了身心障礙人士瀏覽專用而設計嗎？」</p>
+<p>無障礙網頁設計所設定的受惠者是「所有人」，與通用設計的理念相符，剛好其中有些特別的使用族群需要使用科技輔助工具（AT，全名為 Assistive Technology 如 NVDA、JAWS）、輔助功能（如 iOS 的 VoiceOver、Android 的 TalkBack）來瀏覽網頁，能力一般的人有時也有想要縮放網頁內容的需求，因此網頁在設計及開發時，設計上再細心一點，實作上注意細節就能增加網站的無障礙。讓我們用同理心、包容心和愛，盡可能達到「讓所有人瀏覽網站時都能享有獲得相同的資訊的權利」這個目標。</p>
+<hr>
+<h2>以人類的機能來區分障礙類型</h2>
+<ul>
+<li>
+<p><strong>物理，肢體上的障礙</strong></p>
+<blockquote>
+<p>開發基本原則：大多數的肢體障礙者都可以透過鍵盤瀏覽網站，所以開發時專注鍵盤的可訪問性。</p>
+</blockquote>
+<ul>
+<li>創傷：
+<ul>
+<li>肢體損壞</li>
+<li>脊髓損傷</li>
+</ul>
+</li>
+<li>疾病與先天性疾病：
+<ul>
+<li>腦癱</li>
+<li>關節炎</li>
+<li>帕金森氏症</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>認知，學習和神經系統的障礙</strong></p>
+<ul>
+<li>記憶力不佳</li>
+<li>解決問題的能力</li>
+<li>注意力不集中：自閉症、過動症（ADHD）</li>
+<li>閱讀與言語理解困難</li>
+<li>癲癇</li>
+<li>動暈症（如暈車、暈船）</li>
+</ul>
+</li>
+<li>
+<p><strong>聽覺</strong></p>
+<blockquote>
+<p>開發基本原則：影片提供字幕或是手語翻譯、專注於螢幕閱讀器的可訪問性。</p>
+</blockquote>
+<ul>
+<li>輕度：無法聽到 30 分貝以下的聲音。</li>
+<li>中度：無法聽到 50 分貝以下的聲音。</li>
+<li>重度：無法聽到 80 分貝以下的聲音。主要透過手語溝通。</li>
+<li>嚴重：無法聽到 95 分貝以下的聲音。主要透過手語溝通。</li>
+</ul>
+</li>
+<li>
+<p><strong>視覺</strong></p>
+<blockquote>
+<p>開發基本原則：提升顏色對比度、填寫替代文字、減少顏文字的使用、確保超連結文字的提示性、超連結的路徑不要寫無意義的 JavaScript（ <code>href=&quot;javascript: void;&quot;</code> ）、勿僅靠顏色作為傳達重要訊息的唯一方式、資訊結構順序設計、文字不要壓在圖上…等。</p>
+</blockquote>
+<ul>
+<li>色盲</li>
+<li>色弱</li>
+<li>失明</li>
+<li>近視</li>
+<li>青光眼</li>
+<li>白化症</li>
+<li>年邁的老人</li>
+</ul>
+</li>
+</ul>
+<p>還有一些是屬於暫時性或環境的障礙，比如網路速度不佳的問題、我們因為車禍導致手臂受傷而暫時無法使用滑鼠。</p>
+<hr>
+<h2>現實生活有哪些透過輔助技術消彌障礙的情境？</h2>
+<ul>
+<li>近視配戴眼鏡或隱形眼鏡</li>
+<li>長者配戴老花眼鏡</li>
+<li>地面止滑設計防止行人跌倒</li>
+<li>編輯器使用程式碼自動完成工具</li>
+</ul>
+<p>… 多到不勝枚舉，因為習慣有輔助科技及輔助技術的協助，讓我們忽略自己的生活情境，也常需要透過外力協助去解決我們的問題。</p>
+<hr>
+<h2>體驗一下！讓開發者也有「色盲」</h2>
+<p>這邊舉一個小例子，讓各位感受一下色盲在觀看網頁時的感覺：</p>
+<pre><code>import React from 'react';
+import MenuItem from '../shared/menu';
+import ItemMenu from '../shared/menu';
+
+const App = () =&gt; (
+  &lt;&gt;
+    &lt;MenuItem title=&quot;Home&quot; /&gt;
+    &lt;MenuItem title=&quot;About&quot; /&gt;
+    &lt;ItemMenu title=&quot;FAQ&quot; /&gt;
+    &lt;MenuItem title=&quot;Gallery&quot; /&gt;
+    &lt;ItemMenu title=&quot;Signup&quot; /&gt;
+    &lt;MenuItem title=&quot;Contact Us&quot; /&gt;
+  &lt;/&gt;
+);
+
+export default App;
+</code></pre>
+<p>色盲的人永遠也不知道正常的人眼中看到的世界，就像正常人也永遠無法看到色盲人眼中的世界。若把「色盲瀏覽網頁」以「開發者觀看程式碼」來比喻的話就長上面這個樣子，原來是這麼難以閱讀。</p>
+<hr>
+<h2>開發無障礙網頁的好處</h2>
+<p>很多企業都開始重視起無障礙網站，因為實踐無障礙網站的過程，還可以達成以下優點</p>
+<ul>
+<li>提高 SEO 搜尋引擎排名（看看<a href="https://www.dbswebsite.com/blog/accessibility-seo-a-perfect-fit/" target="_blank" rel="noopener">這篇的內容</a>）</li>
+<li>吸引更廣泛的受眾、拓展市場機會</li>
+<li>展示社會責任</li>
+<li>提高易用性（Usability）</li>
+<li>編寫更清晰的程式碼</li>
+<li>降低產品成本：避免日後產品迭代時才需要從零導入無障礙的窘境</li>
+<li>協助網路速度慢的使用者訪問</li>
+</ul>
+<p>看完文章後，對於無障礙網站的觀念是不是有更多的認識跟釐清了呢？</p>
+<p>就跟著接下來的篇幅一起實踐可訪問的網站吧！</p>
+<hr>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://webaim.org/articles/cognitive/" target="_blank" rel="noopener">Cognitve</a> - WebAIM</li>
+<li><a href="https://webaim.org/articles/visual/" target="_blank" rel="noopener">Visual</a> - WebAIM</li>
+<li><a href="https://webaim.org/articles/auditory/" target="_blank" rel="noopener">Auditory</a> - WebAIM</li>
+<li><a href="https://webaim.org/articles/motor/assistive" target="_blank" rel="noopener">Assistive</a> - WebAIM</li>
+<li><a href="https://webaim.org/articles/seizure/" target="_blank" rel="noopener">Seizure</a> - WebAIM</li>
+<li><a href="https://www.youtube.com/watch?v=dvtfNpt75aA&amp;feature=youtu.be&amp;t=25550" target="_blank" rel="noopener">React Rally 2019</a> @YouTube</li>
+<li><a href="https://www.youtube.com/watch?v=hufMi9LZX2I" target="_blank" rel="noopener">What is Web Accessibility in 60 seconds!</a> - Google Women Techmaker</li>
+<li><a href="https://www.who.int/news-room/fact-sheets/detail/blindness-and-visual-impairment" target="_blank" rel="noopener">Blindness and vision impairment</a> - WTO</li>
+<li><a href="https://www.facebook.com/color.cheng/posts/10215351794401924" target="_blank" rel="noopener">設計師 YR Cheng 聊聊 Accessibility</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Accessibility" target="_blank" rel="noopener">Wikipedia - Accessibility</a></li>
+<li><a href="https://a11yproject.com/posts/myth-accessibility-is-blind-people/" target="_blank" rel="noopener">Myth: Accessibility is ‘blind people’</a> - The A11Y Project</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/a11y/">#a11y</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/好想工作室/">#好想工作室</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/無障礙網站/">#無障礙網站</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/無障礙/">#無障礙</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/how-to-setup-develop-environment/">從零開始設定自己的開發環境、軟體推薦（MacOS）</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/upload-sitemap-google-search-console-seo-hexo-blog/">輕鬆地提交 Hexo 部落格的 Sitemap.xml 到 Google Search Console</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>JavaScript 十個單字 - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="JavaScript 中，對於最常使用的詞彙介紹。">
+ 
+<meta name="keywords" content="JavaScript,JavaScript array,JavaScript object,JavaScript json,JavaScript callback,JavaScript function,JavaScript asyncronous,JavaScript closure,JavaScript map,JavaScript loop,JavaScript switch">
+  <meta name="description" content="JavaScript 中，對於最常使用的詞彙介紹。">
+<meta name="keywords" content="JavaScript,JavaScript array,JavaScript object,JavaScript json,JavaScript callback,JavaScript function,JavaScript asyncronous,JavaScript closure,JavaScript map,JavaScript loop,JavaScript switch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 十個單字">
+<meta property="og:url" content="https://askie.today/javascript-ten-keywords/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="JavaScript 中，對於最常使用的詞彙介紹。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-07-16T12:29:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 十個單字">
+<meta name="twitter:description" content="JavaScript 中，對於最常使用的詞彙介紹。">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            JavaScript 十個單字
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-01-03T06:28:05.000Z" itemprop="datePublished">1月 3 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            7 分鐘 的閱讀時間 (約 1017 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>1. array</h2>
+<p>複數</p>
+<ul>
+<li>像火車車廂的概念。</li>
+<li>有順序性，可以放各種資料，但建議資料類型相似的一組資料結構/格式。</li>
+<li>適合資料處理。</li>
+<li>表達複數的概念，多個相同的複類別。</li>
+<li>可以放不一樣型別的值，而強型別語言中都會相同型別的值。（2019-7-16 更新）</li>
+</ul>
+<h2>2. object</h2>
+<p>單數</p>
+<ul>
+<li>單體</li>
+<li>描述 Key，紀錄 value。</li>
+<li>儲存某個東西各種屬性及方法，可以相關也可以不相關。</li>
+<li>以車子舉例，有幾個輪子及什麼功能。</li>
+<li>與類別的差異？類別可以抽換參數跟變數，可以複製相同的輪子。
+<ul>
+<li>狗(class)跟一隻狗(object)的差別！</li>
+</ul>
+</li>
+<li>pair，為值命名</li>
+<li>用有意義的詞找到結果的一個容器</li>
+<li>抽出我要的特性來描述，叫做抽象，很具象的。取決於問題。</li>
+<li>class 抽象的結果，template</li>
+</ul>
+<h2>3. json</h2>
+<ul>
+<li>
+<p>資料型別？</p>
+<ul>
+<li>String</li>
+</ul>
+</li>
+<li>
+<p>用來做什麼的？</p>
+<ul>
+<li>資料交換的格式。</li>
+<li>輕便、傳 API、紀錄資料。</li>
+<li>xml的另一個選擇，xml 不常被選擇使用，是因為適合拿來描述更複雜的東西，而傳輸資料通常較簡單。xml 體積大需要用套件解析才能給js使用。</li>
+<li>parse，丟 json 吐出 object</li>
+<li>stringify，丟 object 吐出 json (String)</li>
+</ul>
+</li>
+</ul>
+<h2>4. callback</h2>
+<ul>
+<li><strong>把 function 當參數傳入另一個 function，就叫做 callback</strong></li>
+<li>需要某個 function 執行完，執行後才會執行的 function</li>
+<li>異步常用 callback</li>
+<li>就算沒有回傳值也是 callback</li>
+<li>一定要用 CPS 攥寫風格</li>
+</ul>
+<p>Ｑ：I/O? HOF??</p>
+<h2>5. function</h2>
+<ul>
+<li>
+<p>意思？</p>
+<ul>
+<li>一段可重複使用的程式碼，可當參數也可以接受參數</li>
+</ul>
+</li>
+<li>
+<p>在js中提供什麼重要特性？（非他不可的特性）</p>
+<ul>
+<li>建物件、一般用法</li>
+<li>提供一個私有的命名環境（Scope）</li>
+<li>Lexical Environment</li>
+<li>表現一個動詞、動作就會使用 function</li>
+<li>可以選擇 return 或不 return</li>
+</ul>
+</li>
+</ul>
+<h2>6. asyncronous</h2>
+<ul>
+<li>阻塞（blocking）：會造成等待的事情。<strong>要不要等待上一行結束，才執行我這一行。</strong>
+<ul>
+<li>常見同步阻塞、異步不阻塞</li>
+</ul>
+</li>
+<li>JS單執行緒的特性，會放到事件佇列的 function，避免阻塞到其他程式的執行</li>
+<li>點餐範例、小鳥協助打果汁的範例</li>
+<li>唯一讓 JS 非單線程的方法</li>
+<li>配合執行環境而發生</li>
+</ul>
+<h2>7. closure 閉包</h2>
+<ul>
+<li>主要為了什麼而存在？
+<ul>
+<li>在 function被產生當下記住其與會環境，在執行環境消失後仍可使用，因為記憶體位置保留著。</li>
+<li>避免污染全域環境。</li>
+</ul>
+</li>
+<li>用程式形容？</li>
+</ul>
+<pre><code class="javascript=">function a (x) {
+    return() =&gt; console.log(x++);
+};
+
+var b = a(1);
+b();  // 1
+b();  // 2
+</code></pre>
+<ul>
+<li>JS用closure做什麼事？<br>
+閉了誰，閉包的殺手級應用，就是要知道怎麼加上，怎麼拿掉。才知道閉包必要所在 =&gt; 避免全域污染。</li>
+</ul>
+<h2>8. Array.prototype<code>.map()</code></h2>
+<ul>
+<li>遍歷 array 當中的每一個值，執行一個方法，回傳一個與原陣列同長的新 Array，不影響原本的陣列。</li>
+<li>由 map 中的 callback 可自訂對 array item 做的事情</li>
+<li>會 return 一個與相同長度的array</li>
+<li>immutable method</li>
+<li>所有輸出都和輸入有關（一對一映射，映射函數）</li>
+</ul>
+<h2>9. loop</h2>
+<ul>
+<li>在特定條件下執行重複的程式碼，重複做一件事直到不符合條件</li>
+</ul>
+<pre><code class="javascript=">for  // 知次數
+while // 不知次數
+do ... while // 不知次數，至少一次
+</code></pre>
+<h2>10. switch</h2>
+<ul>
+<li>
+<p>是什麼？</p>
+<ul>
+<li>由上而下，進行條件（強制===）判斷，符合後執行直到 break</li>
+<li>類似於菜單，廚師照點餐內容出餐</li>
+<li>重點是滿足條件後，要從哪裡開始執行，下 break; 才停止</li>
+</ul>
+</li>
+<li>
+<p>幾種寫法？（2019-7-16 更新）</p>
+</li>
+</ul>
+<pre><code class="javascript=">// example 1
+
+var fruit = 'Cherry';
+
+switch(fruit) {
+    case 'Apple':
+        doSomething();
+        break;
+    case 'Banana':
+        doSomething();
+        break;
+    Default:
+        doSomething();
+        break;
+}
+
+
+// example 2
+
+switch(somethingTrue) {
+    case a&gt;b:
+        doSomething();
+        break;
+    case a==b:
+        doSomething();
+        break;
+    Default:
+        doSomething();
+        break;
+}
+
+</code></pre>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/array/">#array</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/object/">#object</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/json/">#json</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/callback/">#callback</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/function/">#function</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/asyncronous/">#asyncronous</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/closure/">#closure</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/map/">#map</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/loop/">#loop</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/switch/">#switch</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/testing-for-mobile-browsers/">使用手機測試本機網頁狀況的方法</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-next">
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>Docker 初探：基本指令與簡單介紹 Dockerfile 和 docker-compose - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="讀 Docker 背景之前覺得會不會因為文鄒鄒讀不下去，讀完之後才發現只有這樣才能更了解歷史脈絡，以及這個技術背後的基礎是基於什麼，也是挺有趣的。關於 Docker 的前世今生是透過讀書才理解的，這一篇文章算釐清了之前搞不太清楚的概念跟幾個名詞 Dockerfile 和 docker-compose。">
+ 
+<meta name="keywords" content="Docker,Dockerfile,Docker-compose">
+  <meta name="description" content="讀 Docker 背景之前覺得會不會因為文鄒鄒讀不下去，讀完之後才發現只有這樣才能更了解歷史脈絡，以及這個技術背後的基礎是基於什麼，也是挺有趣的。關於 Docker 的前世今生是透過讀書才理解的，這一篇文章算釐清了之前搞不太清楚的概念跟幾個名詞 Dockerfile 和 docker-compose。">
+<meta name="keywords" content="Docker,Dockerfile,Docker-compose">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 初探：基本指令與簡單介紹 Dockerfile 和 docker-compose">
+<meta property="og:url" content="https://askie.today/docker-dockerfile-dockercompose-intro/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="讀 Docker 背景之前覺得會不會因為文鄒鄒讀不下去，讀完之後才發現只有這樣才能更了解歷史脈絡，以及這個技術背後的基礎是基於什麼，也是挺有趣的。關於 Docker 的前世今生是透過讀書才理解的，這一篇文章算釐清了之前搞不太清楚的概念跟幾個名詞 Dockerfile 和 docker-compose。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/RmENBKv.jpg">
+<meta property="og:image" content="https://i.imgur.com/Pqi0KUz.png">
+<meta property="og:image" content="https://i.imgur.com/ClW047d.png">
+<meta property="og:image" content="https://i.imgur.com/FomCA9N.png">
+<meta property="og:updated_time" content="2020-07-22T02:44:45.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 初探：基本指令與簡單介紹 Dockerfile 和 docker-compose">
+<meta name="twitter:description" content="讀 Docker 背景之前覺得會不會因為文鄒鄒讀不下去，讀完之後才發現只有這樣才能更了解歷史脈絡，以及這個技術背後的基礎是基於什麼，也是挺有趣的。關於 Docker 的前世今生是透過讀書才理解的，這一篇文章算釐清了之前搞不太清楚的概念跟幾個名詞 Dockerfile 和 docker-compose。">
+<meta name="twitter:image" content="https://i.imgur.com/RmENBKv.jpg">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Docker 初探：基本指令與簡單介紹 Dockerfile 和 docker-compose
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-07-17T17:51:57.000Z" itemprop="datePublished">7月 18 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Docker/">Docker</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            16 分鐘 的閱讀時間 (約 2328 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/RmENBKv.jpg" alt="Docker 初探：基本指令與簡單介紹 Dockerfile 和 docker-compose"></p>
+<h2>TL;DR</h2>
+<p>本文不會有太多語法說明，打算介紹：</p>
+<ul>
+<li>Docker 的前世今生</li>
+<li>Container 名稱由來</li>
+<li>如何運行基本的 Docker 指令</li>
+<li>簡單介紹 Dockerfile 和 docker-compose 的用途（新手常搞不清楚）</li>
+</ul>
+<p>一切內容僅是讀書紀錄，讀的書請參考本文最下方的 Reference，如果有錯誤請大家指正觀念。</p>
+<p>讀 Docker 背景之前覺得會不會因為文鄒鄒讀不下去，讀完之後才發現只有這樣才能更了解歷史脈絡，以及這個技術背後的基礎是基於什麼，也是挺有趣的。</p>
+<h2>Docker 的前世今生</h2>
+<blockquote>
+<p>Containers are based on virtualization technology.</p>
+</blockquote>
+<h3>虛擬化技術</h3>
+<p>電腦出現之後，開發者思考的是如何將程式無縫移植到其他機器還能正常執行，由於不同廠商生產的 CPU 其指令集往往差異很大、機器會連接不同硬體、運行不同作業系統等原因，所以環境一致性是最困擾的問題。在這方面，IBM 是做最早提出虛擬化的公司（60 年代），讓程式執行於虛擬環境時，看不見被隱藏的真實環境，取而代之的是被事先設定好的硬體環境，從而彌平環境問題。</p>
+<ul>
+<li>硬體虛擬化
+<ul>
+<li>當時的解決方案僅限解決 IBM 大型硬體機器，成本過高，於當時也不易推廣。從前的大型網站通常採用大型實體機器，網路發展快速，漸而轉向小型機器發展，隨著雲端計算時代來臨，計算的量變得巨大，升級機器的成本指數成長，好可怕！</li>
+</ul>
+</li>
+</ul>
+<h3>分散式系統</h3>
+<p>現在大型服務可以透過將應用程式分散到各地不同的小型機器上，再組成叢集一起計算、協作，完成該服務需提供的工作，就可稱作分散式系統。當很多大公司開始採用叢集方式建構服務，比如臉書，程式部署在不同機器上的環境問題又浮上檯面。（叢集定義可查看 <a href="https://en.wikipedia.org/wiki/Computer_cluster" target="_blank" rel="noopener">wiki</a>、<a href="http://linux.vbird.org/linux_server/0600cluster.php#theory_whatiscluster" target="_blank" rel="noopener">鳥哥</a>更多介紹）</p>
+<p>而「虛擬化技術」是電腦資源的管理技術，CPU、Storage、Network，將資源抽象化為統一介面給程式。</p>
+<ul>
+<li>軟體虛擬化
+<ul>
+<li>虛擬機器（Virtual Machine）就是軟體實作，通常會在應用程式和硬體資源將建立一個 Hypervisor 層，它是統一的呼叫介面，將呼叫轉換為實體主機對應的資源呼叫方式。</li>
+</ul>
+</li>
+</ul>
+<h3>容器化技術</h3>
+<p>虛擬機器，簡稱 VM，在跨平台部署有很好的表現，只是低落效率阻礙它的發展，而後衍伸了容器化技術的概念：<strong>將應用程式打包到單獨的容器中、封裝，容器可以隔離每個程式並打斷程式的依賴關係。</strong></p>
+<p>好處：</p>
+<ul>
+<li>就像堆積木（Component）一樣，結構鬆散，降低程式之間藕合性</li>
+<li>擁有統一的介面，很容易重新組裝和抽換服務的功能</li>
+</ul>
+<p>提一下 Linux Containers（LXC）它是作業系統層級的虛擬化技術/容器，它運用實體機器資源再模擬虛擬環境，所以移除 Hypervisor 層，不用再轉換指令，大幅提高效率囉！</p>
+<ul>
+<li>主要有兩項核心功能組成：
+<ul>
+<li>Namespace 命名空間
+<ul>
+<li>隔離的用途</li>
+<li>很容易將不同程式隔離在不同環境，也就是說不同命名空間的程式是互不可見</li>
+</ul>
+</li>
+<li>CGroups （Control Group）控制群組
+<ul>
+<li>資源管控</li>
+<li>如同大腦般的控制該容器可用的電腦資源：CPU、Memory、IO</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Docker</h2>
+<p>2013 年，dotCloud 公司將內部開發的 Docker 開源，基於上面提到的 LXC 技術基礎，將系統設計容器轉為微服務（Micro-service）的容器！因為很火熱，dotCloud 後來索性改名叫做 Docker Inc 現在成熟的 Docker 已經不是以 LXC 為架構，而是自己開發的 Libcontainer 作為底層的技術。</p>
+<p>我們不用再管虛擬化怎麼實現的，只要管容器該怎麼操作！</p>
+<p>（翻譯蒟蒻：<strong>只要管積木該怎麼拼 ⇒ 只要管程式元件該怎麼組成</strong>）。</p>
+<h3>Docker 啟動與執行</h3>
+<p><img src="https://i.imgur.com/Pqi0KUz.png" alt="啟動與執行的概念"></p>
+<ul>
+<li>啟動：啟動 Docker 時，其實啟動的是背後的 Server - Docker Daemon</li>
+<li>執行：控制 Docker CLI，透過 Docker REST API 發送指令給 Docker Daemon</li>
+</ul>
+<h3>Docker 四大核心模組</h3>
+<ul>
+<li>Image 映像 ⇒ 容器要打包的程式</li>
+<li>Container 容器 ⇒ 隔離好的環境</li>
+<li>Data Volumes</li>
+<li>Network</li>
+</ul>
+<h3>Container 容器一詞的由來</h3>
+<p>早期的運輸皆是靠海運，因為貨物規格、形狀、材質都不一樣，工人為了最大化運用船的空間，需要花費大量時間裝卸。碼頭數量有限，如果每一艘船都很慢，效率很不佳，直到貨櫃的發明，貨櫃被設計成規格大小皆一致，大大提升運輸效率，促進全球化。</p>
+<p>Container 的中文翻譯就是貨櫃的意思。</p>
+<ul>
+<li>貨櫃：把「貨物」隔離到不同「箱子」中，消除「不同貨物規格」的影響。</li>
+<li>容器：把「程式」隔離到不同「容器」中，消除「不同執行環境」的影響。</li>
+</ul>
+<h2>Docker Image</h2>
+<blockquote>
+<p>顯示：askie/helloworld:lastest<br>
+格式：<code>Namespace</code>/<code>Repository</code>:<code>Tag</code><br>
+由此格式會用 Sha256 方式加密成為 Image ID （64 位元 16 進位字串）</p>
+</blockquote>
+<ul>
+<li>Namespace：用來辨別組織或個人，可以寫自己名字</li>
+<li>Repository：檔案名稱，寫應用程式名稱</li>
+<li>Tag：參考 Git 的 Tag，也是用來記錄程式的版本</li>
+</ul>
+<h2>Docker 基本使用流程</h2>
+<p><img src="https://i.imgur.com/ClW047d.png" alt="Docker 基本使用流程類似於 GIT"></p>
+<blockquote>
+<p>超級類似 GIT 的概念吧！</p>
+</blockquote>
+<ul>
+<li>DockerHub（Public）</li>
+</ul>
+<p>類似 GitHub，是可以上傳跟下載的 Docker 公開庫。</p>
+<ul>
+<li>Docker Registry（Private）</li>
+</ul>
+<p>有些企業會考量隱私性及安全性，在內部網路架設一台 Docker Registry Server（Private）。</p>
+<p>Local 端安裝好 Docker 之後… 安裝流程請參考官網，這裡不贅述。</p>
+<h3>1. 拉一個 Image 回來</h3>
+<ul>
+<li>檢視現有 Image 有哪些：</li>
+</ul>
+<pre><code class="bash">docker image ls
+</code></pre>
+<ul>
+<li>假設拉一個普羅米修斯回來：</li>
+</ul>
+<pre><code class="bash">docker pull prom/promtheus
+</code></pre>
+<ul>
+<li>還記得 image 格式 <code>Namespace</code>/<code>Repository</code>:<code>Tag</code>？不加 tag 時，預設會拉最新版本回來！</li>
+</ul>
+<h3>2. Container 跑起來</h3>
+<ul>
+<li>Run 起一個 Container：用 prom/promtheus 這個 image 背景執行一個容器環境，取名叫做 prom-server。</li>
+</ul>
+<pre><code class="bash">docker run -d -p 9090:9090 --name prom-server prom/promtheus
+</code></pre>
+<p>參數說明：</p>
+<ul>
+<li><code>-d</code> 背景執行</li>
+<li><code>-p</code> port 號設定，本機 9090 port 來對應虛擬環境的 9090 port</li>
+<li><code>—-name</code> 容器名稱</li>
+</ul>
+<h3>3. 進入 Container 執行環境</h3>
+<pre><code class="bash">docker exec -it prom-server /bin/sh
+...
+...
+做你要做的事情
+</code></pre>
+<ul>
+<li>進入執行環境中的 <code>/bin/sh</code> 資料夾下，類似於 SSH 進入機器的概念</li>
+</ul>
+<h3>4. 版控更新過的 Container 環境</h3>
+<pre><code class="bash">docker commit -m &quot;test&quot; &lt;your_image_id&gt; askie/prometheus:v2
+</code></pre>
+<ul>
+<li><code>-m</code> 輸入版本控制的訊息狀態</li>
+<li><code>your_image_id</code> 透過 <code>docker image ls</code> 取得要紀錄的 ID</li>
+</ul>
+<h3>5. 將新 Image 推到 Docker Registry</h3>
+<pre><code class="bash">docker login
+docker push askie/prometheus:v2
+</code></pre>
+<ul>
+<li>要 login 需註冊並且有權限</li>
+</ul>
+<hr>
+<h2>Dockerfile</h2>
+<p>Dockerfile 是一個設定檔，專門管理單一 Container，讓我們可以透過指令的設定，快速地更新 Container 的環境。</p>
+<ul>
+<li><code>Dockerfile</code> 檔案內容，注意，首字大寫</li>
+</ul>
+<p><img src="https://i.imgur.com/FomCA9N.png" alt="Dockerfile 檔案的內容"></p>
+<ul>
+<li>透過 Docker CLI 來快速更新容器環境</li>
+</ul>
+<pre><code class="bash">docker build -t vrops_prometheus
+</code></pre>
+<h2>docker-compose</h2>
+<p>現在很多服務背後都是採用分散式系統的架構，所以一個微服務用一個容器裝起來，眾多的微服務，就需要使用可以管理多個 Container 的工具 docker-compose。（題外話：有了 K8S，基本上工作上都是採用 K8S 來管理多個容器，功能強大！）</p>
+<p>它的基本指令很簡單，其原理是撰寫 <code>docker-compose.yml</code> 來設定你的 services 該指向哪些 image、Port 對應、該走哪些任務。</p>
+<pre><code class="bash">docker-compose start
+docker-compose stop
+
+docker-compose pause
+docker-compose unpause
+
+docker-compose ps
+docker-compose up
+docker-compose down
+</code></pre>
+<h2>CheatSheet</h2>
+<blockquote>
+<p>有了以上這些基礎觀念之後，接下來只要熟悉語法即可。</p>
+</blockquote>
+<ul>
+<li><a href="https://devhints.io/docker" target="_blank" rel="noopener">Docker CLI CheatSheet</a></li>
+<li><a href="https://devhints.io/dockerfile" target="_blank" rel="noopener">Dockerfile CheatSheet</a></li>
+<li><a href="https://devhints.io/docker-compose" target="_blank" rel="noopener">docker-compose CheatSheet</a></li>
+</ul>
+<p>好了，初探就介紹到這裡了，歡迎指正，也希望對新手有點幫助，觀念通了工具用起來才有感覺。</p>
+<hr>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.tenlong.com.tw/products/9789864344437?list_name=b-m-zh_tw-2020-6" target="_blank" rel="noopener">Docker 專業養成 活用基礎與實踐技能 — 熊昌隆</a></li>
+<li>我同事</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/docker/">#docker</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/dockerfile/">#dockerfile</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/docker-compose/">#docker-compose</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/system-design-cdn-content-delivery-network/">系統設計入門：內容傳遞網路 CDN</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/nami-introduction/">My love</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

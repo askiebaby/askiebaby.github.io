@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>標籤: javascript - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="I am a front-end developer in Taiwan. Love to share things with others.">
+ 
+<meta name="keywords" content="Web Developer,Front End,JavaScipt">
+  <meta name="description" content="I am a front-end developer in Taiwan. Love to share things with others.">
+<meta name="keywords" content="Web Developer,Front End,JavaScipt">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Askie&#39;s Coding Life">
+<meta property="og:url" content="https://askie.today/tags/javascript/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="I am a front-end developer in Taiwan. Love to share things with others.">
+<meta property="og:locale" content="zh-tw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Askie&#39;s Coding Life">
+<meta name="twitter:description" content="I am a front-end developer in Taiwan. Love to share things with others.">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section section-heading">
+    <div class="container">
+        <div class="content">
+            <h5>#javascript</h5>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/javascript-ninja-2-web-lifecyle/" itemprop="url">忍者 2：Web 應用程式生命週期</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-06-01T23:59:10.000Z" itemprop="datePublished">6月 2 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a><span>></span><a class="article-category-link" href="/categories/JavaScript/Study-Notes/">Study Notes</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            11 分鐘 的閱讀時間 (約 1590 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h3>本文內容涵蓋</h3>
+<ul>
+<li>Web 應用程式生命週期</li>
+<li>處理 HTML 以產生網頁</li>
+<li>JS 程式碼的執行順序</li>
+<li>與事件互動</li>
+<li>事件迴圈</li>
+</ul>
+<hr>
+<h2>Web 應用程式生命週期</h2>
+<blockquote>
+<p>Web 應用程式真正的生命起始於第四步驟：收到伺服器回傳的頁面時。</p>
+</blockquote>
+        <p class="article-more-link">
+            <a href="/javascript-ninja-2-web-lifecyle/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/regexp-lookbehind-assertions/" itemprop="url">RegExp 踩雷：Lookbehind Assertions</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-05-23T16:23:40.000Z" itemprop="datePublished">5月 24 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 分鐘 的閱讀時間 (約 668 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/0RnPRvN.png" alt="Can I Use 涵蓋率 68.88%"></p>
+<h2>RegExp in JavaScript</h2>
+<p>之前對正規表達式一直不太熟悉，也沒仔細去研究正則規則寫法是什麼種類，所以踩到支援性的雷。大多數正規式會支援正規表達式的原因是，它是一個對於文字操作非常強大的工具，本來要寫數十行複雜邏輯的判斷式，只要一行就能達成。</p>
+<h2>ES2018 新增的功能</h2>
+<p>正則表達式在 1999 年在 ECMAScript 標準第三版成為 JavaScript 的一部份，而在 ES2018 標準第九版時，新增了以下的功能，大幅改善對文字處理的能力。這邊文章要說明的是關於 assertions，大部分程式碼範例參考自<a href="https://www.smashingmagazine.com/2019/02/regexp-features-regular-expressions/#lookbehind-assertions" target="_blank" rel="noopener">此篇文章</a>。</p>
+        <p class="article-more-link">
+            <a href="/regexp-lookbehind-assertions/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/react-main-concepts-part-1/" itemprop="url">初心者透過官方文件學習 React 十大概念（上）</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-04-13T16:57:05.000Z" itemprop="datePublished">4月 14 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/React/">React</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            18 分鐘 的閱讀時間 (約 2632 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>記錄著關於初學 REACT 時，官方文件提及的主要概念，基本上都是文件上的內容，希望用自己是初心者的方式整理關於 JSX、生命週期、事件處理器、官方文件的觀念，可以更記得住。</p>
+<h2>1. Hello World</h2>
+<ul>
+<li>應用程式基本組成：元素與組件。</li>
+</ul>
+<pre><code class="javascript">ReactDOM.render(&lt;h1&gt;Hello, world!&lt;/h1&gt;, document.getElementById('root'));
+</code></pre>
+<p>往下瞭解其他概念之前，可以先閱讀「<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/A_re-introduction_to_JavaScript" target="_blank" rel="noopener">重新介紹 JavaScipt</a>」，如果好幾年沒碰 JavaScript 的話，看一下「<a href="https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c" target="_blank" rel="noopener">三個心法</a>」。</p>
+        <p class="article-more-link">
+            <a href="/react-main-concepts-part-1/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/what-is-webpack/" itemprop="url">關於 Webpack，它是什麼？能夠做什麼？為什麼？怎麼做？— freeCodeCamp 的筆記</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-06-24T17:09:13.000Z" itemprop="datePublished">6月 25 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Webpack/">Webpack</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            13 分鐘 的閱讀時間 (約 1898 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>關於 Webpack</h2>
+<h3>Webpack 是什麼？</h3>
+<blockquote>
+<p>它是一個「<strong>打包工具</strong>」。將眾多模組與資源打包成一包檔案，並編譯我們需要預先處理的內容，變成瀏覽器看得懂的東西，讓我們可以上傳到伺服器。</p>
+</blockquote>
+<p>前端日新月異，我們寫的內容已不只是寫 HTML、CSS、JavaScript 單純的檔案。前端出現了許多預處理工具及框架，預處理工具如 PUG、SASS、Babel；框架如 Vue、React。不過瀏覽器並看不懂我們寫的預處理內容，每每都需要透過編譯才能使用，也因此出現了自動化工具，Webpack、Gulp、Grunt、Parcel、Browserify…等。</p>
+<h3>Webpack 能夠做什麼？為什麼？</h3>
+        <p class="article-more-link">
+            <a href="/what-is-webpack/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/javascript-good-condition-statement/" itemprop="url">五個小技巧讓你寫出更好的 JavaScript 條件語句（翻譯）</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-06-07T15:58:53.000Z" itemprop="datePublished">6月 7 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            18 分鐘 的閱讀時間 (約 2729 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>1. 使用 Array.includes 來處理多重條件</h2>
+<pre><code class="javascript">// 原始寫法
+function test(fruit) {
+  // 條件語句
+  if (fruit === &quot;apple&quot; || fruit === &quot;strawberry&quot;) {
+    console.log(&quot;red fruit&quot;);
+  }
+}
+</code></pre>
+<p>乍看之下，寫法沒什麼錯誤。可是當我們有更多紅色水果的選項時，如 <code>cherry</code>（櫻桃）和 <code>cranberries</code>（蔓越莓），難道我們要增加更多的 <code>||</code> 邏輯運算子來判斷？</p>
+<p>我們用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">Array.includes</a> 來改寫一次上面的判斷式：</p>
+<pre><code class="javascript">// 改寫後
+function test(fruit) {
+  // 將選項提取出來，放入陣列當中
+  const redFruits = [&quot;apple&quot;, &quot;strawberry&quot;, &quot;cherry&quot;, &quot;cranberries&quot;];
+  if (redFruits.includes(&quot;apple&quot;)) {
+    console.log(&quot;red fruit&quot;);
+  }
+}
+</code></pre>
+        <p class="article-more-link">
+            <a href="/javascript-good-condition-statement/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/differences-among-var-let-const/" itemprop="url">在 JavaScript 中，Var、Let、Const 的差異？</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-05-09T15:42:00.000Z" itemprop="datePublished">5月 9 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            2 分鐘 的閱讀時間 (約 229 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>Var</h2>
+<h4>露出去的變數 <code>i</code></h4>
+<pre><code class="javascript">for(var i = 0; i&lt;10; i++) {
+  console.log(i)
+}
+console.log(i) // 10
+</code></pre>
+<ul>
+<li>感謝 <a href="https://a7474267.github.io/" target="_blank" rel="noopener">Reynold Cheng</a> 於 2020/10/01 熱心指正第一個範例，結果為 <code>10</code>。</li>
+</ul>
+<h4>function scope：function 外就存取不到變數 <code>i</code></h4>
+        <p class="article-more-link">
+            <a href="/differences-among-var-let-const/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/javascript-deep-copy-swallow-copy/" itemprop="url">透過複製陣列理解 JS 的淺拷貝與深拷貝 - JavaScript</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-05-05T09:49:25.000Z" itemprop="datePublished">5月 5 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            15 分鐘 的閱讀時間 (約 2201 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>本篇文章翻譯自 <a href="https://medium.freecodecamp.org/how-to-clone-an-array-in-javascript-1d3183468f6a" target="_blank" rel="noopener">How to clone an array in JavaScript - by Yazeed Bzadough on freeCodeCamp @medium</a>，搭配 <a href="%5Bhttps://liaoyingkai.github.io/2019/01-day/js%E7%9A%84%E6%8B%B7%E8%B2%9D/">JS 的拷貝 by Kai @github</a> 提及的概念，整理成筆記。</p>
+<hr>
+<h2>TL; TR</h2>
+<ul>
+<li><code>8.</code> JSON.parse and JSON.stringify 是深拷貝。其他都是淺拷貝。</li>
+<li>「call by reference」與「call by value」？
+<ul>
+<li>基本型別 (Primitive Type) - number, string, boolean, null, undefined - 傳值</li>
+<li>物件 (Objects) - array, function, object - 傳址</li>
+<li>array/object 當中若含有複合型別時，此複合型別是 call by reference 而不是 by value。</li>
+</ul>
+</li>
+<li>「淺拷貝」與「深拷貝」的定義與差異？
+<ul>
+<li>淺拷貝在複製 <code>object</code> 時，會參考到同一個物件，並沒有將此物件拷貝到並建立出新的關聯。</li>
+<li>深拷貝在複製 <code>object</code> 時，會獨立出來不共用同一個記憶體位置，改動 <code>newObject</code> 時不會動到 <code>oldObject</code>。</li>
+</ul>
+</li>
+<li>這只是試看看能否用一個步驟就能深拷貝陣列的方式而寫的文章，網路上能找到其他更有趣的實作唷！
+<ul>
+<li>更多深拷貝與淺拷貝的比較也可以參考 <a href="https://larry850806.github.io/2016/09/20/shallow-vs-deep-copy/" target="_blank" rel="noopener">Larry Lu</a>、<a href="%5Bhttp://skyroxas.tw/javascript-%E5%AF%A6%E4%BD%9C%E6%8A%80%E5%B7%A7%EF%BC%9A-%E6%B7%BA%E6%8B%B7%E8%B2%9Dshallow-copy-%E6%B7%B1%E6%8B%B7%E8%B2%9Ddeep-copy/%5D(http://skyroxas.tw/javascript-%E5%AF%A6%E4%BD%9C%E6%8A%80%E5%B7%A7%EF%BC%9A-%E6%B7%BA%E6%8B%B7%E8%B2%9Dshallow-copy-%E6%B7%B1%E6%8B%B7%E8%B2%9Ddeep-copy/)">ZHI-WEI</a></li>
+<li>jquery - <code>$.extend()</code></li>
+<li>loadash - <code>_.cloneDeep()</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+        <p class="article-more-link">
+            <a href="/javascript-deep-copy-swallow-copy/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/this-arrow-function-in-javascript/" itemprop="url">Arrow function 解決了什麼問題？</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-04-02T08:21:02.000Z" itemprop="datePublished">4月 2 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            3 分鐘 的閱讀時間 (約 406 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/PKxcikD.png" alt=""></p>
+<h2><strong>目的</strong></h2>
+<p>將 <code>this</code> 鎖在 <code>function</code> 當中。<br>
+為了取代舊有的<code>.bind()</code>（<code>.bind()</code> 會綁定 this 到指定的 <code>obj</code>）。</p>
+<h2>適合情境</h2>
+<p>只要 <code>function</code> 內的 <code>this</code> 還要再往下傳的時候，就適合使用 <code>arrow function</code>。</p>
+        <p class="article-more-link">
+            <a href="/this-arrow-function-in-javascript/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/react-setting-cdn-and-creatreactapp/" itemprop="url">React 環境設置 (CDN/CRA)</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-03-26T07:33:31.000Z" itemprop="datePublished">3月 26 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/React/">React</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            7 分鐘 的閱讀時間 (約 1056 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/wFChjrF.png" alt=""></p>
+<h2>安裝與設定環境</h2>
+<p><strong>React</strong> 從一開始就被設計為逐步採用，可以根據需求來選擇使用 <strong>React</strong> 的範圍。</p>
+<hr>
+<h2>CDN</h2>
+        <p class="article-more-link">
+            <a href="/react-setting-cdn-and-creatreactapp/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+        <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/javascript-js101-note/" itemprop="url">用 JavaScript 一步步打造程式基礎(Huli JS101課程筆記)</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-03-09T15:54:10.000Z" itemprop="datePublished">3月 9 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            17 分鐘 的閱讀時間 (約 2486 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2>Node.js 環境建置</h2>
+<ul>
+<li>
+<p><strong>node.js</strong></p>
+<ul>
+<li>不是程式語言，而是一個執行環境，能讓 <code>JavaScript</code> 運行於瀏覽器外。</li>
+<li>安裝：官網。<code>LTS</code> 是較穩定的版本，<code>Current</code> 是有其他新的功能。</li>
+</ul>
+</li>
+</ul>
+<h3>透過 <code>iTerm</code> 建立 <code>js</code> 檔案，並用 <code>node</code> 執行寫好的程式。</h3>
+<h4>1. 建立 <code>JavaScript</code>：<code>vim index.js</code></h4>
+<pre><code class="javascript=">// index.js 
+console.log(123)
+</code></pre>
+        <p class="article-more-link">
+            <a href="/javascript-js101-note/#more">閱讀我吧！</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+
+    
+    
+        
+<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+    <div class="pagination-previous is-invisible is-hidden-mobile">
+        <a href="/tags/javascript/page/0/">上一頁</a>
+    </div>
+    <div class="pagination-next">
+        <a href="/tags/javascript/page/2/">下一頁</a>
+    </div>
+    <ul class="pagination-list is-hidden-mobile">
+        
+        <li><a class="pagination-link is-current" href="/tags/javascript/">1</a></li>
+        
+        <li><a class="pagination-link" href="/tags/javascript/page/2/">2</a></li>
+        
+    </ul>
+</nav>
+    
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

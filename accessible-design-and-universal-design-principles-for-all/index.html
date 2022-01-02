@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>符合無障礙規範一定要了解！把「通用設計」的思考融入骨子裡 - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="大家都知道，一個好的網站需要包含很多要素。其中有一個很大的 topic，「Accessible Web / Accessibility」，卻經常淪為建構網站時，有時間才去優化的事情，是一個 option 而不是 main feature。">
+ 
+<meta name="keywords" content="無障礙規範,通用設計,無障礙設計,aria-label,accessibility,web,accessibile web,google accessibility,w3org accessibility,w3c accessibility">
+  <meta name="description" content="大家都知道，一個好的網站需要包含很多要素。其中有一個很大的 topic，「Accessible Web / Accessibility」，卻經常淪為建構網站時，有時間才去優化的事情，是一個 option 而不是 main feature。">
+<meta name="keywords" content="無障礙規範,通用設計,無障礙設計,aria-label,accessibility,web,accessibile web,google accessibility,w3org accessibility,w3c accessibility">
+<meta property="og:type" content="article">
+<meta property="og:title" content="符合無障礙規範一定要了解！把「通用設計」的思考融入骨子裡">
+<meta property="og:url" content="https://askie.today/accessible-design-and-universal-design-principles-for-all/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="大家都知道，一個好的網站需要包含很多要素。其中有一個很大的 topic，「Accessible Web / Accessibility」，卻經常淪為建構網站時，有時間才去優化的事情，是一個 option 而不是 main feature。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/8A5BNOt.png">
+<meta property="og:updated_time" content="2019-07-28T01:04:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="符合無障礙規範一定要了解！把「通用設計」的思考融入骨子裡">
+<meta name="twitter:description" content="大家都知道，一個好的網站需要包含很多要素。其中有一個很大的 topic，「Accessible Web / Accessibility」，卻經常淪為建構網站時，有時間才去優化的事情，是一個 option 而不是 main feature。">
+<meta name="twitter:image" content="https://i.imgur.com/8A5BNOt.png">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            符合無障礙規範一定要了解！把「通用設計」的思考融入骨子裡
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-07-25T12:50:22.000Z" itemprop="datePublished">7月 25 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/UserExperience/">UserExperience</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            11 分鐘 的閱讀時間 (約 1576 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/8A5BNOt.png" alt="An Accessible Web"></p>
+<blockquote>
+<p>現在因為要製作政府的專案，需要符合國家通訊傳播委員會的無障礙規範，google 通用設計的概念，意圖去了解無障礙設計與通用設計的差異。後來看到大愛電視台，唐峰正老師的分享「通用設計」，發現：其實我們做的每一件事情都能增添溫度 - 同理心。</p>
+</blockquote>
+<p>大家都知道，一個好的網站需要包含很多要素。其中有一個很大的 topic，「Accessible Web / Accessibility」，卻經常淪為建構網站時，有時間才去優化的事情，是一個 option 而不是 main feature。</p>
+<hr>
+<h2>Accessibility</h2>
+<p><code>\-​ˌse-​sə-​ˈbi-​lə-​tē \</code></p>
+<blockquote>
+<p>中文常翻譯為「網頁親和力」。<a href="https://www.merriam-webster.com/dictionary/accessibility" target="_blank" rel="noopener">線上字典聽發音</a>。</p>
+</blockquote>
+<h2>學習到的重點</h2>
+<h3>無障礙設計</h3>
+<p>專爲身障者考量的設計，讓他們使用設備或空間時不會受到阻礙。</p>
+<h3>通用設計是「利他精神」。</h3>
+<p>目的是：不凸顯使用者差異、不增加其心理負擔。通用設計所考量的對象則不侷限於身障者，還有其他的使用族群，也許是身體機能退化的高齡者，也可能是使用習慣和多數人不同的左撇子，或是身材嬌小的矮個子、大腹便便的孕婦、推著娃娃車的人等等。</p>
+<h3>無障礙設計與通用設計最大的區別（2019-07-28 補充）</h3>
+<blockquote>
+<p>Universal design is different from accessible design in that there are not two different solutions - <a href="https://uxdesign.cc/unlock-your-universibility-4b25bbe2dab" target="_blank" rel="noopener">來源</a></p>
+</blockquote>
+<p>「無障礙設計 Accessible Design」需要考量不同對象而有需要額外製作第二套解決方案，而「通用設計 Universal Design」沒有兩種不同的方案，而是一種方式就能滿足所有人的需求。</p>
+<hr>
+<h3>如果一開始就針對全民設計，將會：</h3>
+<ul>
+<li>成本降低</li>
+<li>使用者增加</li>
+</ul>
+<h3>七大原則</h3>
+<ul>
+<li>公平</li>
+<li>簡單易用</li>
+<li>彈性</li>
+<li>空間</li>
+<li>容錯</li>
+<li>省力</li>
+<li>直覺</li>
+</ul>
+<h3>人生大風車：人生有大多數充斥的需要被設計的事物。</h3>
+<table>
+<thead>
+<tr>
+<th>人生不同階段</th>
+<th>幼兒</th>
+<th>學生</th>
+<th>社會人士</th>
+<th>老年</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不同的椅子</td>
+<td>娃娃車</td>
+<td>學生椅</td>
+<td>電腦椅</td>
+<td>輪椅</td>
+</tr>
+</tbody>
+</table>
+<h3>「同理心」並非「同情心」，而是有溫度的思考。也就是以下：</h3>
+<ol>
+<li>只要有表達出來，我都願意幫你</li>
+<li>在被幫助的時候，也不要因為被幫助，而喪失自己原本的能力</li>
+<li>把彼此的問題，都加進來一起思考</li>
+</ol>
+<h3>全人關懷環境，去思考：</h3>
+<ul>
+<li>誰在用？</li>
+<li>誰要用？</li>
+<li>誰想用？</li>
+</ul>
+<hr>
+<blockquote>
+<p>專心做一件事，過程中也許會被質疑、不認同你，但當它出現意義、出現價值時，你才可以告訴你自己，你是活著的。＿唐峰正顧問</p>
+</blockquote>
+<p>上面這句話，不小心融入我的血裡、我的骨子裡了。</p>
+<p>稍稍了解之後，我的想法是，如果網站在建構初期時，設計者與開發者有著全面族群的思考方向，自然就容易把事情做好、把格局做大。</p>
+<hr>
+<h2>補充無障礙相關資訊！（方便別人、方便自己）</h2>
+<h3>線上資源</h3>
+<p>如果你也跟我一樣：<strong>目前正在了解無障礙的規範該如何去實踐</strong>，不外乎要知道載體、開發者工具的使用、語意標籤及相關的 aria-label 內容設定。</p>
+<p>可以參考的線上資源有：<a href="https://developers.google.com/web/fundamentals/accessibility/" target="_blank" rel="noopener">Google Web Fundamental</a> 及 <a href="https://www.udacity.com/course/web-accessibility--ud891" target="_blank" rel="noopener">Google 提供的免費課程</a>、<a href="https://www.w3.org/WAI/standards-guidelines/aria/" target="_blank" rel="noopener">w3org: WAI-ARIA Overview</a>、<a href="https://www.w3.org/WAI/fundamentals/accessibility-intro/" target="_blank" rel="noopener">w3org: Accessibility Fundamentals</a>、<a href="https://web.dev/accessible" target="_blank" rel="noopener">web.dev: Accessible to all</a> 有規範 / 建議 / 學習資源。<br>
+之後完成專案後再來說一下心得與工具。</p>
+<p>我這個專案將會使用 Vue 開發，其實不論你用什麼框架，真正的關鍵字，叫做「<strong>A11Y</strong>」，是 eslint 的套件，當你的結構未符合 Accessibility 時就會有錯誤提示，感謝 <a href="https://medium.com/hulis-blog" target="_blank" rel="noopener">Huli 胡立大大</a> 的補充！^^</p>
+<ul>
+<li>Vue 可以使用：<a href="https://github.com/maranran/eslint-plugin-vue-a11y" target="_blank" rel="noopener"><strong>eslint-plugin-vue-a11y</strong></a>，<a href="https://awesome-vue.js.org/projects-using-vue-js/a11y.html" target="_blank" rel="noopener">more</a>…</li>
+<li>React 可以使用：<a href="https://www.npmjs.com/package/eslint-plugin-jsx-a11y" target="_blank" rel="noopener">eslint-plugin-jsx-a11y</a></li>
+</ul>
+<h3>Checklist for 網站無障礙規範 2.0 版 A 級</h3>
+<p>如果你也跟我一樣：<strong>需要符合政府的規範，也就是國家通訊傳播委員會的無障礙檢測</strong>，總共有三個等級（A, AA, AAA），我目前只需要通過 A 級，但因為<a href="https://www.handicap-free.nat.gov.tw/Accessible/Detail/144" target="_blank" rel="noopener">官方的規範</a>，結構、配色實在太難閱讀…</p>
+<p>為了不想瞎掉，所以我手動整理了一個共筆清單，方便大家複製一份自己用。符合規範就自己打勾，也方便做 spec 驗收時確認，總之有一個 TOC 及資訊層級整理，總是比官方的版本閱讀性提高太多，較容易查找（OS: 明明就是官方的無障礙規範，排版排得連一般人都難以閱讀是怎樣 = =）。</p>
+<p><a href="https://hackmd.io/OJCHT1IWTAevvj3esvdOGA?view" target="_blank" rel="noopener">我整理的共筆連結在此，歡迎拿去使用，官方範例也正在整理中</a></p>
+<ul>
+<li>Issues
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">國家通訊委員會有提供檢測工具 Freego，我的電腦是 MacBook Pro，下載 Linux 版本卻不能使用，命令列似乎說有缺少的 java 套件…。</label></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>Reference</h3>
+<ul>
+<li><a href="https://vide.tw/1319" target="_blank" rel="noopener">通用設計與無障礙設計的差異</a></li>
+<li><a href="https://www.slideshare.net/codefortomorrow/universal-design-for-public-services" target="_blank" rel="noopener">Universal Design for Public Services 公共服務如何導入通用設計（余虹儀）</a></li>
+<li><a href="https://www.youtube.com/watch?v=o9Bt9mzfPVc" target="_blank" rel="noopener">通用設計大學問 - 唐峰正顧問</a>（萬分感謝！您真偉大）</li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/無障礙規範/">#無障礙規範</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/通用設計/">#通用設計</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/無障礙設計/">#無障礙設計</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/aria-label/">#aria-label</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Accessibility/">#Accessibility</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Web/">#Web</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Accessibile-Web/">#Accessibile Web</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/vscode-custom-user-code-snippets-steps/">以 Vue 為例，如何在 VSCODE 自訂程式碼片段 Code Snippets？</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/vue-difference-between-css-modules-and-css-scoped/">CSS Modules 在 Vue 的用法？和 CSS scoped 分別的優勢？</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>系統設計入門：效能與可擴展性的差異 - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="當資源投入時，服務的效能還能增加，也就是「效能增長程度」與「資源投入」成正比時，那麼這個服務即擁有可擴展性。因為效能增加代表服務可以處理更多資料，也就能服務更多的工作單位，...">
+ 
+<meta name="keywords" content="System design primer,performance,scalability,系統設計,效能,可擴充性,可擴展性">
+  <meta name="description" content="當資源投入時，服務的效能還能增加，也就是「效能增長程度」與「資源投入」成正比時，那麼這個服務即擁有可擴展性。因為效能增加代表服務可以處理更多資料，也就能服務更多的工作單位，...">
+<meta name="keywords" content="System design primer,performance,scalability,系統設計,效能,可擴充性,可擴展性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系統設計入門：效能與可擴展性的差異">
+<meta property="og:url" content="https://askie.today/system-design-primer-performance-vs-scalability/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="當資源投入時，服務的效能還能增加，也就是「效能增長程度」與「資源投入」成正比時，那麼這個服務即擁有可擴展性。因為效能增加代表服務可以處理更多資料，也就能服務更多的工作單位，...">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/FkSEBlJ.jpg">
+<meta property="og:updated_time" content="2020-06-30T15:20:39.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系統設計入門：效能與可擴展性的差異">
+<meta name="twitter:description" content="當資源投入時，服務的效能還能增加，也就是「效能增長程度」與「資源投入」成正比時，那麼這個服務即擁有可擴展性。因為效能增加代表服務可以處理更多資料，也就能服務更多的工作單位，...">
+<meta name="twitter:image" content="https://i.imgur.com/FkSEBlJ.jpg">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            系統設計入門：效能與可擴展性的差異
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2020-06-20T15:19:17.000Z" itemprop="datePublished">6月 20 2020</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/System-Design/">System Design</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            8 分鐘 的閱讀時間 (約 1178 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/FkSEBlJ.jpg" alt="系統設計入門：效能與可擴展性的差異"></p>
+<blockquote>
+<p>本系列文並非自己實務心得記錄，而是讀 <a href="https://github.com/donnemartin/system-design-primer/" target="_blank" rel="noopener">System Design Primer</a> 的筆記，有蠻大部分節錄自該文章以及其補充連結。</p>
+</blockquote>
+<p>工程師常拿 Scalability 來討論，最後也常以「但是它不能擴」作為雙方的結論。這表示系統確實經常被限縮。</p>
+<h2>怎樣的服務算是擁有「可擴展性 Scalability」</h2>
+<p>比如說，為了提高所提供服務的可靠性，需要<a href="https://www.ithome.com.tw/news/115244" target="_blank" rel="noopener">納入冗餘（Redundancy）的設計理念，降低系統執行對單一伺服器的依賴程度</a>，卻不會因而犧牲效能。</p>
+<p>當資源投入時，服務的效能還能增加，也就是「效能增長程度」與「資源投入」成正比時，那麼這個服務即擁有可擴展性。因為效能增加代表服務可以處理更多資料，也就能服務更多的工作單位，我們就擁有擴展資源的可能性，而不會為了會損失效能而選擇折衷，導致服務失去更多可能性。</p>
+<h2>對於單一個使用者來說</h2>
+<ul>
+<li>系統存在「效能」問題時，他會覺得「慢」。</li>
+<li>系統存在「可擴展性」問題時，他會覺得較快，但系統「高負載」時，就會覺得「變慢」。
+<ul>
+<li>比如某些演算法，使用者平常感覺都很良好，只有在系統進入高負載時會影響甚巨。</li>
+</ul>
+</li>
+</ul>
+<h2>最難的地方</h2>
+<h3>無法事後設計</h3>
+<ul>
+<li>因為可擴展性這件事情，必須要在事前先思考、設計、再開始開發，開發後才開始想到這一層面，往往無法因應。</li>
+</ul>
+<h3>異質性 Heterogeneity</h3>
+<ul>
+<li>需要考量不同版本的硬體設備都有其異質性，且更強大的工具通常需要付出更昂貴的成本。</li>
+</ul>
+<h2>Check List</h2>
+<ul>
+<li>確保系統沿著期望的方向成長</li>
+<li>哪裡需要冗餘</li>
+<li>應該如何處理系統中的異質性</li>
+<li>Solution Architect 需知道在哪些條件下他們可以使用哪些工具以及其常見缺點</li>
+</ul>
+<hr>
+<h1>Weekly Notes</h1>
+<ul>
+<li>
+<p>Multi-tier architecture：3-tier Architecture 是最常使用的架構，尤其是<a href="https://en.wikipedia.org/wiki/Multitier_architecture#Web_development_usage" target="_blank" rel="noopener">電商網站</a>。</p>
+<ul>
+<li>Presentation Layer a.k.a. UI layer（Presentation tier）
+<ul>
+<li>PC, Tablet, Mobile, etc.</li>
+</ul>
+</li>
+<li>Application Layer（Logic tier）
+<ul>
+<li>Web Server</li>
+</ul>
+</li>
+<li>Database Server（Data tier）</li>
+</ul>
+</li>
+<li>
+<p>Performance → Scale-up</p>
+<ul>
+<li>新增機器，若依舊無法改善就是 Scalability Problem</li>
+</ul>
+</li>
+<li>
+<p>Scalability → Scale-out</p>
+<ul>
+<li>
+<p>Web Server</p>
+<ul>
+<li>Load Balancer / L4 switch</li>
+<li>一定要有 health check</li>
+<li>一定要有 Policy 流量分配方式：
+<ul>
+<li>Round-robin 依序循環、</li>
+<li>Least connection、</li>
+<li>先經過演算法 hash 過，指向 FQDN，印象中是 ELB 預設方式。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DB Server</p>
+<ul>
+<li>Data Replication，加一層 HA proxy、ProxySQL、Route server
+<ul>
+<li>(Asynced) - Multi-source 有 Delay 的考量
+<ul>
+<li>Binlog 去備份，會自動比較差異</li>
+<li>Read：很棒</li>
+<li>Write：容易因為 delay 衝突</li>
+<li>Scale-out：要寫 script 自動化去 sync</li>
+</ul>
+</li>
+<li>(Synced) - PXC - Data Read 量大可以選用的 solution，不然 node 多容易有效能慢的問題
+<ul>
+<li>Read：很棒</li>
+<li>Write：等所有 DB server 都完成才算真正完成 ⇒ 寫入</li>
+<li>Scale-out：自動化同步，但如果 size 大要找一個東西花很久時間</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data Partitioning and Sharding，加一層 Route Server
+<ul>
+<li>水平分割：table 只存某種 type，比如身分證字號 A 開頭的存一個表</li>
+<li>垂直分割：table 只存某欄位，比如性別欄位存一個表</li>
+<li>MongoDB Sharding：透過 Route server 去問 ConfigDB 取得 sharding key，得知要存在哪個表
+<ul>
+<li>Write：透過 ConfigDB 知道要寫到哪</li>
+<li>Read：透過 ConfigDB 知道要存到哪</li>
+<li>Scale-out：加新 node 很輕鬆，只要設定好 ConfigDB，自動化 re-balance data，做更合適的分散。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Jack 分享電商 XXhome 的經驗：
+<ul>
+<li>現在的系統做大後要拆分的最根本原因是因為 User 需求量大增。
+<ul>
+<li>所以背後有 Cluster 群在服務這些請求。</li>
+<li>再把來源拆一拆就能分流：
+<ul>
+<li>圖片有專屬的機器</li>
+<li>API 也拆一拆</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>所以雲端服務：
+<ul>
+<li>只要背後做得穩、快。</li>
+<li>剩下的就是做好使用者經驗，也就是 Front-end + UI/UX ⇒ 我自己的結論。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://github.com/donnemartin/system-design-primer/" target="_blank" rel="noopener">System Design Primer</a></li>
+<li><a href="https://www.allthingsdistributed.com/2006/03/a_word_on_scalability.html" target="_blank" rel="noopener">A Word on Scalability - Werner Vogels</a></li>
+<li><a href="https://www.slideshare.net/jboner/scalability-availability-stability-patterns/" target="_blank" rel="noopener">Scalability, Availability &amp; Stability Patterns</a></li>
+</ul>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/system-design/">#system design</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/system-design-primer-latency-vs-throughput/">系統設計入門：延遲與吞吐量</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/javascript-ninja-2-web-lifecyle/">忍者 2：Web 應用程式生命週期</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>

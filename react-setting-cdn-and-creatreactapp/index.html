@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="has-navbar-fixed-top">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>React 環境設置 (CDN/CRA) - Askie&#39;s Coding Life</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="description" content="用 CDN 跟 create-react-app 創建 react app。">
+ 
+<meta name="keywords" content="React,React Track,React入門,JavaScript,CDN,CRA,Create-React-App">
+  <meta name="description" content="用 CDN 跟 create-react-app 創建 react app。">
+<meta name="keywords" content="React,React Track,React入門,JavaScript,CDN,CRA,Create-React-App">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 環境設置 (CDN&#x2F;CRA)">
+<meta property="og:url" content="https://askie.today/react-setting-cdn-and-creatreactapp/index.html">
+<meta property="og:site_name" content="Askie&#39;s Coding Life">
+<meta property="og:description" content="用 CDN 跟 create-react-app 創建 react app。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://i.imgur.com/wFChjrF.png">
+<meta property="og:image" content="https://i.imgur.com/b2Vd21c.png">
+<meta property="og:image" content="https://i.imgur.com/fgdmxV5.png">
+<meta property="og:image" content="https://i.imgur.com/BjzXdwT.png">
+<meta property="og:updated_time" content="2019-07-27T10:54:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 環境設置 (CDN&#x2F;CRA)">
+<meta name="twitter:description" content="用 CDN 跟 create-react-app 創建 react app。">
+<meta name="twitter:image" content="https://i.imgur.com/wFChjrF.png">
+<meta name="twitter:creator" content="@askiebaby">
+<meta name="twitter:site" content="https://twitter.com/askiebaby">
+<meta property="fb:admins" content="1505678310">
+<meta property="fb:app_id" content="326735094614431">   
+<link rel="icon" href="/assets/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+          
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132394454-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132394454-1');
+</script>
+
+  
+
+  </head>
+  <body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" aria-label="主要導覽列">
+  <div class="container">
+    <h1 class="navbar-brand" aria-label="Askie's coding life">
+      <a class="navbar-item navbar-logo" title="Askie's coding life" href="/">
+         
+        <img src="/assets/askiebaby.svg" alt="" height="28">
+         
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </h1>
+    
+    <div class="navbar-menu navbar-start">
+      
+      <a class="navbar-item " href="/archives">Archives</a>
+      <a class="navbar-item " href="/categories">Categories</a>
+      <a class="navbar-item " href="/about">About</a>
+    </div>
+    
+    <div class="navbar-menu navbar-end">
+      
+      <a class="navbar-item search" title="搜尋" href="javascript:;">
+        <i class="fas fa-search"></i>
+      </a>
+        
+      <a class="navbar-item" title="GitHub" href="https://github.com/askiebaby">
+        
+        <i class="fab fa-github"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Medium" href="https://medium.com/@askiebaby">
+        
+        <i class="fab fa-medium-m"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Twitter" href="https://twitter.com/askiebaby">
+        
+        <i class="fab fa-twitter"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Linkedin" href="https://www.linkedin.com/in/askie-lin-744985145/">
+        
+        <i class="fab fa-linkedin"></i>
+        
+      </a>
+      
+      <a class="navbar-item" title="Instagram" href="https://www.instagram.com/askiebaby/">
+        
+        <i class="fab fa-instagram"></i>
+        
+      </a>
+       
+    </div>
+  </div>
+</nav>
+ <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope="" itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            React 環境設置 (CDN/CRA)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <!-- <span class="column is-narrow">
+            <time datetime="2019-03-26T07:33:31.000Z" itemprop="datePublished">3月 26 2019</time>
+        </span> -->
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/React/">React</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            7 分鐘 的閱讀時間 (約 1056 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.imgur.com/wFChjrF.png" alt=""></p>
+<h2>安裝與設定環境</h2>
+<p><strong>React</strong> 從一開始就被設計為逐步採用，可以根據需求來選擇使用 <strong>React</strong> 的範圍。</p>
+<hr>
+<h2>CDN</h2>
+<ol>
+<li>建立一個靜態的 <code>index.html</code> 檔案。</li>
+<li>在 <code>head</code> 中載入三個 CDN，分別是 <code>React</code>、<code>React DOM</code>、<code>Babel</code>。</li>
+<li><code>index.html</code> 中寫一個 <code>div</code>，<code>id</code> 是<code>root</code>。</li>
+<li>最後在<code>&lt;body&gt;</code> end tag 之前新增<code>script</code>區塊放置程式碼。</li>
+</ol>
+<pre><code class="html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+
+    &lt;title&gt;React_CDN&lt;/title&gt;
+
+    &lt;script src=&quot;https://unpkg.com/react@16/umd/react.development.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://unpkg.com/react-dom@16/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://unpkg.com/babel-standalone@6.26.0/babel.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+
+    &lt;script type=&quot;text/babel&quot;&gt;
+      // React code will go here
+    &lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>
+<p>目前已經載入寫作時穩定的版本：</p>
+<ul>
+<li>React - React 頂層的 API</li>
+<li>React DOM - adds DOM-specific methods
+<ul>
+<li>The react-dom package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside of the React model if you need to. Most of your components should not need to use this module.</li>
+</ul>
+</li>
+<li>Babel - a JavaScript compiler that lets us use ES6+ in old browsers</li>
+</ul>
+</li>
+<li>
+<h4>整個 <code>app</code> 的進入點會是這個 <code>div#root</code>，已經是使用慣例。</h4>
+</li>
+</ul>
+<ol start="5">
+<li>現在，使用 <code>ES6</code> 的 <code>class</code> 來寫第一個 <strong>React</strong> 的程式，新增一個叫做 <code>app</code> 的 <code>component</code>。</li>
+</ol>
+<pre><code class="javascript">class App extends React.Component {
+  //...
+}
+</code></pre>
+<ol start="6">
+<li>加入 <code>render()</code> 方法，這是 <code>class component</code> 唯一必須存在的 <code>method</code>，用來渲染 <code>DOM</code> 節點。</li>
+</ol>
+<pre><code class="javascript">class App extends React.Component {
+  render() {
+      return (
+          //...
+      );
+  }
+}
+</code></pre>
+<ol start="7">
+<li>在 <code>return</code> 中，簡單放個 HTML 元素。要注意這邊放的類型並不是字串，所以不使用單引號或雙引號把內容包起來。這叫做 <code>JSX</code>，之後會談到更多。</li>
+</ol>
+<pre><code class="javascript">class App extends React.Component {
+  render() {
+    return &lt;h1&gt;Hello, I'm here&lt;/h1&gt;
+  }
+}
+</code></pre>
+<ol start="8">
+<li>最後，使用 <strong>React</strong> 提供的 DOM 渲染方法 <code>render()</code> 把 <code>App</code> 這個 <code>class</code> 創建到我們的 <code>div#root</code> 當中。</li>
+</ol>
+<pre><code class="javascript">ReactDOM.render(&lt;App /&gt;, document.getElementById('root'))
+</code></pre>
+<h3>index.html 最後長這樣</h3>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+
+    &lt;title&gt;React_CDN&lt;/title&gt;
+
+    &lt;script src=&quot;https://unpkg.com/react@16/umd/react.development.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://unpkg.com/react-dom@16/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://unpkg.com/babel-standalone@6.26.0/babel.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+    &lt;script type=&quot;text/babel&quot;&gt;
+      class App extends React.Component {
+        render() {
+          return &lt;h1&gt;Hello, I'm here&lt;/h1&gt;
+        }
+      }
+
+      ReactDOM.render(&lt;App /&gt;, document.getElementById('root'))
+    &lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<h3>可以在瀏覽器看到內容就代表成功了：</h3>
+<p><img src="https://i.imgur.com/b2Vd21c.png" alt=""></p>
+<hr>
+<h2>Local Environment (CRA/Create React App)</h2>
+<p>CDN 引入 libraries 的方法並不是很有效率，也不容易維護，所幸 facebook 提供了<code>create-react-app</code>，它幫你在設定好在開發<code>React App</code> 前的所需的環境。</p>
+<ul>
+<li>live server</li>
+<li>Webpack 自動編譯 React, JSX, and ES6, auto-prefix CSS 檔案</li>
+<li>ESLint測試並提醒程式碼錯誤的地方</li>
+</ul>
+<h4>設定 <code>create-react-app</code> （app 名稱）</h4>
+<p>打開 <code>terminal</code>，跟著以下步驟安裝。回到你想安裝專案的上一層資料夾，確定一下 <code>Node.js</code> 版本是否在 <code>5.2</code> 或以上。</p>
+<h4>一、安裝</h4>
+<pre><code class="bash">npx create-react-app create-react-app
+</code></pre>
+<h4>二、進入專案資料夾，開始專案</h4>
+<pre><code class="bash">cd create-react-app
+npm start
+</code></pre>
+<p><img src="https://i.imgur.com/fgdmxV5.png" alt=""></p>
+<h4>專案檔案包含：</h4>
+<p>觀察專案的結構，可以看到 <code>/public</code>、<code>/src</code> 兩個資料夾，和<code>node_modules</code>、<code>.gitignore</code>、<code>README.md</code>、<code>package.json</code> 這幾個檔案。</p>
+<ul>
+<li>在 <code>/public</code> 中，<code>index.html</code> 是我們重要的檔案，跟先前使用 CDN 建立的 <code>index.html</code> 非常相似，都有著 <code>div#root</code>，只是這次沒有載入任何 libraries 和程式碼。</li>
+<li><code>/src</code> 會放置我們所建立的 <strong>React</strong> 程式碼。</li>
+<li><code>/src/App.js</code> 看環境如何自動編譯，找到以下這行改看動試試更新程式碼及樣板。</li>
+</ul>
+<pre><code class="html">To get started, edit &lt;code&gt;src/App.js&lt;/code&gt;
+</code></pre>
+<ul>
+<li>一旦更動程式碼發現 <code>localhost:3000</code> 自動更新樣板，這就是live server。</li>
+<li>把 <code>/src</code> 資料夾中的檔案刪除，只留 <code>index.css</code> 和 <code>index.js</code>，不會爆掉。</li>
+</ul>
+<hr>
+<h4>三、在 <code>index.js</code> 中 <strong>import</strong> <code>React</code>、<code>ReactDOM</code>、<code>CSS</code> 檔案：</h4>
+<pre><code class="javascript">import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+</code></pre>
+<p>我們再建立 <code>App component</code> 一次。使用 CDN 方法時，我們有個<code>&lt;h1&gt;</code>元素，但現在我們試著在<code>&lt;div&gt;</code>上加上<code>className</code>取代<code>class</code>來引入樣式規則。這意味著我們正在 <code>JavaScript</code> 中攥寫我們的樣板，而非真實 HTML 檔案。</p>
+<pre><code class="javascript">class App extends Component {
+  render() {
+    return (
+      &lt;div className=&quot;App&quot;&gt;
+        &lt;h1&gt;Hello, I'm here&lt;/h1&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+<h4>四、以下是完整的 <code>index.js</code>，這次我們要把 <code>Component</code> 當作 <strong>React</strong> 的參數載入，這樣也就不需再 extend <code>React.Component</code>：</h4>
+<pre><code class="javascript">import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+
+class App extends Component {
+  render() {
+    return (
+      &lt;div className=&quot;App&quot;&gt;
+        &lt;h1&gt;Hello, I'm here&lt;/h1&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById('root'))
+</code></pre>
+<h4>五、打開瀏覽器 <code>localhost:3000</code> 看看，已經成功開始我們的 React 專案：</h4>
+<p><img src="https://i.imgur.com/BjzXdwT.png" alt=""></p>
+<hr>
+<h2>Reference</h2>
+<p><a href="https://www.taniarascia.com/getting-started-with-react/" target="_blank" rel="noopener">參考連結</a></p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/react/">#react</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/react-track/">#react track</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/react入門/">#react入門</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/this-arrow-function-in-javascript/">Arrow function 解決了什麼問題？</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/javascript-js101-note/">用 JavaScript 一步步打造程式基礎(Huli JS101課程筆記)</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">留言</h3>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '21ae33d8d5ec0a9fda0c', // 这里一定要注意主题 config.yml 中 clientID 的大小写，否则参数传不过来，对应下边的 "问题一"
+    clientSecret: '80fa9ae6c4182e39f5682404619264efd76273bc',
+    repo: 'askiebaby.github.io',
+    owner: 'askiebaby',
+    admin: ['askiebaby'],
+    id: md5(location.pathname),
+    distractionFreeMode: false,
+    labels: ['issues'],
+    title: document.title,
+  });
+
+  gitalk.render('gitalk-container');
+</script>
+
+
+</div>
+
+
+
+    
+
+    </div>
+</section> <footer class="footer">
+  <div class="container">
+    <div class="columns content">
+      <div class="column is-narrow">
+        <!-- has-text-centered -->
+        Copyright &copy; 2018-2022
+        <a href="/about/">Askie Lin</a>
+        All rights reserved.
+        <p>Powered by Hexo, and the blog background image was designed by <a href="https://blush.design/zh-CN/artists/FMLOP83HOx1JjUCPdk1n/elina-cecilia-giglio" target="_blank">Elina Cecilia Giglio</a>.</p>
+      </div>
+      <div class="column is-hidden-mobile"></div>
+
+      
+      <div class="column is-narrow">
+        <div class="columns is-mobile is-multiline is-centered">
+           
+          <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/askiebaby">
+             GitHub 
+          </a>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</footer>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<!-- <div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script> -->
+<!-- <script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script> -->
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>  <div class="searchbox ins-search">
+  <div class="searchbox-mask"></div>
+  <div class="searchbox-container ins-search-container">
+    <div class="searchbox-input-wrapper">
+      <input type="text" class="searchbox-input ins-search-input" placeholder="搜尋 Askie 的部落格" title="搜尋 Askie 的部落格">
+      <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+    </div>
+    <div class="searchbox-result-wrapper ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+<script>
+  (function (window) {
+      var INSIGHT_CONFIG = {
+          TRANSLATION: {
+              POSTS: '文章',
+              PAGES: '頁面',
+              CATEGORIES: '分類',
+              TAGS: '標籤',
+              UNTITLED: '未命名文章',
+          },
+          CONTENT_URL: '/content.json',
+      };
+      window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="/js/insight.js"></script>
+ 
+  </body>
+</html>
